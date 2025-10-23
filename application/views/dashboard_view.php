@@ -18,7 +18,7 @@
             
         </div> 
     </div> -->
-   
+
     <!-- <div class="col-md-5">
         <div class="panel panel-primary">
             <div class="panel-heading clearfix">            
@@ -245,7 +245,7 @@
 
                         <div class="form-group row">               
                             <label class="col-sm-5 control-label">Credit Sales</label>
-                            <label class="col-sm-7 control-label">Credit transaction like (Home Credit, Credit Card, farm, tomeloy, ktla or BC) no interest.</label>
+                            <label class="col-sm-7 control-label">Credit transaction like (Pautang sa Customer) no interest.</label>
                         </div>      
                         <hr>
 
@@ -253,12 +253,6 @@
                             <label class="col-sm-5 control-label">Credit Payment</label>
                             <label class="col-sm-7 control-label">Payment for Credit Sales.</label>
                         </div>      
-                        <hr>
-
-                        <div class="form-group row">               
-                            <label class="col-sm-5 control-label">Credit Loan</label>
-                            <label class="col-sm-7 control-label">In-house, or  with or without agent with interest.</label>
-                        </div>  
                         <hr>
 
                         <div class="form-group row">               
@@ -275,7 +269,7 @@
 
     <?php if($users[0]->position == "Admin" ){}else{ ?>
     <!-- <div class="col-md-5">
-      
+    
         <div class="panel panel-default">
             <div class="panel-heading clearfix">            
                 <h3 class="panel-title pull-left" style="padding-top: 8px;font-size: 20px;">

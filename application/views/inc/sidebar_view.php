@@ -18,7 +18,7 @@
                 
                 <a title="Credit Payment" class="list-group-item" href="<?php echo site_url('Creditpayment_con') ?>"><span class="glyphicon glyphicon-folder-open"></span> Credit Payment</a>
 
-                <a title="Sales" class="list-group-item" href="<?php echo site_url('Creditloan_con') ?>"><span class="glyphicon glyphicon-credit-card"></span> Credit Loan</a>
+                <!-- <a title="Sales" class="list-group-item" href="<?php echo site_url('Creditloan_con') ?>"><span class="glyphicon glyphicon-credit-card"></span> Credit Loan</a> -->
 
                 <a title="Expenses" class="list-group-item" href="<?php echo site_url('Expenses_con') ?>"><span class="glyphicon glyphicon-list-alt"></span> Expenses</a>
 
@@ -26,9 +26,9 @@
 
                 <a title="Transaction List" class="list-group-item" href="<?php echo site_url('Sales_con/transactionlist') ?>"><span class="glyphicon glyphicon-lock"></span> Transaction List</a>
                 <?php if($users[0]->position == "Cashier"){}else { ?>
-                    <a title="Task" class="list-group-item" href="<?php echo site_url('Task_con') ?>"><span class="glyphicon glyphicon-tasks"></span> Task Mgt.</a>
+                    <!-- <a title="Task" class="list-group-item" href="<?php echo site_url('Task_con') ?>"><span class="glyphicon glyphicon-tasks"></span> Task Mgt.</a> -->
                     <a title="Reports" class="list-group-item" href="<?php echo site_url('Report_con') ?>"><span class="glyphicon glyphicon-signal"></span> Reports</a>
                 <?php } ?>
-               
+            
             </div>
         </div><!--end of sidebar -->        
