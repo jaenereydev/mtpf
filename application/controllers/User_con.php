@@ -9,7 +9,7 @@ class User_con extends MY_Controller
         parent::__construct();
         $this->load->model('User_model');
         $this->load->model('Company_model');
-       
+    
         $this->user = $this->User_model->get_users( $this->session->userdata('id'));
         $this->com = $this->Company_model->get_companyinfo();
         $this->active = "1";
@@ -40,9 +40,9 @@ class User_con extends MY_Controller
     
     //--------------------------------------------------------------------------
 
-     public function insertuser()
+    public function insertuser()
     {                    
-         $u = array(
+        $u = array(
             'name' => $this->input->post('name'),
             'username' => $this->input->post('username'),
             'password' => $this->input->post('password'),
@@ -61,7 +61,7 @@ class User_con extends MY_Controller
 
     public function updateuser()
     {                    
-         $u = array(
+        $u = array(
             'name' => $this->input->post('name'),
             'username' => $this->input->post('username'),
             'password' => $this->input->post('password'),
@@ -77,7 +77,7 @@ class User_con extends MY_Controller
 
     public function deleteuser($uno)
     {                    
-         $u = array(           
+        $u = array(           
             'status' => "DEACTIVATED"
         );
         $this->User_model->updateuser($uno,$u);

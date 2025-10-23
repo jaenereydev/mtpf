@@ -19,7 +19,7 @@ class Login_con extends CI_Controller
     }
     
     //--------------------------------------------------------------------------    
- 
+
     
     public function login()
     {       
@@ -35,10 +35,10 @@ class Login_con extends CI_Controller
         $this->output->set_content_type('application_json');
         
         if($result) {
-          $this->session->set_userdata(['id' => $result[0]['id']]);    
+            $this->session->set_userdata(['id' => $result[0]['id']]);    
 
-          $this->output->set_output(json_encode(['result' => 1]));
-          return false;
+            $this->output->set_output(json_encode(['result' => 1]));
+            return false;
         }
         
         $this->output->set_output(json_encode(['result' => 0]));
