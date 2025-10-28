@@ -46,14 +46,10 @@ class Stockadjustmentinfo_con extends MY_Controller
 
     public function insertstockadjustmentline()
     { 
-        $lotnumber = $this->Product_model->productlothistoryinfo($this->input->post('lot_number'));
         $sal = array(
-            'lot_number' => $lotnumber[0]->lot_number,
-            'expiration_date' => $lotnumber[0]->expiration_date,
-            'plh_number' => $lotnumber[0]->plh_number,
-            'unit_cost' => $lotnumber[0]->unit_cost,
+            'unit_cost' => $this->input->post('unitcost'),
             'qty' => $this->input->post('qty'),
-            'product_p_no' => $lotnumber[0]->product_p_no,
+            'product_p_no' => $this->input->post('pno'),
             'sa_no' => $this->session->userdata('sano'),
             'user_id' => $this->session->userdata('id'),
         );

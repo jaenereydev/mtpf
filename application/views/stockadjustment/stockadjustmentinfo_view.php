@@ -147,7 +147,47 @@
     </div>
 </div> <!-- End of model -->
 
+<!-- Modal -->
+<div id="addqty" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md"> 
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">                    
+            <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
+            <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Add Quantity</h4>
+        </div>
+            
+        <form onsubmit="return qtyform(this);" role="form" method="post" action="<?=site_url('Stockadjustmentinfo_con/insertstockadjustmentline')?>">             
+        <div class="modal-body">            
 
+            <input id="pno" class="form-control input-sm hide" type="text" name="pno" />
+            <input id="unitcost" class="form-control input-sm hide" type="text" name="unitcost" /> 
+        
+            <div class="form-group row row-offcanvas">                                                        
+                <label class="col-sm-5 control-label">Product Name</label>
+                <div class="col-sm-7">
+                    <input id="name" class="form-control input-sm " type="text" name="name" disabled />
+                </div>   
+            </div>
+
+            <div class="form-group row row-offcanvas">                                       
+                <label class="col-sm-5 control-label">Qty</label>
+                <div class="col-sm-7">
+                    <input id="qty" class="form-control input-sm " type="text" name="qty" required autocomplete="off" />
+                </div>   
+
+            </div>
+        
+        </div>
+        <div class="modal-footer">
+                <a title="Close" href="<?=site_url('Deliveryinfo_con')?>" onclick="return confirm('Do you want to cancel');" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
+            <input type="submit" class="btn btn-primary" name="qtyaddbtn" value="submit">
+            </div>
+        </form>
+
+    </div>
+    </div>
+</div> <!-- End of model -->
 
 <script type="text/javascript" src="<?=base_url()?>public/js/datatables.min.js"></script>
 <script type="text/javascript" src="<?=base_url()?>public/js/product.js"></script>
@@ -161,40 +201,35 @@ function qtyform(formObj) {
         return true;    
     }  
 
+                        
 window.onload = function()
 {                         
 
     $(document).ready(function () {
-        $('#lot_number').select2({
-            placeholder: "Search Lot Number...",
-            allowClear: true,
-            minimumInputLength: 1,
-            ajax: {
-                url: "<?= site_url('Product_con/getLotNumbers') ?>",
-                type: "POST",
-                dataType: "json",
-                delay: 250,
-                data: function (params) {
-                    return {
-                        search: params.term
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                        results: $.map(data, function (lot) {
-                            return {
-                                id: lot.plh_number,
-                                text: lot.name + " - " + lot.lot_number + " - " + lot.expiration_date + " - (" + lot.remaining_quantity + ")"
-                            };
-                        })
-                    };
-                },
-                cache: true
-            }
+        $(document).on('click', '.addqty', function(event) {        
+            var pno = $(this).data('pno');
+            var name = $(this).data('name');
+            var unitcost = $(this).data('unitcost');
+            $(".modal-body #pno").val( pno );
+            $(".modal-body #name").val( name );
+            $(".modal-body #unitcost").val( unitcost );
         });
     });
 
+    $(document).ready(function () {
+        $(document).on('click', '.editqty', function(event) {        
+            var dlno = $(this).data('dlno');
+            var name = $(this).data('name');
+            var unitcost = $(this).data('unitcost');
+            var qty = $(this).data('qty');
+            $(".modal-body #dlno").val( dlno );
+            $(".modal-body #name").val( name );
+            $(".modal-body #unitcost").val( unitcost );
+            $(".modal-body #qty").val( qty );
+        });
+    });
 
+    
     $(document).ready(function() {
     $('#status').on('change', function() {
         const status = $(this).val();
@@ -214,8 +249,10 @@ window.onload = function()
                 alert("Failed to update status.");
             }
         });
+        });
     });
-});
+
 }
+
 
 </script>
