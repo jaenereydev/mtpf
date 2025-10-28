@@ -42,14 +42,14 @@
                             <td><strong>Total Check Sales</strong></td>
                             <td class="text-center"><?php $sch=0; if(sizeof($sumcheck)): echo number_format((float)$sumcheck[0]->ta,2,'.',','); $sch=$sumcheck[0]->ta; endif ?></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td><strong>Total Down payment</strong></td>
                             <td class="text-center"><?php $dp=0; if(sizeof($downpayment)): echo number_format((float)$downpayment[0]->dp,2,'.',','); $dp=$downpayment[0]->dp; endif ?></td>
                         </tr>
                         <tr>
                             <td><strong>Total Credit Loan Payment</strong></td>
                             <td class="text-center"><?php $clp=0; if(sizeof($creditloanpayment)): echo number_format((float)$creditloanpayment[0]->ap,2,'.',','); $clp=$creditloanpayment[0]->ap; endif ?></td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td><strong><a href="<?php echo site_url('Creditpayment_con') ?>">Total Credit Payment</a></strong></td>
                             <td class="text-center"><?php $scp=0; if(sizeof($sumcreditpayment)): echo number_format((float)$sumcreditpayment[0]->ta,2,'.',','); $scp=$sumcreditpayment[0]->ta; endif ?></td>
@@ -57,7 +57,7 @@
 
                         <tr>
                             <td colspan="2" class="text-center"><strong>Total Sales</strong></td>
-                            <td class="text-center"><strong>Php <?php $ts=$sca+$sch+$scp+$dp+$clp;  echo number_format((float)$ts,2,'.',',');?></strong></td>
+                            <td class="text-center"><strong>Php <?php $ts=$sca+$sch+$scp;  echo number_format((float)$ts,2,'.',',');?></strong></td>
                         </tr>
                         <tr>
                             <td><strong>Total Return Sales</strong></td>

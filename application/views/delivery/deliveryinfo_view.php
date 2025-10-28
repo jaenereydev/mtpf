@@ -19,7 +19,7 @@
                         <div class="col-sm-2">
                             <input id="mbirthday" class="form-control input-sm " type="text" name="date" value="<?php echo date_format(date_create($del[0]->date), 'm/d/Y');?>" autocomplete="off" <?php if($del[0]->post == 'YES'){ echo 'disabled'; }else {} ?>/>
                         </div>                            
-                   
+                
                         <label class="col-sm-1 control-label">Ref.No.</label>
                         <div class="col-sm-2">
                             <input class="form-control input-sm " type="text" name="refno" value="<?php echo $del[0]->ref_no;?>" <?php if($del[0]->post == 'YES'){ echo 'disabled'; }else {} ?> />
@@ -29,7 +29,7 @@
                         <div class="col-sm-4">
                             <button style="text-transform: capitalize" class="form-control input-sm"  type="button" data-toggle="modal" data-target="#changesupplier"<?php if($del[0]->post == 'YES'){ echo 'disabled'; }else {} ?> ><strong><?php echo $del[0]->name;?>...</strong ></button>
                         </div>  
-                                          
+                                        
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@
                         
                         <label class="col-sm-2 control-label">Discount Amount</label>
                         <div class="col-sm-3">
-                             <button style="text-transform: capitalize" class="form-control input-sm"  type="button" data-toggle="modal" data-target="#updatediscount" <?php if($del[0]->post == 'YES'){ echo 'disabled'; }else {} ?>><strong><?php echo number_format((float)$del[0]->discount,2,'.',',');?></strong></button>
+                            <button style="text-transform: capitalize" class="form-control input-sm"  type="button" data-toggle="modal" data-target="#updatediscount" <?php if($del[0]->post == 'YES'){ echo 'disabled'; }else {} ?>><strong><?php echo number_format((float)$del[0]->discount,2,'.',',');?></strong></button>
                         </div> 
 
                         <label class="col-sm-2 control-label">Total Amount</label>
@@ -70,7 +70,7 @@
                     </tr> 
                 </thead>
                 <tbody>
-                      <?php if(sizeof($delline)):  foreach ($delline as $key => $item): ?>                      
+                    <?php if(sizeof($delline)):  foreach ($delline as $key => $item): ?>                      
                     <tr>     
                         <?php if($del[0]->post == 'YES'){}else { ?> 
                             <td class="text-center" style="text-transform: capitalize">
@@ -94,12 +94,12 @@
                     </tr>
                     <?php endforeach; else: ?>
                         <tr class="text-center">
-                          <td colspan="4">There are no Data</td>
+                            <td colspan="4">There are no Data</td>
                         </tr>
                     <?php endif?> 
                 </tbody>
             </table>
-             <div class="row">
+            <div class="row">
 
                 <div class="col-md-12">
                     <div class="form-group row row-offcanvas">                    
@@ -123,14 +123,14 @@
         
 <!-- Modal -->
 <div id="changesupplier" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-md"> 
+    <div class="modal-dialog modal-md"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Select Supplier</h4>
         </div>
-                           
+                        
             <div class="modal-body">                   
                 <table class="table table-hover table-responsive table-bordered table-striped info" id="CoTable"> 
                 <thead>
@@ -140,31 +140,31 @@
                     </tr> 
                 </thead>
                 <tbody>
-                      <?php foreach ($sup as $key => $item): ?>                      
+                    <?php foreach ($sup as $key => $item): ?>                      
                     <tr>                         
                         <td class="text-center" style="text-transform: capitalize"><?php echo $item->name ?></td>
                         <td class="text-center info">     
                             <a title="Select" href="<?=site_url('deliveryinfo_con/changesupplier/'.$item->s_no)?>" class=" btn btn-info">SELECT</a>
                         </td>
                     </tr>
-                     <?php endforeach;  ?>     
+                    <?php endforeach;  ?>     
                 </tbody>
             </table>
             </div>                           
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <!-- Modal -->
 <div id="addproduct" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-md"> 
+    <div class="modal-dialog modal-md"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Select Product</h4>
         </div>
-                           
+                        
         <div class="modal-body">                   
             <table class="table table-hover table-responsive table-bordered table-striped info" id="MTable"> 
             <thead>
@@ -175,7 +175,7 @@
                 </tr> 
             </thead>
             <tbody>
-                  <?php foreach ($prod as $key => $item): ?>                      
+                <?php foreach ($prod as $key => $item): ?>                      
                 <tr>                         
                     <td class="text-center" style="text-transform: capitalize"><?php echo $item->barcode ?></td>
                     <td class="text-center" style="text-transform: capitalize"><?php echo $item->name ?></td>
@@ -189,30 +189,30 @@
                             data-backdrop="static" data-keyboard="false"></button>
                     </td>
                 </tr>
-                 <?php endforeach;  ?>     
+                <?php endforeach;  ?>     
             </tbody>
             </table>
         </div>                           
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <!-- Modal -->
 <div id="addqty" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm"> 
+    <div class="modal-dialog modal-sm"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Add Quantity</h4>
         </div>
-               
+            
         <form onsubmit="return qtyform(this);" role="form" method="post" action="<?=site_url('Deliveryinfo_con/insertdeliveryline')?>">             
         <div class="modal-body">            
 
             <input id="pno" class="form-control input-sm hide" type="text" name="pno" />
             <input id="unitcost" class="form-control input-sm hide" type="text" name="unitcost" /> 
-          
+        
             <div class="form-group row row-offcanvas">                                                        
                 <label class="col-sm-6 control-label">Product Name</label>
                 <div class="col-sm-6">
@@ -231,31 +231,31 @@
         </div>
         <div class="modal-footer">
                 <a title="Close" href="<?=site_url('Deliveryinfo_con')?>" onclick="return confirm('Do you want to cancel');" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
-              <input type="submit" class="btn btn-primary" name="qtyaddbtn" value="submit">
+            <input type="submit" class="btn btn-primary" name="qtyaddbtn" value="submit">
             </div>
         </form>
 
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 
 <!-- Modal -->
 <div id="editqty" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm"> 
+    <div class="modal-dialog modal-sm"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Edit Quantity</h4>
         </div>
-               
+            
         <form onsubmit="return editqtyform(this);" role="form" method="post" action="<?=site_url('Deliveryinfo_con/updatedeliveryline')?>">             
         <div class="modal-body">            
 
             <input id="dlno" class="form-control input-sm hide" type="text" name="dlno" />
             <input id="unitcost" class="form-control input-sm hide" type="text" name="unitcost" /> 
-          
+        
             <div class="form-group row row-offcanvas">                                                        
                 <label class="col-sm-6 control-label">Product Name</label>
                 <div class="col-sm-6">
@@ -274,24 +274,24 @@
         </div>
         <div class="modal-footer">
                 <a title="Close" href="<?=site_url('Deliveryinfo_con')?>" onclick="return confirm('Do you want to cancel');" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
-              <input type="submit" class="btn btn-primary" name="qtyeditbtn" value="submit">
+                <input type="submit" class="btn btn-primary" name="qtyeditbtn" value="submit">
             </div>
         </form>
 
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <!-- Modal -->
 <div id="updatediscount" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm"> 
+    <div class="modal-dialog modal-sm"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Update Discount</h4>
         </div>
-               
+            
         <form onsubmit="return updatediscountform(this);" role="form" method="post" action="<?=site_url('Deliveryinfo_con/updatediscount')?>">             
         <div class="modal-body">             
 
@@ -306,12 +306,12 @@
         </div>
         <div class="modal-footer">
                 <a title="Close" href="<?=site_url('Deliveryinfo_con')?>" onclick="return confirm('Do you want to cancel');" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
-              <input type="submit" class="btn btn-primary" name="updatediscountbtn" value="submit">
+                <input type="submit" class="btn btn-primary" name="updatediscountbtn" value="submit">
             </div>
         </form>
 
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <script type="text/javascript" src="<?=base_url()?>public/js/datatables.min.js"></script>
