@@ -129,7 +129,7 @@
                         <tr>                         
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->barcode ?></td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->name ?></td>
-                            <td class="text-center info">                                
+                            <td class="text-center ">                                
                                 <button title="Add QTY" 
                                     data-pno="<?php echo $item->p_no;?>"                                
                                     data-name="<?php echo $item->name;?>"
@@ -173,7 +173,7 @@
             <div class="form-group row row-offcanvas">                                       
                 <label class="col-sm-5 control-label">Qty</label>
                 <div class="col-sm-7">
-                    <input id="qty" class="form-control input-sm " type="text" name="qty" required autocomplete="off" />
+                    <input id="qty" class="form-control input-sm " type="number" step="any" name="qty" required autocomplete="off" />
                 </div>   
 
             </div>
