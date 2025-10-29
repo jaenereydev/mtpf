@@ -15,40 +15,45 @@
 
                 <div class="col-md-12">
                     <div class="form-group row row-offcanvas">
-                        <label class="col-sm-1 control-label">Date</label>
-                        <div class="col-sm-2">
+                        <label class="col-sm-2 control-label">Date</label>
+                        <div class="col-sm-4">
                             <input id="mbirthday" class="form-control input-sm " type="text" name="date" value="<?php echo date_format(date_create($del[0]->date), 'm/d/Y');?>" autocomplete="off" <?php if($del[0]->post == 'YES'){ echo 'disabled'; }else {} ?>/>
-                        </div>                            
-                
-                        <label class="col-sm-1 control-label">Ref.No.</label>
-                        <div class="col-sm-2">
+                        </div>       
+                        <label class="col-sm-2 control-label">Ref.No.</label>
+                        <div class="col-sm-4">
                             <input class="form-control input-sm " type="text" name="refno" value="<?php echo $del[0]->ref_no;?>" <?php if($del[0]->post == 'YES'){ echo 'disabled'; }else {} ?> />
                         </div>   
 
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group row row-offcanvas">
+                    
                         <label class="col-sm-2 control-label">Supplier Name</label>
                         <div class="col-sm-4">
                             <button style="text-transform: capitalize" class="form-control input-sm"  type="button" data-toggle="modal" data-target="#changesupplier"<?php if($del[0]->post == 'YES'){ echo 'disabled'; }else {} ?> ><strong><?php echo $del[0]->name;?>...</strong ></button>
                         </div>  
-                                        
+                        <label class="col-sm-2 control-label">Discount Amount</label>
+                        <div class="col-sm-4">
+                            <button style="text-transform: capitalize" class="form-control input-sm"  type="button" data-toggle="modal" data-target="#updatediscount" <?php if($del[0]->post == 'YES'){ echo 'disabled'; }else {} ?>><strong><?php echo number_format((float)$del[0]->discount,2,'.',',');?></strong></button>
+                        </div>         
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group row row-offcanvas">
                         
-                        <label class="col-sm-2 control-label">Discount Amount</label>
-                        <div class="col-sm-3">
-                            <button style="text-transform: capitalize" class="form-control input-sm"  type="button" data-toggle="modal" data-target="#updatediscount" <?php if($del[0]->post == 'YES'){ echo 'disabled'; }else {} ?>><strong><?php echo number_format((float)$del[0]->discount,2,'.',',');?></strong></button>
-                        </div> 
+                        
 
                         <label class="col-sm-2 control-label">Total Amount</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <p <?php if($del[0]->post == 'YES'){ echo 'disabled'; }else {} ?> class="form-control input-sm text-center" type="text" ><?php echo number_format((float)$del[0]->totalamount,2,'.',',');?> </p>
                         </div>   
 
                         <?php if($del[0]->post == 'YES'){}else { ?>
-                            <div class="col-sm-2">
-                                <button type="button" data-toggle="modal" data-target="#addproduct" class="btn btn-warning" >INSERT PRODUCT</button> 
+                            <div class="col-sm-6">
+                                <button type="button" data-toggle="modal" data-target="#addproduct" class="btn btn-warning col-sm-12" >INSERT PRODUCT</button> 
                             </div>  
                         <?php } ?>
                     </div>
@@ -123,7 +128,7 @@
         
 <!-- Modal -->
 <div id="changesupplier" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-md"> 
+    <div class="modal-dialog modal-lg"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
@@ -143,7 +148,7 @@
                     <?php foreach ($sup as $key => $item): ?>                      
                     <tr>                         
                         <td class="text-center" style="text-transform: capitalize"><?php echo $item->name ?></td>
-                        <td class="text-center info">     
+                        <td class="text-center">     
                             <a title="Select" href="<?=site_url('deliveryinfo_con/changesupplier/'.$item->s_no)?>" class=" btn btn-info">SELECT</a>
                         </td>
                     </tr>
@@ -157,7 +162,7 @@
 
 <!-- Modal -->
 <div id="addproduct" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-md"> 
+    <div class="modal-dialog modal-lg"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
@@ -179,7 +184,7 @@
                 <tr>                         
                     <td class="text-center" style="text-transform: capitalize"><?php echo $item->barcode ?></td>
                     <td class="text-center" style="text-transform: capitalize"><?php echo $item->name ?></td>
-                    <td class="text-center info">                                
+                    <td class="text-center">                                
                         <button title="Add QTY" 
                             data-pno="<?php echo $item->p_no;?>"                                
                             data-name="<?php echo $item->name;?>"
@@ -199,7 +204,7 @@
 
 <!-- Modal -->
 <div id="addqty" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-sm"> 
+    <div class="modal-dialog modal-md"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
@@ -223,7 +228,7 @@
             <div class="form-group row row-offcanvas">                                       
                 <label class="col-sm-6 control-label">Qty</label>
                 <div class="col-sm-6">
-                    <input id="qty" class="form-control input-sm " type="text" name="qty" required autocomplete="off" />
+                    <input id="qty" class="form-control input-sm " type="number" step="any" name="qty" required autocomplete="off" />
                 </div>   
 
             </div>
@@ -242,7 +247,7 @@
 
 <!-- Modal -->
 <div id="editqty" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-sm"> 
+    <div class="modal-dialog modal-md"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
@@ -266,7 +271,7 @@
             <div class="form-group row row-offcanvas">                                       
                 <label class="col-sm-6 control-label">Qty</label>
                 <div class="col-sm-6">
-                    <input id="qty" class="form-control input-sm " type="text" name="qty" required autocomplete="off" />
+                    <input id="qty" class="form-control input-sm " type="number" step="any" name="qty" required autocomplete="off" />
                 </div>   
 
             </div>
@@ -284,7 +289,7 @@
 
 <!-- Modal -->
 <div id="updatediscount" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-sm"> 
+    <div class="modal-dialog modal-md"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
