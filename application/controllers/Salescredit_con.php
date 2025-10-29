@@ -1,9 +1,10 @@
+
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Salescredit_con extends MY_Controller
 {
     //--------------------------------------------------------------------------
-      
+    
     public function __construct() 
     {
         parent::__construct();
@@ -13,7 +14,7 @@ class Salescredit_con extends MY_Controller
         $this->load->model('Customer_model');
         $this->load->model('Product_model');
         $this->load->model('Producthistory_model');
-       
+    
         $this->user = $this->User_model->get_users( $this->session->userdata('id'));
         $this->com = $this->Company_model->get_companyinfo();
         $this->active = "1";
@@ -44,6 +45,14 @@ class Salescredit_con extends MY_Controller
         }else {
             $this->data['customer'] = $this->Customer_model->customerinfo($this->session->userdata('customer'));
         }               
+
+
+        if($this->session->userdata('date') == null)
+        {
+            $this->data['date'] = null;
+        }else {
+            $this->data['date'] = $this->session->userdata('date');
+        } 
 
         if($this->session->userdata('refno') == null)
         {
@@ -235,7 +244,7 @@ class Salescredit_con extends MY_Controller
         $this->session->unset_userdata('change');
         $this->session->unset_userdata('type');
         $this->session->unset_userdata('date');
-       
+    
     }
     
     //--------------------------------------------------------------------------  

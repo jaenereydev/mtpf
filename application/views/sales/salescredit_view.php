@@ -10,7 +10,7 @@
                 <a title="Dashboard" class="btn btn-default btn-sm" href="<?=site_url('dashboard')?>"><span class=" glyphicon glyphicon-dashboard"></span> Dashboard</a>      
                 <a title="Dashboard" class="btn btn-info btn-sm" href="<?=site_url('Duedate_con')?>"><span class=" glyphicon glyphicon-calendar"></span> Due Date</a>   
                 <a title="Dashboard" class="btn btn-danger btn-sm" href="<?=site_url('Creditreturn_con')?>"><span class=" glyphicon glyphicon-book"></span> Credit Return</a>   
-                 <a title="Dashboard" class="btn btn-success btn-sm" href="<?=site_url('Sales_con')?>"><span class=" glyphicon glyphicon-shopping-cart"></span> POS</a>   
+                <a title="Dashboard" class="btn btn-success btn-sm" href="<?=site_url('Sales_con')?>"><span class=" glyphicon glyphicon-shopping-cart"></span> POS</a>   
                 <a title="Dashboard" class="btn btn-default btn-sm" href="<?=site_url('Sales_con/transactionlist')?>"><span class="    glyphicon glyphicon-tags"></span> Transaction List</a>                   
             </div>
         </div> <!-- end of panel heading -->  
@@ -70,10 +70,10 @@
                     </tr>
                     <?php endforeach;  else: $qty=0; $ta=0; $tldiscount=0; ?>
                         <tr class="text-center">
-                          <td colspan="7">There are no Data</td>
+                            <td colspan="7">There are no Data</td>
                         </tr>
                     <?php endif  ?> 
-                     <tr class="warning">
+                    <tr class="warning">
                         <td colspan="3"><strong>Total</strong></td>
                         <td class="text-center"><strong><?php echo $qty; ?></strong></td>
                         <td class="text-center"></td>
@@ -82,7 +82,7 @@
                     </tr>
                 </tbody>
             </table>
-             
+            
         </div> <!-- end of panel body -->        
         
     </div> <!-- end of panel div -->
@@ -93,7 +93,7 @@
         <div class="panel-heading">                   
             <div class="panel-toolbar text-right" >   
             <span class="text-rightinfo"><strong>CREDIT SALES</strong></span>            
-               <input type="button" class="btn btn-sm btn-info text-center " data-toggle="modal" data-target="#addproduct" value="ADD PRODUCT" />                  
+                <input type="button" class="btn btn-sm btn-info text-center " data-toggle="modal" data-target="#addproduct" value="ADD PRODUCT" />                  
             </div>
         </div> <!-- end of panel heading -->  
         <form onsubmit="return processform(this);" role="form" method="post" action="<?=site_url('Salescredit_con/processsales')?>">                        
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                         <?php } ?>     
-                                           
+                                        
                     </div>
                 </div>  
                 <?php if($ta == '0') {}else { ?>
@@ -121,19 +121,19 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label for="customer">Date</label>
-                         <input id="from" type="text" name="date" class="form-control input-sm text-center" value="<?php if($date == null){} else { echo date_format(date_create($this->session->userdata('date')), 'm/d/Y'); } ?>" placeholder="Date - m/d/Y" autocomplete="off" required>
+                        <input id="from" type="text" name="date" class="form-control input-sm text-center" value="<?php if($date == null){} else { echo date_format(date_create($this->session->userdata('date')), 'm/d/Y'); } ?>" placeholder="Date - m/d/Y" autocomplete="off" required>
                     </div>
                 </div>
                 <div class="form-group row">                  
                     <div class="col-md-12">
                         <label for="customer">C.I.#</label>
-                         <input type="text"  name="refno" class="form-control input-sm text-center" value="<?php if($refno == null){ echo ''; } else { echo $this->session->userdata('refno'); } ?>" placeholder="Credit Invoice Number" required autocomplete="off" >
+                        <input type="text"  name="refno" class="form-control input-sm text-center" value="<?php if($refno == null){ echo ''; } else { echo $this->session->userdata('refno'); } ?>" placeholder="Credit Invoice Number" required autocomplete="off" >
                     </div>
                 </div>
                 <div class="form-group row">                  
                     <div class="col-md-12">
                         <label for="customer">Discount Amount</label>                       
-                         <input type="number" step="any" name="discount" class="form-control input-sm text-center" value="<?php if($discount == null){ echo '0'; } else { echo $this->session->userdata('discount'); } ?>" > 
+                        <input type="number" step="any" name="discount" class="form-control input-sm text-center" value="<?php if($discount == null){ echo '0'; } else { echo $this->session->userdata('discount'); } ?>" > 
                     </div>
                 </div>
                 <div class="form-group row">
@@ -163,19 +163,19 @@
                     <input title="Process" type="submit" class="btn btn-primary" name="processbtn" value="Process">
                 <?php } ?>
             </div>
-             <?php } ?>
+            <?php } ?>
         </form>
 </div>     
 <!-- Modal select customer-->
 <div id="selectcustomer" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-md"> 
+    <div class="modal-dialog modal-lg"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Select Customer</h4>
         </div>
-                           
+                        
             <div class="modal-body">                    
 
                 <table class="table table-hover table-responsive table-bordered table-striped info" id="CoTable"> 
@@ -188,33 +188,33 @@
                     </tr> 
                 </thead>
                 <tbody>
-                      <?php foreach ($cus as $key => $item): ?>                      
+                    <?php foreach ($cus as $key => $item): ?>                      
                     <tr>                         
                         <td class="text-center" style="text-transform: capitalize"><?php echo $item->name ?></td>
                         <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->credit_limit,2,'.',','); ?></td>
                         <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->balance,2,'.',','); ?></td>
-                        <td class="text-center info">     
+                        <td class="text-center">     
                             <a title="Select" href="<?=site_url('Salescredit_con/selectcustomer/'.$item->c_no)?>" class=" btn btn-info">SELECT</a>
                         </td>
                     </tr>
-                     <?php endforeach;  ?>     
+                    <?php endforeach;  ?>     
                 </tbody>
             </table>
             </div>                           
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <!-- Modal add product-->
 <div id="addproduct" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-md"> 
+    <div class="modal-dialog modal-lg"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Select Product</h4>
         </div>
-                           
+                        
         <div class="modal-body">                   
             <table class="table table-hover table-responsive table-bordered table-striped info" id="MTable"> 
             <thead>
@@ -227,13 +227,13 @@
                 </tr> 
             </thead>
             <tbody>
-                  <?php foreach ($prod as $key => $item): ?>                      
+                <?php foreach ($prod as $key => $item): ?>                      
                 <tr>                         
                     <td class="text-center" style="text-transform: capitalize"><?php echo $item->barcode ?></td>
                     <td class="text-center" style="text-transform: capitalize"><?php echo $item->name ?></td>
                     <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->srpprice,2,'.',','); ?></td>
                     <td class="text-center" style="text-transform: capitalize"><?php echo $item->qty ?></td>
-                    <td class="text-center info">                                
+                    <td class="text-center">                                
                         <button title="Add QTY" 
                             data-pno="<?php echo $item->p_no;?>"                                
                             data-name="<?php echo $item->name;?>"
@@ -244,31 +244,31 @@
                             data-backdrop="static" data-keyboard="false"></button>
                     </td>
                 </tr>
-                 <?php endforeach;  ?>     
+                <?php endforeach;  ?>     
             </tbody>
             </table>
         </div>                           
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <!-- Modal add quantity-->
 <div id="addqty" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg"> 
+    <div class="modal-dialog modal-lg"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Add Quantity</h4>
         </div>
-               
+            
         <form onsubmit="return qtyform(this);" role="form" method="post" action="<?=site_url('Salescredit_con/inserttransactionline')?>">             
         <div class="modal-body">            
 
             <input id="pno" class="form-control input-sm hide" type="text" name="pno" />
             <input id="unitcost" class="form-control input-sm hide" type="text" name="unitcost" /> 
             <input id="srp" class="form-control input-sm hide" type="text" name="price" /> 
-          
+        
             <div class="form-group row row-offcanvas">                                                        
                 <label class="col-sm-4 control-label">Product Name</label>
                 <div class="col-sm-8">
@@ -281,13 +281,6 @@
                 <div class="col-sm-8">
                     <input class="form-control input-sm " type="number" min="1" value="1" name="qty" required autocomplete="off" />
                 </div>   
-            </div>
-
-            <div class="form-group row row-offcanvas">                                       
-                <label class="col-sm-4 control-label">Description</label>
-                <div class="col-sm-8">
-                    <input class="form-control input-sm " type="text" placeholder="IMEI/Serial/remarks" name="desc"  autocomplete="off" />
-                </div>  
             </div>
 
             <div class="form-group row row-offcanvas">                                       
@@ -305,19 +298,19 @@
         </form>
 
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <!-- Modal edit product-->
 <div id="editproduct" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg"> 
+    <div class="modal-dialog modal-lg"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Update Product</h4>
         </div>
-               
+            
         <form onsubmit="return editproductform(this);" role="form" method="post" action="<?=site_url('Salescredit_con/updatetransactionline')?>">             
         <div class="modal-body">            
 
@@ -340,13 +333,6 @@
             </div>
 
             <div class="form-group row row-offcanvas">                                       
-                <label class="col-sm-4 control-label">Description</label>
-                <div class="col-sm-8">
-                    <input id="desc" class="form-control input-sm " type="text" placeholder="IMEI/Serial/remarks" name="desc"  autocomplete="off" />
-                </div>  
-            </div> 
-
-            <div class="form-group row row-offcanvas">                                       
                 <label class="col-sm-4 control-label">Discount %</label>
                 <div class="col-sm-8">
                     <input id="discount" class="form-control input-sm " type="number" name="discount" required autocomplete="off" />
@@ -361,19 +347,19 @@
         </form>
 
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <!-- Modal edit product price-->
 <div id="editproductprice" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm"> 
+    <div class="modal-dialog modal-md"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Update Product Price</h4>
         </div>
-               
+            
         <div class="modal-body">      
             <div class="form-group row row-offcanvas">                                                        
                 <label class="col-sm-6 control-label">Product Name</label>
@@ -389,7 +375,7 @@
                 <div class="form-group row row-offcanvas">                                       
                     <label class="col-sm-6 control-label">Price 1</label>
                     <div class="col-sm-6">
-                         <input id="srpprice" type="submit" class="form-control btn btn-primary" name="price" >
+                        <input id="srpprice" type="submit" class="form-control btn btn-primary" name="price" >
                     </div>   
                 </div>
             </form>
@@ -420,7 +406,7 @@
 
         </div>               
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 

@@ -97,12 +97,7 @@
         </div> <!-- end of panel heading -->  
         <form onsubmit="return processform(this);" role="form" method="post" action="<?=site_url('Sales_con/processsales')?>">                        
             <div class="panel-body">
-                <div class="form-group row">                  
-                    <div class="col-md-12">
-                        <label for="customer">Date</label>
-                        <input type="text" id="birthday" name="date" class="form-control input-sm text-center" value="<?php if($refno == null){ echo ''; } else { echo $this->session->userdata('refno'); } ?>" placeholder="Date" required autocomplete="off" >
-                    </div>
-                </div> 
+                
                 <div class="row">
                     <div class="col-md-12 md">
                         <label for="customer">Select Customer (Optional)
@@ -127,13 +122,18 @@
                 <hr>
                 <div class="form-group row">                  
                     <div class="col-md-12">
+                        <label for="customer">Date</label>
+                        <input type="text" id="birthday" name="date" class="form-control input-sm text-center" value="<?php if($date == null){ echo ''; } else { echo  date_format(date_create($this->session->userdata('date')), 'm/d/Y'); } ?>" placeholder="Date" required autocomplete="off" >
+                    </div>
+                </div> 
+                <div class="form-group row">                  
+                    <div class="col-md-12">
                         <label for="customer">S.I.#</label>
                         <input type="text"  name="refno" class="form-control input-sm text-center" value="<?php if($refno == null){ echo ''; } else { echo $this->session->userdata('refno'); } ?>" placeholder="Sales Invoice Number" required autocomplete="off" >
                     </div>
                 </div>
                 <div class="form-group row">
 
-                    <input type="text" name="date" class="hide"  value="<?php echo date('Y/m/d'); ?>"  >
                     <input type="number" step="any" name="totalamount" class="hide" value="<?php echo $ta; ?>"  >
                     <input type="number" step="any" name="tldiscount" class="hide" value="<?php echo $tldiscount; ?>"  >
                     <input type="number" step="any" name="totalqty" class="hide" value="<?php echo $qty; ?>"  >
@@ -167,7 +167,7 @@
 
 <!-- Modal select customer-->
 <div id="selectcustomer" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-md"> 
+    <div class="modal-dialog modal-lg"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
@@ -192,7 +192,7 @@
                         <td class="text-center" style="text-transform: capitalize"><?php echo $item->name ?></td>
                         <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->credit_limit,2,'.',','); ?></td>
                         <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->balance,2,'.',','); ?></td>
-                        <td class="text-center info">     
+                        <td class="text-center">     
                             <a title="Select" href="<?=site_url('Sales_con/selectcustomer/'.$item->c_no)?>" class=" btn btn-info">SELECT</a>
                         </td>
                     </tr>
@@ -232,7 +232,7 @@
                     <td class="text-center" style="text-transform: capitalize"><?php echo $item->name ?></td>
                     <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->srpprice,2,'.',','); ?></td>
                     <td class="text-center" style="text-transform: capitalize"><?php echo $item->qty ?></td>
-                    <td class="text-center info">                                
+                    <td class="text-center ">                                
                         <button title="Add QTY" 
                             data-pno="<?php echo $item->p_no;?>"                                
                             data-name="<?php echo $item->name;?>"

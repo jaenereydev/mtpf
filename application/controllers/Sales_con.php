@@ -46,6 +46,13 @@ class Sales_con extends MY_Controller
             $this->data['customer'] = $this->Customer_model->customerinfo($this->session->userdata('customer'));
         }               
 
+        if($this->session->userdata('date') == null)
+        {
+            $this->data['date'] = null;
+        }else {
+            $this->data['date'] = $this->session->userdata('date');
+        } 
+
         if($this->session->userdata('refno') == null)
         {
             $this->data['refno'] = null;
