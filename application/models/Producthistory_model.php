@@ -3,8 +3,64 @@
 class Producthistory_model extends CI_Model
 {
 
+  //---------------------------------------------------------------------
+
+  public function insert_stockadjustmentproducthistorypositive($desc) // Insert data from stock adjustment positive
+  {
+    // Get session sano value
+    $sano = $this->session->userdata('sano');
+
+    // Sanitize the description to prevent SQL injection
+    $desc = $this->db->escape_str($desc);
+
+    $sql = "INSERT INTO product_history 
+                (date, ref_no, description, inqty, bal, product_p_no, user_id)
+            SELECT 
+                o.date,
+                o.ref_no,
+                ? AS description,
+                l.qty,
+                (p.qty + l.qty) AS bal,
+                l.product_p_no,
+                o.user_id
+            FROM stockadjustmentline l
+            JOIN stockadjustment o ON o.sa_no = l.sa_no
+            JOIN product p ON p.p_no = l.product_p_no
+            WHERE o.sa_no = ?";
+
+    return $this->db->query($sql, array($desc, $sano));
+  }
+
   //----------------------------------------------------------------------
   
+
+  public function insert_stockadjustmentproducthistorynegative($desc) // Insert data from stock adjustment negative
+  {
+    // Get session sano value
+    $sano = $this->session->userdata('sano');
+
+    // Sanitize the description to prevent SQL injection
+    $desc = $this->db->escape_str($desc);
+
+    $sql = "INSERT INTO product_history 
+                (date, ref_no, description, inqty, bal, product_p_no, user_id)
+            SELECT 
+                o.date,
+                o.ref_no,
+                ? AS description,
+                l.qty,
+                (p.qty - l.qty) AS bal,
+                l.product_p_no,
+                o.user_id
+            FROM stockadjustmentline l
+            JOIN stockadjustment o ON o.sa_no = l.sa_no
+            JOIN product p ON p.p_no = l.product_p_no
+            WHERE o.sa_no = ?";
+
+    return $this->db->query($sql, array($desc, $sano));
+  }
+
+  //----------------------------------------------------------------------
   public function insert_deliveryproducthistory($d, $desc) //insert data from delivery
   {
   

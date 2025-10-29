@@ -116,14 +116,14 @@ class Product_model extends CI_Model
 
   //----------------------------------------------------------------------
 
-   public function productinfo($p) 
+  public function productinfo($p) 
   {
   
     $sql = "Select p.*, s.name as sname, c.name as cname 
-    		from product p 
-    		join supplier s on s.s_no = p.supplier_s_no 
-    		join category c on c.c_no = p.category_c_no 
-    		where p.p_no = '$p' ";
+          from product p 
+          join supplier s on s.s_no = p.supplier_s_no 
+          join category c on c.c_no = p.category_c_no 
+          where p.p_no = '$p' ";
     $query = $this->db->query($sql);
     return $query->result();
   }
@@ -186,6 +186,29 @@ class Product_model extends CI_Model
   }
 
   //----------------------------------------------------------------------
+
+  public function updatestockadjustmentproductqty($type = 'positive') // update qty from stock adjustment positive
+    {
+        // Get session sano value
+      $sano = $this->session->userdata('sano');
+      if (!$sano) return false;
+
+      // Determine operator based on adjustment type
+      $operator = ($type === 'negative') ? '-' : '+';
+
+      $sql = "UPDATE product p
+              JOIN (
+                  SELECT product_p_no, SUM(qty) AS total_qty
+                  FROM stockadjustmentline
+                  WHERE sa_no = ?
+                  GROUP BY product_p_no
+              ) sal ON product_p_no = p.p_no
+              SET p.qty = p.qty $operator sal.total_qty";
+
+      return $this->db->query($sql, array($sano));
+    }
+    
+  //--------------------------------------------------------------------------
 
   public function updatedeliveryproductqty($d) // update qty from delivery
     {
