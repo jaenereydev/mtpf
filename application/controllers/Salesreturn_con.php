@@ -3,7 +3,7 @@
 class Salesreturn_con extends MY_Controller
 {
     //--------------------------------------------------------------------------
-      
+    
     public function __construct() 
     {
         parent::__construct();
@@ -13,7 +13,7 @@ class Salesreturn_con extends MY_Controller
         $this->load->model('Customer_model');
         $this->load->model('Product_model');
         $this->load->model('Producthistory_model');
-       
+    
         $this->user = $this->User_model->get_users( $this->session->userdata('id'));
         $this->com = $this->Company_model->get_companyinfo();
         $this->active = "1";
@@ -199,7 +199,7 @@ class Salesreturn_con extends MY_Controller
         $this->session->unset_userdata('totalamount');
         $this->session->unset_userdata('cashonhand');
         $this->session->unset_userdata('change');
-       
+    
     }
     
     //--------------------------------------------------------------------------  
@@ -228,8 +228,8 @@ class Salesreturn_con extends MY_Controller
 
         $coh = 0;
         $change = $coh-$totalamount;
-
-        $this->session->set_userdata(['date' => $this->input->post('date')]);
+        $d = date_format(date_create($this->input->post('date')), 'Y/m/d');
+        $this->session->set_userdata(['date' => $d ]);
         $this->session->set_userdata(['refno' => $this->input->post('refno')]);
         $this->session->set_userdata(['discount' => $discount]);
         $this->session->set_userdata(['totalqty' => $this->input->post('totalqty')]);

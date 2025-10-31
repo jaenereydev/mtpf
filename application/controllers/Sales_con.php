@@ -305,8 +305,8 @@ class Sales_con extends MY_Controller
         $totalamount = $this->input->post('totalamount')-$this->input->post('discount');
 
         $change = $this->input->post('cashonhand')-$totalamount;    
-
-        $this->session->set_userdata(['date' => $this->input->post('date')]);
+        $d = date_format(date_create($this->input->post('date')), 'Y/m/d');
+        $this->session->set_userdata(['date' => $d ]);
         $this->session->set_userdata(['refno' => $this->input->post('refno')]);
         $this->session->set_userdata(['discount' => $discount]);
         $this->session->set_userdata(['totalqty' => $this->input->post('totalqty')]);
