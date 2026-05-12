@@ -19,7 +19,7 @@
                     
                     <div class="tab-pane <?php if($active == "1") { echo "active";} ?>" id="productdetails">
                     <form role="form" method="post" action="<?=site_url('productinfo_con/updateproduct')?>">
-                                               
+                                            
                         <div class="modal-body">  
                             
                             <div class="form-group row row-offcanvas">

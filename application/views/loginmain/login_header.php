@@ -10,4 +10,4 @@
         <link rel="icon" type="image/x-icon" href="<?=base_url()?>favico.ico"/>
     </head>
     
-    <body class="login" oncontextmenu="return false;">
+    <body class="login" >

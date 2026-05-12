@@ -28,7 +28,7 @@
             <?php if($prod == null){ ?>
                 <!-- product search form -->
                 <form role="form" method="post" action="<?=site_url('product_con/productsearch')?>">                    
-                       
+                    
                     <div class="form-group row row-offcanvas">
                         <label class="col-sm-2 control-label">Product Search</label>
                         <div class="col-sm-5">
@@ -57,7 +57,7 @@
             <hr>  
 
             <!-- product table -->
-             <table class="table table-hover table-responsive table-bordered table-striped info" id="MTable"> 
+            <table class="table table-hover table-responsive table-bordered table-striped info" id="MTable"> 
                 <thead>
                     <tr class="info">                                             
                         <td class="text-center"><strong>Action</strong></td>
@@ -90,7 +90,7 @@
     </div> <!-- end of panel div -->
 </div> <!-- end of main div -->
 
-       
+    
         
 <!--Product insert Modal -->
 <div id="myModal" class="modal fade" role="dialog">
