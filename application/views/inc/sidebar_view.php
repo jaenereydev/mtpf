@@ -8,10 +8,12 @@
 
                 <a title="Product" class="list-group-item" href="<?php echo site_url('product_con') ?>"><span class="glyphicon glyphicon-barcode"></span> Product</a>
                 
+                <a title="Product" class="list-group-item" href="<?php echo site_url('production_con') ?>"><span class="glyphicon glyphicon-plus"></span> Production</a>
+
                 <a title="Product" class="list-group-item" href="<?php echo site_url('stockadjustment_con') ?>"><span class="glyphicon glyphicon-scissors"></span> Stock Adjustment</a>
 
                 <?php if($users[0]->position == "Cashier"){}else { ?>
-                    <a title="Delivery" class="list-group-item" href="<?php echo site_url('Delivery_con') ?>"><span class="	glyphicon glyphicon-qrcode"></span> Delivery</a>
+                    <a title="Delivery" class="list-group-item" href="<?php echo site_url('Delivery_con') ?>"><span class="	glyphicon glyphicon-qrcode"></span> Receiving Delivery</a>
                 <?php } ?>
 
                 <a title="Sales" class="list-group-item" href="<?php echo site_url('Sales_con') ?>"><span class="glyphicon glyphicon-shopping-cart"></span> Sales</a>
