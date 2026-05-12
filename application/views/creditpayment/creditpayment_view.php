@@ -8,8 +8,8 @@
             </h3>     
             
         <div class="panel-toolbar text-right">
-          <button type="button" data-toggle="modal" data-target="#selectcustomer" class="btn btn-info " >New</button> 
-           <a title="Dashboard" class="btn btn-default btn-sm" href="<?=site_url('Sales_con/transactionlist')?>"><span class="    glyphicon glyphicon-tags"></span> Transaction List</a>   
+            <button type="button" data-toggle="modal" data-target="#selectcustomer" class="btn btn-info " >New</button> 
+            <a title="Dashboard" class="btn btn-default btn-sm" href="<?=site_url('Sales_con/transactionlist')?>"><span class="    glyphicon glyphicon-tags"></span> Transaction List</a>   
             </div>
         </div> <!-- end of panel heading -->        
         
@@ -28,7 +28,7 @@
                     </tr> 
                 </thead>
                 <tbody>
-                      <?php foreach ($cplist as $key => $item): ?>                      
+                    <?php foreach ($cplist as $key => $item): ?>                      
                     <tr> 
                         <td class="text-center">     
 
@@ -50,7 +50,7 @@
                         <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->totalpayment,2,'.',','); ?></td>
                         <td class="text-center" style="text-transform: capitalize"><?php echo $item->post ?></td>
                     </tr>
-                     <?php endforeach;  ?>     
+                    <?php endforeach;  ?>     
                 </tbody>
             </table>
         </div> <!-- end of panel body -->
@@ -59,14 +59,14 @@
 
 <!-- Modal -->
 <div id="selectcustomer" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-md"> 
+    <div class="modal-dialog modal-lg"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Select Customer</h4>
         </div>
-                           
+                        
             <div class="modal-body">                    
 
                 <table class="table table-hover table-responsive table-bordered table-striped info" id="CoTable"> 
@@ -79,21 +79,21 @@
                     </tr> 
                 </thead>
                 <tbody>
-                      <?php foreach ($cus as $key => $item): ?>                      
+                    <?php foreach ($cus as $key => $item): ?>                      
                     <tr>                         
                         <td class="text-center" style="text-transform: capitalize"><?php echo $item->name ?></td>
                         <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->credit_limit,2,'.',','); ?></td>
                         <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->balance,2,'.',','); ?></td>
-                        <td class="text-center info">     
+                        <td class="text-center">     
                             <a title="Select" href="<?=site_url('Creditpayment_con/insertcreditpayment/'.$item->c_no)?>" class=" btn btn-info">SELECT</a>
                         </td>
                     </tr>
-                     <?php endforeach;  ?>     
+                    <?php endforeach;  ?>     
                 </tbody>
             </table>
             </div>                           
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <script type="text/javascript" src="<?=base_url()?>public/js/datatables.min.js"></script>

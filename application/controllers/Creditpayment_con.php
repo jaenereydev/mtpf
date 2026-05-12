@@ -11,7 +11,7 @@ class Creditpayment_con extends MY_Controller
         $this->load->model('Company_model');
         $this->load->model('Creditpayment_model');
         $this->load->model('Customer_model');
-       
+    
         $this->user = $this->User_model->get_users($this->session->userdata('id'));
         $this->active = "1";
         $this->open = "1";
@@ -42,7 +42,7 @@ class Creditpayment_con extends MY_Controller
     }
     
     //--------------------------------------------------------------------------
-       
+    
     public function insertcreditpayment($c)
     {
         $cp = array(
@@ -61,7 +61,7 @@ class Creditpayment_con extends MY_Controller
     
     //--------------------------------------------------------------------------
 
-     public function creditpaymentinfo($c)
+    public function creditpaymentinfo($c)
     {
         $cpnocus = $this->Creditpayment_model->get_customerpaymentinfo($c); // get customer payment information
         $this->session->set_userdata(['cpno' => $c]);

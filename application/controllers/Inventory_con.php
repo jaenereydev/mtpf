@@ -12,7 +12,7 @@ class Inventory_con extends MY_Controller
         $this->load->model('Inventory_model');
         $this->load->model('Product_model');
         $this->load->model('Producthistory_model');
-       
+    
         $this->user = $this->User_model->get_users( $this->session->userdata('id'));
         $this->com = $this->Company_model->get_companyinfo();
         $this->active = "1";
@@ -46,7 +46,7 @@ class Inventory_con extends MY_Controller
 
     public function insertinventory()
     {                    
-         $i = array(
+        $i = array(
             'date' => date('Y/m/d'),
             'user_id' => $this->session->userdata('id'),
         );
@@ -74,7 +74,7 @@ class Inventory_con extends MY_Controller
     
     // //--------------------------------------------------------------------------
 
-     public function postinventory($i)
+    public function postinventory($i)
     {         
         $inv = array(
             'post' => "YES"

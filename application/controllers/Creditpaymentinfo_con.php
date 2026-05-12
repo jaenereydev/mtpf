@@ -12,7 +12,7 @@ class Creditpaymentinfo_con extends MY_Controller
         $this->load->model('Creditpayment_model');
         $this->load->model('Creditreturn_model');
         $this->load->model('Duedate_model');
-       
+    
         $this->user = $this->User_model->get_users( $this->session->userdata('id'));
         $this->active = "1";
         $this->open = "1";
@@ -34,7 +34,7 @@ class Creditpaymentinfo_con extends MY_Controller
     
     public function index()
     {                    
-       
+    
         $this->data['cddlist'] = $this->Creditpayment_model->get_creditduedatelist($this->session->userdata('cpno'));// credit due date line 
         $this->data['cp'] = $this->Creditpayment_model->get_customerpaymentinfo($this->session->userdata('cpno')); // get customer payment information
 
@@ -60,13 +60,13 @@ class Creditpaymentinfo_con extends MY_Controller
         $this->Creditpayment_model->deleteallline($this->session->userdata('cpno'));
         $this->session->set_userdata(['cpnocustomer' => $c]);
         redirect('Creditpaymentinfo_con');
-    }
-      
+}
+
     //-------------------------------------------------------------------------- 
 
     public function insertpayment()
     {
-         $c = array(
+        $c = array(
             'totalpayment' => $this->input->post('totalpayment')+$this->input->post('amount'),
         );
         $this->Creditpayment_model->updatecreditpayment($this->session->userdata('cpno'), $c); // update customer payment
@@ -80,7 +80,7 @@ class Creditpaymentinfo_con extends MY_Controller
         $this->Creditpayment_model->insertcustomerpaymentline($p); // insert data in customer payment line
         redirect('Creditpaymentinfo_con');
     }
-      
+    
     //-------------------------------------------------------------------------- 
 
     public function deletecustomerpaymentline($c,$a)
@@ -94,10 +94,10 @@ class Creditpaymentinfo_con extends MY_Controller
         $this->Creditpayment_model->deletecustomerpaymentline($c);
         redirect('Creditpaymentinfo_con');
     }
-      
-    //-------------------------------------------------------------------------- 
 
-     public function deletecreditduedateline($c, $a)
+//-------------------------------------------------------------------------- 
+
+    public function deletecreditduedateline($c, $a)
     {
         $cpl = $this->Creditpayment_model->get_customerpaymentinfo($this->session->userdata('cpno'));
         $p = array(
@@ -108,10 +108,10 @@ class Creditpaymentinfo_con extends MY_Controller
         $this->Creditpayment_model->deletecreditduedateline($c);
         redirect('Creditpaymentinfo_con');
     }
-      
+    
     //-------------------------------------------------------------------------- 
     
-     public function insertcreditduedateline($cddno, $d, $tc)
+    public function insertcreditduedateline($cddno, $d, $tc)
     {
         $cdd = $this->Duedate_model->get_creditduedateinfo($cddno);
         $cddl = array(
@@ -128,7 +128,7 @@ class Creditpaymentinfo_con extends MY_Controller
 
         redirect('Creditpaymentinfo_con');
     }
-      
+    
     //-------------------------------------------------------------------------- 
 
     public function submitcreditpayment()

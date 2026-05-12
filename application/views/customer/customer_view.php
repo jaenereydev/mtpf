@@ -25,7 +25,7 @@
             <?php if($cus == null){ ?>
                 <!-- product search form -->
                 <form role="form" method="post" action="<?=site_url('customer_con/customersearch')?>">                    
-                       
+                    
                     <div class="form-group row row-offcanvas">
                         <label class="col-sm-2 control-label">Customer Search</label>
                         <div class="col-sm-5">
@@ -39,7 +39,7 @@
                 </form>   
             <?php }else { ?>
                 <form role="form" method="post" action="<?=site_url('customer_con/customersearch')?>">                    
-                       
+                    
                     <div class="form-group row row-offcanvas">
                         <label class="col-sm-2 control-label">Customer Search</label>
                         <div class="col-sm-5">
@@ -92,7 +92,7 @@
 
         <!-- Modal -->
         <div id="report" class="modal fade" role="dialog">
-          <div class="modal-dialog modal-sm"> 
+            <div class="modal-dialog modal-sm"> 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header bg-info">                                        
@@ -105,12 +105,12 @@
                     </div>
                 </div>               
             </div>
-          </div>
+            </div>
         </div> <!-- End of model -->
         
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
-          <div class="modal-dialog modal-lg"> 
+            <div class="modal-dialog modal-lg"> 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">                    
@@ -122,7 +122,7 @@
                         <legend>Personal Information</legend>
                         <div class="form-group row row-offcanvas">
                             <label class="col-sm-3 control-label">Name<span class="text-danger">*</span></label>
-                            <div class="col-sm-5">
+                            <div class="col-sm-9">
                                 <input style="text-transform: capitalize;" class="form-control input-sm" type="text" name="name" placeholder="Customer Name"  required autofocus autocomplete="off">
                             </div>                            
                         </div>
@@ -136,7 +136,7 @@
                         
                         <div class="form-group row row-offcanvas">
                             <label class="col-sm-3 control-label">Tel No.</label>
-                            <div class="col-sm-5">
+                            <div class="col-sm-9">
                                 <input class="form-control input-sm" type="number" name="telno" placeholder="Telephone Number" autocomplete="off">
                             </div>
                         </div>                                                                                
@@ -157,14 +157,14 @@
                             </div>
                         </div>
                         
-                         <div class="form-group row row-offcanvas">
+                        <div class="form-group row row-offcanvas">
                             <label class="col-sm-3 control-label">Terms<span class="text-danger">*</span></label>
                             <div class="col-sm-5">
                                 <input class="form-control input-sm" type="number" name="terms" placeholder="Terms" value="1" step="any" autocomplete="off" required>
                             </div>
                         </div>  
 
-                         <div class="form-group row row-offcanvas">
+                        <div class="form-group row row-offcanvas">
                             <label class="col-sm-3 control-label">Category<span class="text-danger">*</span></label>
                             <div class="col-sm-5">
                                 <select name="cno" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-expanded="true" required>                                                
@@ -179,23 +179,23 @@
                     
                     <div class="modal-footer">
                         <a title="Close" href="<?=site_url('customer_con')?>" onclick="return confirm('Do you want to cancel');" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
-                      <button title="Save" type="Submit" class="btn btn-success glyphicon glyphicon-floppy-save" ></button>
+                        <button title="Save" type="Submit" class="btn btn-success glyphicon glyphicon-floppy-save" ></button>
                     </div>
                 </form>
             </div>
-          </div>
+            </div>
         </div> <!-- End of model -->
 
 <!-- Modal -->
 <div id="customerdeposit" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm"> 
+    <div class="modal-dialog modal-sm"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Customer Deposit</h4>
         </div>
-               
+            
         <form onsubmit="return customerdepositform(this);" role="form" method="post" action="<?=site_url('Customer_con/customerdeposit')?>">             
         <div class="modal-body">            
 
@@ -227,7 +227,7 @@
         </form>
 
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <script type="text/javascript" src="<?=base_url()?>public/js/datatables.min.js"></script>

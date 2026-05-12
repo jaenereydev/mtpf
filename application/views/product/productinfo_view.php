@@ -38,23 +38,30 @@
 
                             <div class="form-group row row-offcanvas">
                                 <label class="col-sm-3 control-label">Category</label>
-                                <div class="col-sm-3">
-                                    <input style="text-transform: capitalize;" class="form-control input-sm" type="text" placeholder="Category" value="<?php echo $prod[0]->cname;?>" disabled>
-                                </div> 
-                                <div class="col-sm-2">                                  
-                                    <button type="button" data-toggle="modal" data-target="#category" class="btn btn-warning pull-right" >Change Category</button> 
+                                <div class="col-sm-5">    
+                                    <button style="text-transform: capitalize" 
+                                    class="form-control input-sm"  
+                                    type="button" 
+                                    data-toggle="modal" 
+                                    data-target="#category" >
+                                        <strong><?php echo $prod[0]->cname;?>...</strong >
+                                    </button>
                                 </div>                            
                             </div>   
 
                             <div class="form-group row row-offcanvas">
-                                <label class="col-sm-3 control-label">Supplier</label>
-                                <div class="col-sm-3">
-                                    <input style="text-transform: capitalize;" class="form-control input-sm" type="text" value="<?php echo $prod[0]->sname;?>" disabled>                                    
-                                </div>                            
-                                <div class="col-sm-2">                                  
-                                    <button type="button" data-toggle="modal" data-target="#supplier" class="btn btn-warning pull-right" >Change Supplier</button> 
-                                </div> 
-                            </div>                                                                                                                            
+                                <label class="col-sm-3 control-label">Supplier</label>         
+                                <div class="col-sm-5">    
+                                    <button style="text-transform: capitalize" 
+                                    class="form-control input-sm"  
+                                    type="button" 
+                                    data-toggle="modal" 
+                                    data-target="#supplier" >
+                                        <strong><?php echo $prod[0]->sname;?>...</strong >
+                                    </button>
+                                </div>   
+                            </div>
+
                             <div class="form-group row row-offcanvas">
                                 <label class="col-sm-3 control-label">Unit Cost</label>
                                 <div class="col-sm-5">
@@ -93,7 +100,7 @@
                             <div class="form-group row row-offcanvas">
                                 <label class="col-sm-3 control-label">Track Inventory</label>
                                 <div class="col-sm-5">
-                                    <select name="ti" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-expanded="true" required>                             
+                                    <select name="ti" class="btn btn-default dropdown-toggle" style="width: 100% !important;" data-toggle="dropdown" aria-expanded="true" required>                             
                                         <option value="Yes" <?php if($prod[0]->inventory == 'Yes'){ echo 'selected'; } ?> >Yes</option>
                                         <option value="No" <?php if($prod[0]->inventory == 'No'){ echo 'selected'; } ?> >No</option>
                                     </select>  
@@ -103,14 +110,14 @@
                         </div><!-- end of body -->
 
                         <div class="modal-footer">
-                          <a title="Close" href="<?=site_url('product_con')?>" onclick="return confirm('Do you want to cancel');" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
-                          <button title="Save"  type="Submit" class="btn btn-success glyphicon glyphicon-floppy-save" ></button>
+                            <a title="Close" href="<?=site_url('product_con')?>" onclick="return confirm('Do you want to cancel');" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
+                            <button title="Save"  type="Submit" class="btn btn-success glyphicon glyphicon-floppy-save" ></button>
                         </div>
                     </form>     
                     </div><!-- end of customer details -->                    
-                   
+                
                     <div class="tab-pane <?php if($active == "2") { echo "active";} ?>" id="producthistory">                        
-                             
+                            
                         <table class="table table-hover table-responsive table-bordered table-striped info" id="MTable">      
                             <thead>
                             <tr class="info">                               

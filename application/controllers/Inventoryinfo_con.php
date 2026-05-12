@@ -12,7 +12,7 @@ class Inventoryinfo_con extends MY_Controller
         $this->load->model('Inventory_model');
         $this->load->model('Product_model');
         $this->load->model('Producthistory_model');
-       
+    
         $this->user = $this->User_model->get_users( $this->session->userdata('id'));
         $this->com = $this->Company_model->get_companyinfo();
         $this->active = "1";
@@ -46,8 +46,8 @@ class Inventoryinfo_con extends MY_Controller
     }
     
     //--------------------------------------------------------------------------
-       
-   public function resetinventory()
+    
+    public function resetinventory()
     {                                      
         $this->Inventory_model->deleteallinventoryline($this->session->userdata('id'));
         redirect('Inventoryinfo_con');
@@ -57,7 +57,7 @@ class Inventoryinfo_con extends MY_Controller
 
     public function insertinventoryline()
     {                    
-         $il = array(
+        $il = array(
             'unitcost' => $this->input->post('unitcost'),
             'qty' => $this->input->post('qty'),
             'oldqty' => $this->input->post('oldqty'),
@@ -67,7 +67,7 @@ class Inventoryinfo_con extends MY_Controller
             'user_id' => $this->session->userdata('id'),
         );
         $this->Inventory_model->insertinventoryline($il); // insert inverntory line
-     
+    
         redirect('Inventoryinfo_con');
     }
     
@@ -75,27 +75,27 @@ class Inventoryinfo_con extends MY_Controller
 
     public function updateinventoryline()
     {                    
-         $il = array(
+        $il = array(
             'unitcost' => $this->input->post('unitcost'),
             'qty' => $this->input->post('qty'),
             'price' => $this->input->post('unitcost')*$this->input->post('qty')
         );
         $this->Inventory_model->updateinventoryline( $this->input->post('dlno'),$il);    
-     
+    
         redirect('Inventoryinfo_con');
     }
     
     // //--------------------------------------------------------------------------
 
-     public function updateinventory()
+    public function updateinventory()
     {                    
-         $i = array(
+        $i = array(
             'totalamount' => $this->input->post('totalamount'),
             'ref_no' => $this->input->post('refno'),
             'remarks' => $this->input->post('remarks'),
         );
         $this->Inventory_model->updateinventory( $this->session->userdata('ino'),$i);    
-     
+    
         redirect('Inventory_con');
     }
     

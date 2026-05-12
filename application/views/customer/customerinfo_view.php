@@ -14,7 +14,6 @@
         
         <ul class="nav nav-tabs">
             <li role="presentation" class="<?php if($active == "1") { echo "active";} ?>"><a href="#customerdetails" data-toggle="tab">Customer Details</a></li>
-            <li role="presentation" class="<?php if($active == "4") { echo "active";} ?>"><a href="#customercreditloan" data-toggle="tab">Credit Loan</a></li>
             <li role="presentation" class="<?php if($active == "2") { echo "active";} ?>"><a href="#customersaleshistory" data-toggle="tab">Sales History</a></li>
             <li role="presentation" class="<?php if($active == "3") { echo "active";} ?>"><a href="#customercredithistory" data-toggle="tab">Credit History</a></li>        
         </ul>
@@ -25,7 +24,7 @@
                     
                     <div class="tab-pane <?php if($active == "1") { echo "active";} ?>" id="customerdetails">
                     <form role="form" method="post" action="<?=site_url('customer_con/updatecustomer')?>">
-                       
+                    
                         <input class="form-control input-sm hide" type="text" name="c_no" value="<?php echo $cus[0]->c_no;?>" required>
                         <div class="modal-body">  
                             
@@ -44,7 +43,7 @@
 
                             <div class="form-group row row-offcanvas">
                                 <label class="col-sm-3 control-label">Address</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-5">
                                     <input style="text-transform: capitalize;"  class="form-control input-sm" type="text" name="address" placeholder="Address" value="<?php echo $cus[0]->address; ?>" required autocomplete="off">
                                 </div>                            
                             </div>                                                                               
@@ -59,7 +58,7 @@
                             <div class="form-group row row-offcanvas">
                                 <label class="col-sm-3 control-label">Category</label>
                                 <div class="col-sm-5">
-                                    <select name="ccno" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-expanded="true">
+                                    <select name="ccno" class="btn btn-default dropdown-toggle " style="width: 100% !important;"data-toggle="dropdown" aria-expanded="true">
                                         <option value=""> --Please Select--</option>
                                         <?php for($c=0;$c<count($cat);$c++) { ?>
                                         <option value="<?php echo $cat[$c]->cc_no; ?>" <?php if($cat[$c]->cc_no == $cus[0]->customer_category_cc_no){ echo 'selected'; } ?>  ><?php echo $cat[$c]->name;?></option>
@@ -84,7 +83,7 @@
                                 </div>
                             </div>
 
-                             <div class="form-group row row-offcanvas">
+                            <div class="form-group row row-offcanvas">
                                 <label class="col-sm-3 control-label">Terms</label>
                                 <div class="col-sm-5">
                                     <input class="form-control input-sm" type="number" name="terms" placeholder="Terms "value="<?php echo $cus[0]->terms;?>" autocomplete="off">
@@ -94,14 +93,14 @@
                         </div><!-- end of body -->
 
                         <div class="modal-footer">
-                          <a title="Close" href="<?=site_url('customer_con')?>" onclick="return confirm('Do you want to cancel');" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
-                          <button title="Save" type="Submit" class="btn btn-success glyphicon glyphicon-floppy-save" ></button>
+                            <a title="Close" href="<?=site_url('customer_con')?>" onclick="return confirm('Do you want to cancel');" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
+                            <button title="Save" type="Submit" class="btn btn-success glyphicon glyphicon-floppy-save" ></button>
                         </div>
                     </form>     
                     </div><!-- end of customer details -->                    
-                   
+                
                     <div class="tab-pane <?php if($active == "2") { echo "active";} ?>" id="customersaleshistory">                        
-                             
+                            
                         <table class="table table-hover table-responsive table-bordered table-striped info" id="MTable">      
                             <thead>
                             <tr class="info">                               
@@ -111,7 +110,7 @@
                                 <td class="text-center"><strong>Description</strong></td>
                                 <td class="text-center"><strong>Amount</strong></td>
                                 <td class="text-center"><strong></strong></td>
-                              </tr> 
+                            </tr> 
                             </thead>
                             <tbody>
                             <?php foreach ($cussaleshistory as $key => $item): ?>                    
@@ -129,7 +128,7 @@
                     </div> 
                     
                     <div class="tab-pane <?php if($active == "3") { echo "active";} ?>" id="customercredithistory">                        
-                             
+                            
                         <table class="table table-hover table-responsive table-bordered table-striped info" id="CoTable">      
                             <thead>
                             <tr class="info">                               
@@ -141,7 +140,7 @@
                                 <td class="text-center"><strong>CI Payment</strong></td>
                                 <td class="text-center"><strong>Balance</strong></td>
                                 <td class="text-center"><strong></strong></td>
-                              </tr> 
+                            </tr> 
                             </thead>
                             <tbody>
                             <?php foreach ($cuscredithistory as $key => $item): ?>                    
@@ -160,42 +159,7 @@
                         </table>                                             
                     </div> 
 
-                    <div class="tab-pane <?php if($active == "4") { echo "active";} ?>" id="customercreditloan">                        
-                             
-                        <table class="table table-hover table-responsive table-bordered table-striped info" id="ThirdTable">      
-                            <thead>
-                                <tr class="info">   
-                                    <td class="text-center"><strong>Serial No.</strong></td>                                          
-                                    <td class="text-center"><strong>Date</strong></td>                         
-                                    <td class="text-center"><strong>Principal Balance</strong></td>   
-                                    <td class="text-center"><strong>Down payment</strong></td>   
-                                    <td class="text-center"><strong>Terms</strong></td> 
-                                    <td class="text-center"><strong>Due Amount</strong></td>  
-                                    <td class="text-center"><strong>Outstanding Balance</strong></td>  
-                                    <td class="text-center"><strong>Action</strong></td>  
-                                </tr> 
-                            </thead>
-                            <tbody>
-                                <?php foreach ($cllist as $key => $item): ?>                     
-                                <tr class="<?php if($item->status == 'OPEN'){ echo 'warning'; }if($item->status == 'PAYED'){ echo 'success';} ?>"> 
-                                    <td class="text-center" ><?php echo $item->cl_no;?></td>  
-                                    <td class="text-center" ><?php echo date_format(date_create($item->date), 'm/d/Y'); ?></td>
-                                    <td class="text-center" ><?php echo number_format((float)$item->principal_balance,2,'.',',');?></td>  
-                                    <td class="text-center" ><?php echo number_format((float)$item->downpayment,2,'.',',');?></td> 
-                                    <td class="text-center" ><?php echo $item->termsbymonth;?></td>   
-                                    <td class="text-center" ><?php echo number_format((float)$item->due_amount,2,'.',',');?></td> 
-                                    <td class="text-center" ><?php echo number_format((float)$item->outstanding_balance,2,'.',',');?></td> 
-                                    <td class="text-center" >
-                                        <!-- <a title="View" href="<?=site_url('/'.$item->cl_no)?>" class="glyphicon glyphicon-pencil btn btn-primary btn-sm"></a> -->
-                                        <a type="button" target="_blank" title="VIew" href="<?=site_url('Creditloan_con/creditloaninfo/'. $item->cl_no)?>" class="glyphicon glyphicon-eye-open btn btn-info"></a>    
-                                        <a title="Print" href="<?=site_url('Creditloan_con/reprint/'.$item->cl_no)?>" class="glyphicon glyphicon-print btn btn-default btn-sm" target="_blank"></a>
-                                                                                      
-                                    </td> 
-                                </tr>
-                                <?php endforeach;  ?>   
-                            </tbody>
-                        </table>                                             
-                    </div> 
+                
 
                 </div>
             

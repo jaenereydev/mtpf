@@ -105,51 +105,51 @@
             <div class="modal-body">   
 
                 <div class="form-group row row-offcanvas">
-                    <label class="col-sm-3 control-label">Barcode</label>
-                    <div class="col-sm-5">
+                    <label class="col-sm-4 control-label">Barcode</label>
+                    <div class="col-sm-8">
                         <input style="text-transform: capitalize;" class="form-control input-sm" type="text" name="barcode" placeholder="barcode"  required autofocus autocomplete="off">
                     </div>                            
                 </div>  
                 
                 <div class="form-group row row-offcanvas">
-                    <label class="col-sm-3 control-label">Name</label>
-                    <div class="col-sm-5">
+                    <label class="col-sm-4 control-label">Name</label>
+                    <div class="col-sm-8">
                         <input style="text-transform: capitalize;" class="form-control input-sm" type="text" name="name" placeholder="Product Name"  required autocomplete="off">
                     </div>                            
                 </div>
                 
                 <div class="form-group row row-offcanvas">
-                    <label class="col-sm-3 control-label">Unit Cost</label>
-                    <div class="col-sm-5">
+                    <label class="col-sm-4 control-label">Unit Cost</label>
+                    <div class="col-sm-8">
                         <input  class="form-control input-sm" type="number" min="0" step="any" name="unitcost" placeholder="Unit Cost"  required autocomplete="off">
                     </div>                            
                 </div>                                                                               
                 
                 <div class="form-group row row-offcanvas">
-                    <label class="col-sm-3 control-label">Price 1</label>
-                    <div class="col-sm-5">
+                    <label class="col-sm-4 control-label">Price 1</label>
+                    <div class="col-sm-8">
                         <input class="form-control input-sm" type="number" step="any" name="price1" placeholder="Price 1" autocomplete="off" required>
                     </div>
                 </div> 
 
                 <div class="form-group row row-offcanvas">
-                    <label class="col-sm-3 control-label">Price 2</label>
-                    <div class="col-sm-5">
+                    <label class="col-sm-4 control-label">Price 2</label>
+                    <div class="col-sm-8">
                         <input class="form-control input-sm" type="number" step="any" name="price2" placeholder="Price 2" autocomplete="off" required>
                     </div>
                 </div> 
 
                 <div class="form-group row row-offcanvas">
-                    <label class="col-sm-3 control-label">Price 3</label>
-                    <div class="col-sm-5">
+                    <label class="col-sm-4 control-label">Price 3</label>
+                    <div class="col-sm-8">
                         <input class="form-control input-sm" type="number" step="any" name="price3" placeholder="Price 3" autocomplete="off" required>
                     </div>
                 </div>                                                                                
                 
                 <div class="form-group row row-offcanvas">
-                    <label class="col-sm-3 control-label">Supplier</label>
-                    <div class="col-sm-5">
-                        <select name="sno" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-expanded="true" required>                             
+                    <label class="col-sm-4 control-label">Supplier</label>
+                    <div class="col-sm-8">
+                        <select name="sno" class="btn btn-default dropdown-toggle " data-toggle="dropdown" style="width: 100% !important;" aria-expanded="true" required>                             
                             <option value=""> --Please Select--</option>
                             <?php for($s=0;$s<count($sup);$s++) { ?>
                             <option value="<?php echo $sup[$s]->s_no;?>" ><?php echo $sup[$s]->name;?></option>
@@ -159,9 +159,9 @@
                 </div>
                 
                 <div class="form-group row row-offcanvas">
-                    <label class="col-sm-3 control-label">Category</label>
-                    <div class="col-sm-5">
-                        <select name="cno" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-expanded="true" required>                             
+                    <label class="col-sm-4 control-label">Category</label>
+                    <div class="col-sm-8">
+                        <select name="cno" class="btn btn-default dropdown-toggle " data-toggle="dropdown" style="width: 100% !important;" aria-expanded="true" required>                             
                             <option value=""> --Please Select--</option>
                             <?php for($c=0;$c<count($cat);$c++) { ?>
                             <option value="<?php echo $cat[$c]->c_no;?>" ><?php echo $cat[$c]->name;?></option>
@@ -171,9 +171,9 @@
                 </div>   
                 
                 <div class="form-group row row-offcanvas">
-                    <label class="col-sm-3 control-label">Track Inventory</label>
-                    <div class="col-sm-5">
-                        <select name="ti" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-expanded="true" required>                             
+                    <label class="col-sm-4 control-label">Track Inventory</label>
+                    <div class="col-sm-8">
+                        <select name="ti" class="btn btn-default dropdown-toggle " data-toggle="dropdown" style="width: 100% !important;" aria-expanded="true" required>                             
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>  
@@ -183,8 +183,8 @@
             </div>
             
             <div class="modal-footer">
-                <a title="Close" href="<?=site_url('product_con')?>" onclick="return confirm('Do you want to cancel');" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
-                <button title="Save" type="Submit" class="btn btn-success glyphicon glyphicon-floppy-save" ></button>
+                <a title="Close" href="<?=site_url('product_con')?>" onclick="return confirm('Do you want to cancel');" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" > CANCEL</a>
+                <button title="Save" type="Submit" class="btn btn-success glyphicon glyphicon-floppy-save" > SAVE</button>
             </div>
         </form>
     </div>

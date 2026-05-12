@@ -28,10 +28,10 @@
                         <div class="col-sm-4">
                             <button style="text-transform: capitalize" class="form-control input-sm"  type="button" data-toggle="modal" data-target="#changecustomer"<?php if($cp[0]->post == 'YES'){ echo 'disabled'; }else {} ?> ><strong><?php echo $cp[0]->name ?><?php if($cp[0]->post == 'YES'){ }else { ?> - <span class="text-danger"><strong>Php<?php echo number_format((float)$cp[0]->balance,2,'.',','); ?></strong></span> ...</strong ><?php } ?></button>
                         </div>  
-                                          
+                                        
                     </div>
                 </div>
-              
+            
             </div>            
             <div class="row">
 
@@ -45,8 +45,8 @@
                                 <td class="text-center" colspan="4"><strong>Credit Info</strong></td>
                                 <td class="text-center">
                                     <?php if($countcddl[0]->c == 1) {}else { ?>
-                                     <button style="text-transform: capitalize" class="btn btn-info "  type="button" data-toggle="modal" data-target="#insertduedate"<?php if($cp[0]->post == 'YES'){ echo 'disabled'; }else {} ?> >INSERT</button>  
-                                     <?php } ?>                                  
+                                        <button style="text-transform: capitalize" class="btn btn-info "  type="button" data-toggle="modal" data-target="#insertduedate"<?php if($cp[0]->post == 'YES'){ echo 'disabled'; }else {} ?> >INSERT</button>  
+                                    <?php } ?>                                  
                                 </td>
                             <?php } ?> 
                         </tr>
@@ -62,7 +62,7 @@
                         </tr> 
                     </thead>
                     <tbody>
-                          <?php $a=0; if(sizeof($cddlist)):  foreach ($cddlist as $key => $item):  
+                        <?php $a=0; if(sizeof($cddlist)):  foreach ($cddlist as $key => $item):  
                             $bal = $item->amount-$item->amountpayed; ?>                      
                         <tr>     
                             <?php if($cp[0]->post == 'YES'){}else { ?> 
@@ -78,18 +78,18 @@
                         <?php endforeach; else: ?>
                         <?php if($cp[0]->post == 'YES'){ ?>
                             <tr class="text-center">
-                              <td colspan="4">There are no Data</td>
+                            <td colspan="4">There are no Data</td>
                             </tr>
                         <?php }else { ?>
                             <tr class="text-center">
-                              <td colspan="5">There are no Data</td>
+                                <td colspan="5">There are no Data</td>
                             </tr>
                         <?php } ?>
                         <?php endif?> 
                         <?php if($cp[0]->post == 'YES'){}else { ?>
                             <tr class="warning">
-                              <td class="text-right" colspan="4"><strong>Total</strong></td>
-                              <td class="text-center"><strong><?php echo number_format((float)$a,2,'.',','); ?></strong></td>
+                                <td class="text-right" colspan="4"><strong>Total</strong></td>
+                                <td class="text-center"><strong><?php echo number_format((float)$a,2,'.',','); ?></strong></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -117,7 +117,7 @@
                         </tr> 
                     </thead>
                     <tbody>
-                          <?php $tp=0;  if(sizeof($cpl)):  foreach ($cpl as $key => $item): ?>                      
+                        <?php $tp=0;  if(sizeof($cpl)):  foreach ($cpl as $key => $item): ?>                      
                         <tr>     
                             <?php if($cp[0]->post == 'YES'){}else { ?> 
                                 <td class="text-center" style="text-transform: capitalize">                             
@@ -129,13 +129,13 @@
                         </tr>
                         <?php endforeach; else: ?>
                             <tr class="text-center">
-                              <td colspan="3">There are no Data</td>
+                                <td colspan="3">There are no Data</td>
                             </tr>
                         <?php endif?> 
                         <tr class="warning">
-                             
+                            
                             <td <?php if($cp[0]->post == 'YES'){ ?> colspan="1"<?php }else { ?>colspan="2"<?php } ?>  class="text-right"><strong>Total Amount</strong></td>
-                           
+                        
                             <td class="text-center"><strong><?php echo number_format((float)$tp,2,'.',','); ?></strong></td>
                         </tr>   
                     </tbody>
@@ -144,8 +144,8 @@
 
             </div>
 
-           
-             <div class="row">
+        
+            <div class="row">
 
                 <div class="col-md-12">
                     <div class="form-group row row-offcanvas">                    
@@ -169,14 +169,14 @@
         
 <!-- Modal -->
 <div id="changecustomer" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-md"> 
+    <div class="modal-dialog modal-md"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Select Customer</h4>
         </div>
-                           
+                        
             <div class="modal-body">                    
 
                 <table class="table table-hover table-responsive table-bordered table-striped info" id="CoTable"> 
@@ -189,7 +189,7 @@
                     </tr> 
                 </thead>
                 <tbody>
-                      <?php foreach ($cus as $key => $item): ?>                      
+                    <?php foreach ($cus as $key => $item): ?>                      
                     <tr>                         
                         <td class="text-center" style="text-transform: capitalize"><?php echo $item->name ?></td>
                         <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->credit_limit,2,'.',','); ?></td>
@@ -198,24 +198,24 @@
                             <a title="Select" href="<?=site_url('Creditpaymentinfo_con/changecustomer/'.$item->c_no)?>" class=" btn btn-info">SELECT</a>
                         </td>
                     </tr>
-                     <?php endforeach;  ?>     
+                    <?php endforeach;  ?>     
                 </tbody>
             </table>
             </div>                           
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <!-- Modal -->
 <div id="insertduedate" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-md"> 
+    <div class="modal-dialog modal-md"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Select Crediit Due Date</h4>
         </div>
-                           
+                        
             <div class="modal-body">                    
 
                 <table class="table table-hover table-responsive table-bordered table-striped info" id="MTable"> 
@@ -230,7 +230,7 @@
                     </tr> 
                 </thead>
                 <tbody>
-                      <?php foreach ($cdd as $key => $item): ?>                      
+                    <?php foreach ($cdd as $key => $item): ?>                      
                     <tr>                         
                         <td class="text-center" style="text-transform: capitalize"><?php echo $item->duedate ?></td>
                         <td class="text-center" style="text-transform: capitalize"><?php echo $item->ref_no; ?></td>
@@ -241,33 +241,33 @@
                             <a title="Select" href="<?=site_url('Creditpaymentinfo_con/insertcreditduedateline/'.$item->cdd_no.'/'.$s.'/'.$cp[0]->totalcredit)?>" class=" btn btn-info">SELECT</a>
                         </td>
                     </tr>
-                     <?php endforeach;  ?>     
+                    <?php endforeach;  ?>     
                 </tbody>
             </table>
             </div>                           
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 <!-- Modal -->
 <div id="insertpayment" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm"> 
+    <div class="modal-dialog modal-md"> 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">                    
             <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
             <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Insert Payment</h4>
         </div>
-               
+            
         <form onsubmit="return paymentform(this);" role="form" method="post" action="<?=site_url('Creditpaymentinfo_con/insertpayment')?>">             
         <div class="modal-body">     
 
             <input class="hide " type="number" step="any" name="totalpayment" value="<?php echo $cp[0]->totalpayment; ?>" />
 
-           <div class="form-group row row-offcanvas">
+            <div class="form-group row row-offcanvas">
                 <label class="col-sm-6 control-label">Type</label>
                 <div class="col-sm-6">
-                     <select name="type" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-expanded="true" required>                             
+                    <select name="type" class="btn btn-default dropdown-toggle " style="width: 100% !important;" data-toggle="dropdown" aria-expanded="true" required>                             
                         <option value="Cash"> Cash</option>   
                         <option value="Check"> Check</option>                            
                     </select>  
@@ -282,16 +282,16 @@
 
             </div>
 
-         
+        
         </div>
         <div class="modal-footer">
                 <a title="Close"   class="close" data-dismiss="modal" data-toggle="modal" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
-              <input type="submit" class="btn btn-primary" name="paymentbtn" value="submit">
+                <input type="submit" class="btn btn-primary" name="paymentbtn" value="submit">
             </div>
         </form>
 
     </div>
-  </div>
+    </div>
 </div> <!-- End of model -->
 
 
