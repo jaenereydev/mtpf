@@ -158,3 +158,14 @@
 <script type="text/javascript" src="<?=base_url()?>public/js/datatables.min.js"></script>
 <script type="text/javascript" src="<?=base_url()?>public/js/product.js"></script>
 
+<script type="text/javascript">
+
+
+function processform(formObj) {            
+        formObj.processbtn.disabled = true;  
+        formObj.processbtn.value = 'Please Wait...';  
+        return true;    
+    }  
+
+
+</script>
