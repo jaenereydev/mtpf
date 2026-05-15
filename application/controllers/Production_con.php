@@ -38,38 +38,18 @@ class Production_con extends MY_Controller
         $this->session->unset_userdata('prodno');
         $this->data['production'] = $this->Production_model->get_productionlist();
 
+
         $this->render_html('production/production_view', true); 
     }
     
     //--------------------------------------------------------------------------
 
-    public function insertstockadjustment()
-    { 
-        $sa = array(
-            'date' => date('Y/m/d'),
-            'user_id' => $this->session->userdata('id'),
-        );
-        $sano = $this->Stockadjustment_model->insertstockadjustment($sa); // insert inverntory line    
-        $this->session->set_userdata(['sano' => $sano]);
-        redirect('Stockadjustmentinfo_con');
+    public function get_buildinglist()
+    {
+        $data = $this->Production_model->get_building();
+        echo json_encode($data);
     }
-    
-    //--------------------------------------------------------------------------
 
-    public function stockadjustmentinfo($sa)
-    { 
-        $this->session->set_userdata(['sano' => $sa]);
-        redirect('Stockadjustmentinfo_con');
-    }
-    
-    //--------------------------------------------------------------------------
-
-    public function deletestockadjustment($sa)
-    {         
-        $this->Stockadjustment_model->deletestockadjustment($sa);
-        redirect('Stockadjustment_con');
-    }
-    
-    //--------------------------------------------------------------------------
+  //--------------------------------------------------------------------------
 
 }

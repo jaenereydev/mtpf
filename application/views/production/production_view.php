@@ -66,15 +66,19 @@
             
             <div class="pull-right">
 
-            <button type="button" data-toggle="modal" data-target="#production" class="btn btn-info " >New</button> 
+                <button type="button" data-toggle="modal" data-target="#production" class="btn btn-info " >New</button> 
 
-            <a 
-                type="button" 
-                class="btn btn-default pull-right " style="margin-left: 5px;" 
-                onclick="return confirm('Do you want to create file?');"
-                href="<?=site_url('Produciton_con/insertproduction')?>"
-                >Building</a>
+                <button 
+                    style="margin-left: 5px;"
+                    class="btn btn-default pull-right view-building"  
+                    type="button" 
+                    data-toggle="modal" 
+                    data-target="#view-building" >
+                    <strong>BUILDING</strong >
+                </button>
             </div>
+
+            
         </div> <!-- end of panel heading -->     
         
         <div class="panel-body">  
@@ -185,6 +189,34 @@
     </div>
 </div> <!-- End of model -->
 
+<!-- Modal -->
+<div id="view-building" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg"> 
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header"> 
+                <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>
+                <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Buidling List</h4>
+            </div>
+                
+            <div class="modal-body">   
+                <table class="table table-hover table-responsive table-bordered table-striped info" >      
+                    <thead>
+                    <tr class="info">                                     
+                        <td class="text-center"><strong>Building Name</strong></td>       
+                        <td class="text-center"><strong>Action</strong></td>
+                    </tr> 
+                    </thead>
+                    <tbody id="history-body">
+                        <!-- Content will be inserted here by JavaScript -->
+                    </tbody>
+                </table>                       
+            </div>
+                
+        </div>
+    </div>
+</div> <!-- End of model -->
+
 <script type="text/javascript" src="<?=base_url()?>public/js/datatables.min.js"></script>
 <script type="text/javascript" src="<?=base_url()?>public/js/product.js"></script>
 
@@ -197,5 +229,30 @@ function processform(formObj) {
         return true;    
     }  
 
+
+    $(document).ready(function(){
+        $('.view-building').on('click', function(){
+            
+            $.ajax({
+                url: '<?= base_url("Production_con/get_buildinglist") ?>',
+                type: 'POST',
+                dataType: 'json',
+                success: function(data) {
+                    let rows = '';
+                    data.forEach(function(item, index){
+                        rows += `<tr>
+                            <td class="text-center">${item.name || ''}</td>
+                            <td class="text-center"></td>
+                        </tr>`;
+                    });
+
+                    $('#history-body').html(rows);
+                },
+                error: function() {
+                    alert('Failed to load history data.');
+                }
+            });
+        });
+    });
 
 </script>
