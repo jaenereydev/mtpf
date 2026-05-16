@@ -163,8 +163,8 @@ class Sales_model extends CI_Model
    {
     $sql = "SELECT *
               from transaction  
-              where  user_id = '$u'
-              and type = 'CASH'
+              where  user_id = '$u' 
+              and type = 'CASH' 
               and type = 'VOID' 
               and date = CURDATE()";
     $query = $this->db->query($sql);
@@ -178,8 +178,8 @@ class Sales_model extends CI_Model
    {
     $sql = "SELECT *
               from transaction  
-              where  user_id = '$u'
-              and type = 'CREDIT'
+              where  user_id = '$u' 
+              and type = 'CREDIT' 
               and date = CURDATE()";
     $query = $this->db->query($sql);
     return $query->result();
