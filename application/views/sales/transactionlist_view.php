@@ -104,7 +104,7 @@
                 <table class="table table-hover table-responsive table-bordered table-striped " > 
                     <thead>
                         <tr class="success">
-                            <td class="text-center"colspan="5"><strong>Transaction List</strong></td>
+                            <td class="text-center"colspan="5"><strong>Cash Transaction List</strong></td>
                         </tr>
                         <tr >                                                                         
                             <td class="text-center"><strong>Date</strong></td> 
@@ -158,7 +158,7 @@
                 <table class="table table-hover table-responsive table-bordered table-striped " > 
                     <thead>
                         <tr class="success">
-                            <td class="text-center"colspan="5"><strong>Transaction List</strong></td>
+                            <td class="text-center"colspan="5"><strong>Credit Transaction List</strong></td>
                         </tr>
                         <tr >                                                                         
                             <td class="text-center"><strong>Date</strong></td> 
