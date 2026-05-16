@@ -75,7 +75,10 @@ class Report_con extends MY_Controller
     {
         $this->data['user'] = $this->User_model->get_users( $this->session->userdata('id'));
         $this->data['com'] = $this->Company_model->get_companyinfo(); //company details
-        $this->data['t'] = $this->Sales_model->get_daytransaction($this->session->userdata('id')); // transaction list        
+
+        $this->data['tcash'] = $this->Sales_model->get_daytransactioncash($this->session->userdata('id')); // transaction list        
+        $this->data['tcredit'] = $this->Sales_model->get_daytransactioncredit($this->session->userdata('id')); // transaction list    
+        
         $this->data['downpayment'] = $this->Sales_model->get_totaldownpaymentperuser($this->session->userdata('id')); // get downpayment   
         $this->data['creditloan'] = $this->Sales_model->get_creditloanperuser($this->session->userdata('id')); 
         $this->data['creditloanpayment'] = $this->Sales_model->get_repaymentperuser($this->session->userdata('id'));    
@@ -96,7 +99,10 @@ class Report_con extends MY_Controller
 
         $this->data['sumdeposit'] = $this->Sales_model->get_sumdeposit($this->session->userdata('id')); // sum of expenses of the day
 
-        $this->data['sumcreditpayment'] = $this->Sales_model->get_sumcreditpayment($this->session->userdata('id')); // sum of expenses of the day
+
+        $this->data['sumcreditpaymentcash'] = $this->Sales_model->get_sumcreditpaymentcash($this->session->userdata('id')); // sum of expenses of the day
+        $this->data['sumcreditpaymentcheck'] = $this->Sales_model->get_sumcreditpaymentcheck($this->session->userdata('id')); // sum of expenses of the day
+        
 
         $this->data['sumcashonhand'] = $this->Sales_model->get_sumcashonhand($this->session->userdata('id')); // sum of expenses of the day
         
@@ -148,7 +154,10 @@ class Report_con extends MY_Controller
 
         $this->data['user'] = $this->User_model->get_users($s[0]->user_id);
         $this->data['com'] = $this->Company_model->get_companyinfo(); //company details
-        $this->data['t'] = $this->Sales_model->get_datetransaction($s[0]->user_id, $s[0]->date); // transaction list
+
+        $this->data['tcash'] = $this->Sales_model->get_daytransactioncash($this->session->userdata('id')); // transaction list        
+        $this->data['tcredit'] = $this->Sales_model->get_daytransactioncredit($this->session->userdata('id')); // transaction list  
+
         $this->data['downpayment'] = $this->Sales_model->get_datetotaldownpaymentperuser($s[0]->user_id, $s[0]->date); // get downpayment   
         $this->data['creditloan'] = $this->Sales_model->get_datecreditloanperuser($s[0]->user_id, $s[0]->date); 
         $this->data['creditloanpayment'] = $this->Sales_model->get_daterepaymentperuser($s[0]->user_id, $s[0]->date);
@@ -168,7 +177,8 @@ class Report_con extends MY_Controller
 
         $this->data['sumdeposit'] = $this->Sales_model->get_datesumdeposit($s[0]->user_id, $s[0]->date); // sum of expenses of the day
 
-        $this->data['sumcreditpayment'] = $this->Sales_model->get_datesumcreditpayment($s[0]->user_id, $s[0]->date); // sum of expenses of the day
+        $this->data['sumcreditpaymentcash'] = $this->Sales_model->get_sumcreditpaymentcash($this->session->userdata('id')); // sum of expenses of the day
+        $this->data['sumcreditpaymentcheck'] = $this->Sales_model->get_sumcreditpaymentcheck($this->session->userdata('id')); // sum of expenses of the day
 
         $this->data['sumcashonhand'] = $this->Sales_model->get_datesumcashonhand($s[0]->user_id, $s[0]->date); // sum of expenses of the day
         
@@ -180,7 +190,7 @@ class Report_con extends MY_Controller
     }
 
     //--------------------------------------------------------------------------
-   
+
     public function transactionsalesreport()
     {   
         $this->resetsession();     

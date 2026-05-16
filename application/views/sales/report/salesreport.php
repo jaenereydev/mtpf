@@ -74,13 +74,17 @@
                             <td><?php $clp=0; if(sizeof($creditloanpayment)): echo number_format((float)$creditloanpayment[0]->ap,2,'.',','); $clp=$creditloanpayment[0]->ap; endif ?></td>
                         </tr>
                         <tr>
-                            <td><strong>Total Credit Payment</strong></td>
-                            <td><?php $scp=0; if(sizeof($sumcreditpayment)): echo number_format((float)$sumcreditpayment[0]->ta,2,'.',','); $scp=$sumcreditpayment[0]->ta; endif ?></td>
+                            <td><strong>Total Credit Payment Cash</strong></td>
+                            <td><?php $scpcash=0; if(sizeof($sumcreditpaymentcash)): echo number_format((float)$sumcreditpaymentcash[0]->ta,2,'.',','); $scpcash=$sumcreditpaymentcash[0]->ta; endif ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Credit Payment Check</strong></td>
+                            <td><?php $scpcheck=0; if(sizeof($sumcreditpaymentcheck)): echo number_format((float)$sumcreditpaymentcheck[0]->ta,2,'.',','); $scpcheck=$sumcreditpaymentcheck[0]->ta; endif ?></td>
                         </tr>
 
                         <tr>
                             <td colspan="2"><strong>Total Sales</strong></td>
-                            <td><strong>Php <?php $ts=$sca+$sch+$scp+$dp+$clp;  echo number_format((float)$ts,2,'.',',');?></strong></td>
+                            <td><strong>Php <?php $ts=$sca+$sch+$scpcash+$scpcheck+$dp+$clp;  echo number_format((float)$ts,2,'.',',');?></strong></td>
                         </tr>
                         <tr>
                             <td><strong>Total Return Sales</strong></td>
@@ -100,7 +104,7 @@
                         </tr>
                         <tr >
                             <td colspan="2"><strong>Net Sales</strong></td>
-                            <td><strong>Php <?php $ns=0; echo number_format((float)$ts-($sr+$se+$sd),2,'.',','); $ns=$ts-($sr+$se+$sd) ?></strong></td>
+                            <td><strong>Php <?php $ns=0; echo number_format((float)$ts-($sr+$se+$sd),2,'.',','); $ns=$ts-($sr+$se+$sd+$scpcheck) ?></strong></td>
                         </tr>
                         <tr >
                             <td colspan="2"><strong>Cash On Hand</strong></td>
@@ -122,7 +126,7 @@
                 </div>
             </div>
             <br>
-                <?php if(sizeof($t)):  ?>
+                <?php if(sizeof($tcash)):  ?>
                 <table style="font-family: arial;width: 100%; font-size: 12pt;"> 
                     <thead>
                         <tr >
@@ -136,7 +140,7 @@
                         </tr> 
                     </thead>
                     <tbody>
-                        <?php  foreach ($t as $key => $item): ?>                      
+                        <?php  foreach ($tcash as $key => $item): ?>                      
                         <tr class="<?php if($item->type=='RETURN'){echo 'danger'; } ?>">                 
                             <td class="text-center" style="text-transform: capitalize"><?php echo date_format(date_create($item->date), 'm/d/Y');?></td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->ref_no ?></td>
@@ -148,7 +152,34 @@
                 </table>
                 <br>
                 <?php endif  ?> 
-                           
+
+                <?php if(sizeof($tcredit)):  ?>
+                <table style="font-family: arial;width: 100%; font-size: 12pt;"> 
+                    <thead>
+                        <tr >
+                            <td class="text-center"colspan="5"><strong>Transaction List</strong></td>
+                        </tr>
+                        <tr >                                                                         
+                            <td class="text-center"><strong>Date</strong></td> 
+                            <td class="text-center"><strong>Ref. No.</strong></td>                         
+                            <td class="text-center"><strong>Type</strong></td>   
+                            <td class="text-center"><strong>Amount</strong></td> 
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <?php  foreach ($tcredit  as $key => $item): ?>                      
+                        <tr class="<?php if($item->type=='RETURN'){echo 'danger'; } ?>">                 
+                            <td class="text-center" style="text-transform: capitalize"><?php echo date_format(date_create($item->date), 'm/d/Y');?></td>
+                            <td class="text-center" style="text-transform: capitalize"><?php echo $item->ref_no ?></td>
+                            <td class="text-center" style="text-transform: capitalize"><?php echo $item->type ?></td>
+                            <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->totalamount,2,'.',','); ?></td>
+                        </tr>
+                        <?php endforeach;  ?>                       
+                    </tbody>
+                </table>
+                <br>
+                <?php endif  ?> 
+                        
                 <?php if(sizeof($creditpayment)):  ?>            
                 <table style="font-family: arial;width: 100%; font-size: 12pt;"> 
                     <thead>
