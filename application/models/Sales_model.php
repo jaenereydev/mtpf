@@ -160,21 +160,20 @@ class Sales_model extends CI_Model
   //----------------------------------------------------------------------
 
   public function get_daytransactioncash($u) // sql for transactoin for the day
-   {
+  {
     $sql = "SELECT *
               from transaction  
               where  user_id = '$u' 
               and type = 'CASH' 
-              and type = 'VOID' 
+              OR type = 'VOID' 
               and date = CURDATE()";
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
- 
+
   //----------------------------------------------------------------------
 
-  public function get_daytransactioncheck($u) // sql for transactoin for the day
+  public function get_daytransactioncredit($u) // sql for transactoin for the day
    {
     $sql = "SELECT *
               from transaction  
