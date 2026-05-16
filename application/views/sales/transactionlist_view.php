@@ -98,7 +98,7 @@
                 </div>
             </div>                                                    
 
-            <?php if(sizeof($t)):  ?>    
+            <?php if(sizeof($tcash)):  ?>    
             <div class="form-group row">
                 <div class="col-md-12">  
                 <table class="table table-hover table-responsive table-bordered table-striped " > 
@@ -115,7 +115,61 @@
                         </tr> 
                     </thead>
                     <tbody>
-                        <?php  foreach ($t as $key => $item): ?>                      
+                        <?php  foreach ($tcash as $key => $item): ?>                      
+                        <tr class="<?php if($item->type=='RETURN'){ echo 'danger'; }else if($item->type=='VOID'){ echo 'warning'; }?>">                 
+                            <td class="text-center" style="text-transform: capitalize"><?php echo date_format(date_create($item->date), 'm/d/Y');?></td>
+                            <td class="text-center" style="text-transform: capitalize"><?php echo $item->ref_no ?></td>
+                            <td class="text-center" style="text-transform: capitalize"><?php echo $item->type ?></td>
+                            <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->totalamount,2,'.',','); ?></td>
+                            <td class="text-center">                          
+                                <?php if($item->customer_c_no == null || $item->customer_c_no == '') {
+                                    $c = 0;
+                                }else {
+                                    $c = $item->customer_c_no;
+                                } ?>   
+
+                                <a 
+                                    type="button" 
+                                    target="_blank" 
+                                    title="Reprint" 
+                                    href="<?=site_url('Receipt_con/reprint/'. $item->t_no.'/'.$c)?>" 
+                                    class="glyphicon glyphicon-print btn btn-default"></a>
+
+                                <?php if($item->type == 'VOID' || $item->type == 'CREDIT' || $item->type == 'CREDIT RETURN' || $item->type == 'RETURN') {}else { ?>
+                                    <a 
+                                        type="button" 
+                                        onclick="return confirm('This transaction will be void/cancel!');" 
+                                        title="Void" 
+                                        href="<?=site_url('Sales_con/voidtransaction/'. $item->t_no.'/'.$c)?>" 
+                                        class="btn btn-warning">VOID</a>
+                                <?php } ?>
+                            </td>
+                        </tr>
+                        <?php endforeach;  ?>                       
+                    </tbody>
+                </table>
+                </div>  
+            </div>
+            <?php endif  ?> 
+
+            <?php if(sizeof($tcredit)):  ?>    
+            <div class="form-group row">
+                <div class="col-md-12">  
+                <table class="table table-hover table-responsive table-bordered table-striped " > 
+                    <thead>
+                        <tr class="success">
+                            <td class="text-center"colspan="5"><strong>Transaction List</strong></td>
+                        </tr>
+                        <tr >                                                                         
+                            <td class="text-center"><strong>Date</strong></td> 
+                            <td class="text-center"><strong>Ref. No.</strong></td>                         
+                            <td class="text-center"><strong>Type</strong></td>   
+                            <td class="text-center"><strong>Amount</strong></td>   
+                            <td class="text-center"><strong>Action</strong></td>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <?php  foreach ($tcredit as $key => $item): ?>                      
                         <tr class="<?php if($item->type=='RETURN'){ echo 'danger'; }else if($item->type=='VOID'){ echo 'warning'; }?>">                 
                             <td class="text-center" style="text-transform: capitalize"><?php echo date_format(date_create($item->date), 'm/d/Y');?></td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->ref_no ?></td>

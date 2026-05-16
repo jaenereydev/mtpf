@@ -118,7 +118,8 @@ class Sales_con extends MY_Controller
 
     public function transactionlist()
     {        
-        $this->data['t'] = $this->Sales_model->get_daytransaction($this->session->userdata('id')); // transaction list        
+        $this->data['tcash'] = $this->Sales_model->get_daytransactioncash($this->session->userdata('id')); // transaction list        
+        $this->data['tcredit'] = $this->Sales_model->get_daytransactioncredit($this->session->userdata('id')); // transaction list        
         $this->data['downpayment'] = $this->Sales_model->get_totaldownpaymentperuser($this->session->userdata('id')); // get downpayment  
 
         $this->data['creditpayment'] = $this->Creditpayment_model->get_creditpaymentposted($this->session->userdata('id')); // get credit sales payment
