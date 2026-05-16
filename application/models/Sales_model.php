@@ -277,11 +277,13 @@ class Sales_model extends CI_Model
 
   public function get_sumcreditpaymentcash($u) // sql for transactoin for the day
   {
-    $sql = "SELECT sum(totalpayment) as ta
-              from customerpayment 
-              where  user_id = '$u' 
-              and date = CURDATE() 
-              and post = 'YES' ";
+    $sql = "SELECT sum(c.totalpayment) as ta
+            from customerpayment c
+            JOIN customerpaymentline p ON p.customerpayment_cp_no = c.cp_no
+            where  c.user_id = '$u' 
+            and p.type = 'Cash'
+            and c.date = CURDATE() 
+            and c.post = 'YES' ";
     $query = $this->db->query($sql);
     return $query->result();
   }
@@ -290,11 +292,13 @@ class Sales_model extends CI_Model
 
   public function get_sumcreditpaymentcheck($u) // sql for transactoin for the day
   {
-    $sql = "SELECT sum(totalpayment) as ta
-              from customerpayment 
-              where  user_id = '$u' 
-              and date = CURDATE() 
-              and post = 'YES' ";
+    $sql = "SELECT sum(c.totalpayment) as ta
+            from customerpayment c
+            JOIN customerpaymentline p ON p.customerpayment_cp_no = c.cp_no
+            where  c.user_id = '$u' 
+            and p.type = 'Check'
+            and c.date = CURDATE() 
+            and c.post = 'YES' ";
     $query = $this->db->query($sql);
     return $query->result();
   }
