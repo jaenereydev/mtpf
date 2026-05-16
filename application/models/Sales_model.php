@@ -280,7 +280,6 @@ class Sales_model extends CI_Model
     $sql = "SELECT sum(totalpayment) as ta
               from customerpayment 
               where  user_id = '$u' 
-              and type = 'Cash'
               and date = CURDATE() 
               and post = 'YES' ";
     $query = $this->db->query($sql);
@@ -294,7 +293,6 @@ class Sales_model extends CI_Model
     $sql = "SELECT sum(totalpayment) as ta
               from customerpayment 
               where  user_id = '$u' 
-              and type = 'Check'
               and date = CURDATE() 
               and post = 'YES' ";
     $query = $this->db->query($sql);
