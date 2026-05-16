@@ -338,13 +338,6 @@
                 </div>   
             </div>
 
-            <!-- <div class="form-group row row-offcanvas">                                       
-                <label class="col-sm-4 control-label">Description</label>
-                <div class="col-sm-8">
-                    <input id="desc" class="form-control input-sm " type="text" placeholder="IMEI/Serial/remarks" name="desc"  autocomplete="off" />
-                </div>  
-            </div>          -->
-
             <div class="form-group row row-offcanvas">                                       
                 <label class="col-sm-4 control-label">Discount %</label>
                 <div class="col-sm-8">
@@ -423,7 +416,7 @@
                 <div class="form-group row row-offcanvas">                                       
                     <label class="col-sm-6 control-label text-danger">OVERRIDE PRICE</label>
                     <div class="col-sm-4">
-                        <input id="price3" type="number" min="0" class="form-control input" name="price" >
+                        <input id="price3" type="number" min="0" step="any" class="form-control input" name="price" >
                     </div>   
                     <div class="col-sm-2">
                         <input  type="submit"  class="form-control btn btn-success" value="SAVE">
