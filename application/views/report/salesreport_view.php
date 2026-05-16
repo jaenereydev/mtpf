@@ -7,13 +7,13 @@
                 <span class="glyphicon glyphicon-folder-open" ></span> Sales Report
             </h3>         
             <div class="panel-toolbar text-right">
-              
+                <button type="button" data-toggle="modal" data-target="#coh" class="btn btn-info pull-right" >INSERT CASH ON HAND</button>
             </div>
         </div> <!-- end of panel heading -->        
         
         
         <div class="panel-body">  
-           
+        
             <form role="form" method="post" action="<?=site_url('Report_con/searchsalesreport')?>">                    
                     
                 <div class="form-group row row-offcanvas">
@@ -52,6 +52,44 @@
         </div> <!-- end of panel body -->
     </div> <!-- end of panel div -->
 </div> <!-- end of main div -->
+
+<!-- Modal -->
+<div id="coh" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md"> 
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">                    
+                <button title="Close" class="close" data-dismiss="modal" data-toggle="modal" >&times;</button>                 
+                <h4 class="modal-title"><span class="glyphicon glyphicon-pencil" style="font-size: 20px;padding-right: 10px;"></span>Insert Cash On Hand</h4>
+            </div>
+                
+            <form onsubmit="return cohform(this);" role="form" method="post" action="<?=site_url('Report_con/insertcohsalesreport')?>">
+            
+                <div class="modal-body">     
+                    <div class="form-group row ">                                                        
+                        <label class="col-sm-6 control-label">Date</label>
+                        <div class="col-sm-6">
+                            <input class="form-control input-sm " type="text" id="from" name="date" autocomplete="off" required/>
+                        </div>   
+                    </div>
+                
+                    <div class="form-group row ">                                                        
+                        <label class="col-sm-6 control-label">CASH ON HAND</label>
+                        <div class="col-sm-6">
+                            <input class="form-control input-sm " type="number" step="any" min="0" name="coh" required/>
+                        </div>   
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <a title="Close" class="close" data-dismiss="modal" data-toggle="modal" type="button" class="btn btn-danger glyphicon glyphicon-floppy-remove" ></a>
+                    <input type="submit" class="btn btn-primary" name="cohbtn" value="submit">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div> <!-- End of model -->
 
 <script type="text/javascript" src="<?=base_url()?>public/js/datatables.min.js"></script>
 <script type="text/javascript" src="<?=base_url()?>public/js/product.js"></script>

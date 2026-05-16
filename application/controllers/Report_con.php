@@ -118,6 +118,21 @@ class Report_con extends MY_Controller
 
     //--------------------------------------------------------------------------
 
+    public function insertcohsalesreport()
+    {
+        $c = array(
+            'date' => date_format(date_create($this->input->post('date')), 'Y/m/d'),
+            'cashonhand' => $this->input->post('coh'),
+            'user_id' => $this->session->userdata('id'),
+        );
+        $this->Sales_model->insertcoh($c);
+        $this->resetsession();
+        $this->data['salesreport'] = null;
+        $this->render_html('report/salesreport_view', true); 
+    }
+
+//--------------------------------------------------------------------------
+
     public function searchsalesreport()
     {        
         $this->data['salesreport'] = $this->Report_model->get_salesreport(date('Y/m/d', strtotime($this->input->post('search'))));
