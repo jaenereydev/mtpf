@@ -272,21 +272,35 @@ class Sales_model extends CI_Model
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
- 
-  //----------------------------------------------------------------------
 
-  public function get_sumcreditpayment($u) // sql for transactoin for the day
+ //----------------------------------------------------------------------
+
+  public function get_sumcreditpaymentcash($u) // sql for transactoin for the day
   {
     $sql = "SELECT sum(totalpayment) as ta
               from customerpayment 
               where  user_id = '$u' 
+              and type = 'Cash'
               and date = CURDATE() 
               and post = 'YES' ";
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
+
+  //----------------------------------------------------------------------
+
+  public function get_sumcreditpaymentcheck($u) // sql for transactoin for the day
+  {
+    $sql = "SELECT sum(totalpayment) as ta
+              from customerpayment 
+              where  user_id = '$u' 
+              and type = 'Check'
+              and date = CURDATE() 
+              and post = 'YES' ";
+    $query = $this->db->query($sql);
+    return $query->result();
+  }
+
   //----------------------------------------------------------------------
 
   public function get_datesumcreditpayment($u, $d) // sql for transactoin for the day

@@ -140,8 +140,9 @@ class Sales_con extends MY_Controller
 
         $this->data['sumdeposit'] = $this->Sales_model->get_sumdeposit($this->session->userdata('id')); // sum of expenses of the day
 
-        $this->data['sumcreditpayment'] = $this->Sales_model->get_sumcreditpayment($this->session->userdata('id')); // sum of expenses of the day
-
+        $this->data['sumcreditpaymentcash'] = $this->Sales_model->get_sumcreditpaymentcash($this->session->userdata('id')); // sum of expenses of the day
+        $this->data['sumcreditpaymentcheck'] = $this->Sales_model->get_sumcreditpaymentcheck($this->session->userdata('id')); // sum of expenses of the day
+        
         $this->data['sumcashonhand'] = $this->Sales_model->get_sumcashonhand($this->session->userdata('id')); // sum of expenses of the day
         
         $this->data['cohinfo'] = $this->Sales_model->get_cashonhandinfo($this->session->userdata('id')); // sum of expenses of the day      

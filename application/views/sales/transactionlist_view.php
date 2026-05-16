@@ -42,22 +42,20 @@
                             <td><strong>Total Check Sales</strong></td>
                             <td class="text-center"><?php $sch=0; if(sizeof($sumcheck)): echo number_format((float)$sumcheck[0]->ta,2,'.',','); $sch=$sumcheck[0]->ta; endif ?></td>
                         </tr>
-                        <!-- <tr>
-                            <td><strong>Total Down payment</strong></td>
-                            <td class="text-center"><?php $dp=0; if(sizeof($downpayment)): echo number_format((float)$downpayment[0]->dp,2,'.',','); $dp=$downpayment[0]->dp; endif ?></td>
+                        
+                        <tr>
+                            <td><strong><a href="<?php echo site_url('Creditpayment_con') ?>">Total Credit Payment Cash</a></strong></td>
+                            <td class="text-center"><?php $scpcash=0; if(sizeof($sumcreditpaymentcash)): echo number_format((float)$sumcreditpaymentcash[0]->ta,2,'.',','); $scpcash=$sumcreditpaymentcash[0]->ta; endif ?></td>
                         </tr>
+
                         <tr>
-                            <td><strong>Total Credit Loan Payment</strong></td>
-                            <td class="text-center"><?php $clp=0; if(sizeof($creditloanpayment)): echo number_format((float)$creditloanpayment[0]->ap,2,'.',','); $clp=$creditloanpayment[0]->ap; endif ?></td>
-                        </tr> -->
-                        <tr>
-                            <td><strong><a href="<?php echo site_url('Creditpayment_con') ?>">Total Credit Payment</a></strong></td>
-                            <td class="text-center"><?php $scp=0; if(sizeof($sumcreditpayment)): echo number_format((float)$sumcreditpayment[0]->ta,2,'.',','); $scp=$sumcreditpayment[0]->ta; endif ?></td>
+                            <td><strong><a href="<?php echo site_url('Creditpayment_con') ?>">Total Credit Payment Check</a></strong></td>
+                            <td class="text-center"><?php $scpcheck=0; if(sizeof($sumcreditpaymentcheck)): echo number_format((float)$sumcreditpaymentcheck[0]->ta,2,'.',','); $scpcheck=$sumcreditpaymentcheck[0]->ta; endif ?></td>
                         </tr>
 
                         <tr>
                             <td colspan="2" class="text-center"><strong>Total Sales</strong></td>
-                            <td class="text-center"><strong>Php <?php $ts=$sca+$sch+$scp;  echo number_format((float)$ts,2,'.',',');?></strong></td>
+                            <td class="text-center"><strong>Php <?php $ts=$sca+$sch+$scpcash+$scpcheck;  echo number_format((float)$ts,2,'.',',');?></strong></td>
                         </tr>
                         <tr>
                             <td><strong>Total Return Sales</strong></td>
@@ -77,7 +75,7 @@
                         </tr>
                         <tr >
                             <td colspan="2" class="text-right"><strong>Net Sales</strong></td>
-                            <td class="text-center"><strong>Php <?php $ns=0; echo number_format((float)$ts-($sr+$se+$sd),2,'.',','); $ns=$ts-($sr+$se+$sd) ?></strong></td>
+                            <td class="text-center"><strong>Php <?php $ns=0; echo number_format((float)$ts-($sr+$se+$sd),2,'.',','); $ns=$ts-($sr+$se+$sd-$scpcheck) ?></strong></td>
                         </tr>
                         <tr >
                             <td colspan="2" class="text-right"><strong>Cash On Hand</strong></td>
