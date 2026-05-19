@@ -56,7 +56,7 @@ class Production_con extends MY_Controller
         echo json_encode($data);
     }
 
-  //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
 
     public function insertbuilding()
     {
@@ -66,8 +66,13 @@ class Production_con extends MY_Controller
             'user_id' => $this->session->userdata('id'),
             'status' => 'ACTIVE',
         );
-        $this->Production_model->insertbuilding($b);
+        $added = $this->Production_model->insertbuilding($b);
 
+        if ($added) {
+            $this->session->set_flashdata('success', 'Building record added successfully.');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to add Building record.');
+        }
 
         redirect('production_con'); 
     }
@@ -83,7 +88,13 @@ class Production_con extends MY_Controller
             'qty' => $this->input->post('quantity'),
             'user_id' => $this->session->userdata('id'),
         );
-        $this->Production_model->insertproduction($p);
+        $added = $this->Production_model->insertproduction($p);
+
+        if ($added) {
+            $this->session->set_flashdata('success', 'Production record added successfully.');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to add production record.');
+        }
 
         redirect('production_con'); 
     }
@@ -128,7 +139,7 @@ class Production_con extends MY_Controller
         redirect('production_con'); 
     }
 
-  //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
 
     public function updateproduction_inline()
     {

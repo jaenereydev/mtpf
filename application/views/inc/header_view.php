@@ -28,8 +28,8 @@
                 <span class="icon-bar"></span>
             </button>
             <?php }?>
-               <img class="navbar-brand" style="padding: 10px; width: 100px; height: 50px;" src="<?=base_url('SIMS.png');?>">
-              <!--  <span class="navbar-brand">Sales and Inventory Management System</span> -->
+            <img class="navbar-brand" style="padding: 10px; width: 100px; height: 50px;" src="<?=base_url('SIMS.png');?>">
+            <!--  <span class="navbar-brand">Sales and Inventory Management System</span> -->
             
         </div>
         <?php if($hidebtn == '1') {}else { ?>
@@ -40,14 +40,14 @@
                     <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-expanded="false"> Hi! <?php echo $users[0]->name;?> <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">     
                     <?php if($users[0]->position == "Admin"){ ?>        
-                      <li><a href="<?=site_url('User_con')?>" class="glyphicon glyphicon-user"> User List</a></li>
-                      <li><a target="_blank" href="<?=site_url('Company_con')?>" class="glyphicon glyphicon-cog"> Company Setup</a></li>
+                        <li><a href="<?=site_url('User_con')?>" class="glyphicon glyphicon-user"> User List</a></li>
+                        <li><a target="_blank" href="<?=site_url('Company_con')?>" class="glyphicon glyphicon-cog"> Company Setup</a></li>
                     <?php } ?>
-                      <li><a href="<?=site_url('dashboard/logout')?>" class="glyphicon glyphicon-log-out"> Logout</a></li>
+                        <li><a href="<?=site_url('dashboard/logout')?>" class="glyphicon glyphicon-log-out"> Logout</a></li>
                     </ul>
                 </li>
                 
-               
+                
                 
             </ul>
         </div> <!-- end of collapse-->

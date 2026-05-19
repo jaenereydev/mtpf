@@ -48,14 +48,14 @@ class Production_model extends CI_Model
 
     public function insertbuilding($b = null) 
     {  
-        $this->db->insert('building',$b);
+        return $this->db->insert('building',$b);
     }
 
   //--------------------------------------------------------------------------  
 
     public function insertproduction($p = null) 
     {  
-        $this->db->insert('production',$p);
+        return $this->db->insert('production',$p);
     }
 
   //--------------------------------------------------------------------------  
