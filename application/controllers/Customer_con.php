@@ -56,9 +56,15 @@ class Customer_con extends MY_Controller
     public function get_allcustomer()
     {
         $this->data['cus'] = $this->Customer_model->get_customerlist();
-
+        $customer = $this->Customer_model->get_customerlist();
         $this->customerheader();
 
+        if ($customer) {
+            $this->session->set_flashdata('success', 'Showing all customer');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to display all customer.');
+        }
+        
         $this->render_html('customer/customer_view', true);
     }
 

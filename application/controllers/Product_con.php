@@ -119,9 +119,9 @@ class Product_con extends MY_Controller
 
         $product = $this->Product_model->get_product();
         if ($product) {
-            $this->session->set_flashdata('success', 'Showing all products.');
+            $this->session->set_flashdata('success', 'Showing all product.');
         } else {
-            $this->session->set_flashdata('error', 'Failed to display all products.');
+            $this->session->set_flashdata('error', 'Failed to display all product.');
         }
 
         $this->render_html('product/product_view', true); 
