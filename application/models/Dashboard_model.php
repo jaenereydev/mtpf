@@ -176,7 +176,7 @@ class Dashboard_model extends CI_Model
                 ORDER BY (COALESCE(SUM(ph.inqty), 0) + COALESCE(SUM(ph.outqty), 0)) DESC
                 LIMIT 10";
 
-        return $this->db->query($sql, array(date('Y-m-01'), date('Y-m-t')))->result();
+        return $this->db->query($sql, array(date('Y/m/01'), date('Y/m/t')))->result();
     }
 
     //----------------------------------------------------------------------
