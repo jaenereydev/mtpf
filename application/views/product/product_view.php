@@ -119,7 +119,8 @@
                 <span class="glyphicon glyphicon-barcode" ></span> Product List
             </h3>        
         <div class="panel-toolbar text-right">  
-            <a href="<?php echo site_url('Product_con/get_allproduct') ?>" type="button" class="btn btn-default " >Show All</a> 
+            <a href="<?php echo site_url('Product_con/get_allproduct') ?>" class="btn btn-default " >
+                <span class="glyphicon glyphicon-list"></span>Show All</a> 
             <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-info " >New</button> 
             <a href="<?php echo site_url('Inventory_con') ?>" type="button" class="btn btn-default " >Inventory</a> 
             <a href="<?php echo site_url('category_con') ?>" type="button" class="btn btn-warning " >Category</a> 
