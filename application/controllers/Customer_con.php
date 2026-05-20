@@ -36,14 +36,32 @@ class Customer_con extends MY_Controller
     
     public function index()
     {                    
-        $this->data['alert'] = null;
-        $this->data['message'] = null;
         $this->data['cus'] = null;
-        $this->data['cat'] = $this->Category_model->get_customercategory();
-        $this->data['customer'] = $this->Customer_model->countcustomer(); //number of customer        
+        $this->customerheader();
         $this->render_html('customer/customer_view', true); 
     }
     
+    //--------------------------------------------------------------------------
+
+    public function customerheader()
+    {
+        $this->data['cat'] = $this->Category_model->get_customercategory();
+        $this->data['customercount'] = $this->Customer_model->customercount();
+        $this->data['customerbalance'] = $this->Customer_model->customerbalance();
+    }
+
+
+    //--------------------------------------------------------------------------
+
+    public function get_allcustomer()
+    {
+        $this->data['cus'] = $this->Customer_model->get_customerlist();
+
+        $this->customerheader();
+
+        $this->render_html('customer/customer_view', true);
+    }
+
     //--------------------------------------------------------------------------
 
     public function customersave()
@@ -51,8 +69,8 @@ class Customer_con extends MY_Controller
         $this->data['alert'] = '1';
         $this->data['message'] = 'Customer successfully saved!';
         $this->data['cus'] = null;
-        $this->data['cat'] = $this->Category_model->get_customercategory();
-        $this->data['customer'] = $this->Customer_model->countcustomer(); //number of customer        
+        $this->customerheader();
+
         $this->render_html('customer/customer_view', true); 
     }
     
@@ -60,11 +78,9 @@ class Customer_con extends MY_Controller
 
     public function insertsuccess()
     {                    
-        $this->data['alert'] = '1';
-        $this->data['message'] = 'Customer added successfully!';
         $this->data['cus'] = null;
-        $this->data['cat'] = $this->Category_model->get_customercategory();
-        $this->data['customer'] = $this->Customer_model->countcustomer(); //number of customer
+        $this->customerheader();
+
         $this->render_html('customer/customer_view', true); 
     }
     
@@ -74,9 +90,10 @@ class Customer_con extends MY_Controller
     {                    
         $this->data['alert'] = null;
         $this->data['message'] = null;
+
         $this->data['cus'] = $this->Customer_model->get_customersearch($this->input->post('csearch'));
-        $this->data['cat'] = $this->Category_model->get_customercategory();
-        $this->data['customer'] = $this->Customer_model->countcustomer(); //number of customer
+        $this->customerheader();
+
         $this->render_html('customer/customer_view', true); 
     }
     
@@ -97,15 +114,19 @@ class Customer_con extends MY_Controller
                 'active' => 'YES',
                 'customer_category_cc_no' => $this->input->post('cno'),
             );
-            $this->Customer_model->insertcustomer($customer);
+            $customer = $this->Customer_model->insertcustomer($customer);
+
+            if ($customer) {
+                $this->session->set_flashdata('success', 'Customer added successfully!');
+            } else {
+                $this->session->set_flashdata('error', 'Failed to add the customer.');
+            }
 
             redirect('customer_con/insertsuccess');
         }else {
-            $this->data['alert'] = '1';
-            $this->data['message'] = 'Customer Name is Already Existed.';
+            $this->session->set_flashdata('error', 'Customer Name is Already Existed.');
             $this->data['cus'] = null;
-            $this->data['cat'] = $this->Category_model->get_customercategory();
-            $this->data['customer'] = $this->Customer_model->countcustomer(); //number of customer
+            $this->customerheader();
             $this->render_html('customer/customer_view', true); 
         }
     }
@@ -167,7 +188,15 @@ class Customer_con extends MY_Controller
             'user_id' => $this->session->userdata('id'),
             'customer_category_cc_no' => $this->input->post('ccno'),
         );
-        $this->Customer_model->updatecustomer($this->input->post('c_no'), $customer);
+        $customer = $this->Customer_model->updatecustomer($this->input->post('c_no'), $customer);
+
+        if ($customer) {
+            $this->session->set_flashdata('success', 'Customer update successfully!');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to update the customer.');
+        }
+
+
         redirect('customer_con/customersave');
     }
     
@@ -191,7 +220,13 @@ class Customer_con extends MY_Controller
             'user_id' => $this->session->userdata('id'),
             'active' => 'NO'
         );
-        $this->Customer_model->updatecustomer($c, $customer);
+        $customer = $this->Customer_model->updatecustomer($c, $customer);
+
+        if ($customer) {
+            $this->session->set_flashdata('success', 'Customer is deleted!');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to delete the customer.');
+        }
         redirect('customer_con');
     }
     

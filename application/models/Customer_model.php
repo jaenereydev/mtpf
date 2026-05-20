@@ -64,7 +64,7 @@ class Customer_model extends CI_Model
 
   public function insertcustomer($cus = null) 
   {  
-      $this->db->insert('customer',$cus);
+      return $this->db->insert('customer',$cus);
   }
 
   //--------------------------------------------------------------------------     
@@ -131,8 +131,12 @@ class Customer_model extends CI_Model
 
   public function updatecustomer($c, $cus = null) 
     {  
-        $this->db->where('c_no',$c)
-                ->update('customer', $cus);
+        if (empty($c) || empty($cus)) {
+            return false;
+        }
+
+        $this->db->where('c_no',$c);
+        return $this->db->update('customer', $cus);
     }
 
     //--------------------------------------------------------------------------   
@@ -175,6 +179,44 @@ class Customer_model extends CI_Model
   }
 
 
+  //----------------------------------------------------------------------
+
+  public function customercount()
+  {
+      return $this->db
+          ->where('active', 'YES')
+          ->count_all_results('customer');
+  }
+
+  //----------------------------------------------------------------------
+
+  public function customerbalance()
+  {
+      $sql = "SELECT COALESCE(SUM(CAST(balance AS DECIMAL(12,2))), 0) AS total_balance
+              FROM customer";
+
+      $query = $this->db->query($sql);
+      $row = $query->row();
+
+      return $row->total_balance ? $row->total_balance : 0;
+  }
+
+
+  //----------------------------------------------------------------------
+
+  public function get_customerlist()
+  {
+      $this->db->select('*');
+      $this->db->from('customer');
+      $this->db->where('active', 'YES');
+      $this->db->order_by('name', 'ASC');
+
+      return $this->db->get()->result();
+  }
+
+  //----------------------------------------------------------------------
+  //----------------------------------------------------------------------
+  //----------------------------------------------------------------------
   //----------------------------------------------------------------------
 
 }
