@@ -34,7 +34,7 @@
 
     .dashboard-count h2 {
         margin: 0;
-        font-size: 30px;
+        font-size: 28px;
         font-weight: bold;
         color: #333;
     }
@@ -75,14 +75,6 @@
         color: #5bc0de;
     }
 
-    .panel-heading strong {
-        font-size: 15px;
-    }
-
-    .table-dashboard td,
-    .table-dashboard th {
-        vertical-align: middle !important;
-    }
     .cash-color {
         color: #5cb85c;
     }
@@ -102,9 +94,79 @@
     .netcash-color {
         color: #f0ad4e;
     }
+
+    .panel-heading strong {
+        font-size: 15px;
+    }
+
+    .table-dashboard td,
+    .table-dashboard th {
+        vertical-align: middle !important;
+    }
+
+    .section-title {
+        margin: 10px 0 15px;
+        font-weight: bold;
+        color: #555;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 6px;
+    }
 </style>
 
 <div class="col-md-10">
+
+    <!-- DASHBOARD FILTER -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Dashboard Filter</strong>
+        </div>
+
+        <div class="panel-body">
+            <form method="get" action="<?= site_url('dashboard') ?>">
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label>From Date</label>
+                        <input 
+                            type="date" 
+                            name="date_from" 
+                            class="form-control" 
+                            value="<?= isset($date_from) ? $date_from : date('Y-m-01') ?>">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>To Date</label>
+                        <input 
+                            type="date" 
+                            name="date_to" 
+                            class="form-control" 
+                            value="<?= isset($date_to) ? $date_to : date('Y-m-t') ?>">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>&nbsp;</label>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <span class="glyphicon glyphicon-search"></span>
+                            Apply Filter
+                        </button>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>&nbsp;</label>
+                        <a href="<?= site_url('dashboard') ?>" class="btn btn-default btn-block">
+                            <span class="glyphicon glyphicon-refresh"></span>
+                            Reset
+                        </a>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- INVENTORY SUMMARY -->
+    <h4 class="section-title">Inventory Summary</h4>
 
     <div class="row">
 
@@ -215,6 +277,9 @@
     </div>
 
 
+    <!-- PRODUCTION SUMMARY -->
+    <h4 class="section-title">Production Summary</h4>
+
     <div class="row">
 
         <!-- Production Today -->
@@ -269,7 +334,7 @@
             </div>
         </div>
 
-        <!-- Production Month -->
+        <!-- Production Period -->
         <div class="col-md-3">
             <div class="panel panel-default dashboard-panel">
                 <div class="panel-body">
@@ -283,10 +348,10 @@
 
                             <div class="col-xs-8 dashboard-count-box">
                                 <div class="dashboard-count">
-                                    <h2><?= number_format(isset($production_month) ? $production_month : 0); ?></h2>
+                                    <h2><?= number_format(isset($production_period) ? $production_period : 0); ?></h2>
                                 </div>
                                 <div class="dashboard-label">
-                                    <h4>Production Month</h4>
+                                    <h4>Production Period</h4>
                                 </div>
                             </div>
                         </div>
@@ -295,7 +360,7 @@
             </div>
         </div>
 
-        <!-- Donation Month -->
+        <!-- Donation Period -->
         <div class="col-md-3">
             <div class="panel panel-default dashboard-panel">
                 <div class="panel-body">
@@ -309,10 +374,10 @@
 
                             <div class="col-xs-8 dashboard-count-box">
                                 <div class="dashboard-count">
-                                    <h2><?= number_format(isset($donation_month) ? $donation_month : 0); ?></h2>
+                                    <h2><?= number_format(isset($donation_period) ? $donation_period : 0); ?></h2>
                                 </div>
                                 <div class="dashboard-label">
-                                    <h4>Donation Month</h4>
+                                    <h4>Donation Period</h4>
                                 </div>
                             </div>
                         </div>
@@ -326,7 +391,7 @@
 
     <div class="row">
 
-        <!-- Reclassify Month -->
+        <!-- Reclassify Period -->
         <div class="col-md-3">
             <div class="panel panel-default dashboard-panel">
                 <div class="panel-body">
@@ -340,10 +405,10 @@
 
                             <div class="col-xs-8 dashboard-count-box">
                                 <div class="dashboard-count">
-                                    <h2><?= number_format(isset($reclassify_month) ? $reclassify_month : 0); ?></h2>
+                                    <h2><?= number_format(isset($reclassify_period) ? $reclassify_period : 0); ?></h2>
                                 </div>
                                 <div class="dashboard-label">
-                                    <h4>Reclassify Month</h4>
+                                    <h4>Reclassify Period</h4>
                                 </div>
                             </div>
                         </div>
@@ -352,6 +417,15 @@
             </div>
         </div>
 
+    </div>
+
+
+    <!-- FINANCIAL SUMMARY -->
+    <h4 class="section-title">Financial Summary</h4>
+
+    <div class="row">
+
+        <!-- Cash Sales Period -->
         <div class="col-md-3">
             <div class="panel panel-default dashboard-panel">
                 <div class="panel-body">
@@ -365,10 +439,10 @@
 
                             <div class="col-xs-8 dashboard-count-box">
                                 <div class="dashboard-count">
-                                    <h2><?= number_format(isset($cash_sales_today) ? $cash_sales_today : 0, 2); ?></h2>
+                                    <h2><?= number_format(isset($cash_sales_period) ? $cash_sales_period : 0, 2); ?></h2>
                                 </div>
                                 <div class="dashboard-label">
-                                    <h4>Cash Sales Today</h4>
+                                    <h4>Cash Sales Period</h4>
                                 </div>
                             </div>
                         </div>
@@ -377,31 +451,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="panel panel-default dashboard-panel">
-                <div class="panel-body">
-                    <div class="panel-body dashboard-panel-body">
-                        <div class="row">
-                            <div class="col-xs-4 text-center dashboard-icon-box">
-                                <h3>
-                                    <span class="glyphicon glyphicon-usd dashboard-icon cash-color"></span>
-                                </h3>
-                            </div>
-
-                            <div class="col-xs-8 dashboard-count-box">
-                                <div class="dashboard-count">
-                                    <h2><?= number_format(isset($cash_sales_month) ? $cash_sales_month : 0, 2); ?></h2>
-                                </div>
-                                <div class="dashboard-label">
-                                    <h4>Cash Sales Month</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <!-- Credit Sales Period -->
         <div class="col-md-3">
             <div class="panel panel-default dashboard-panel">
                 <div class="panel-body">
@@ -415,10 +465,10 @@
 
                             <div class="col-xs-8 dashboard-count-box">
                                 <div class="dashboard-count">
-                                    <h2><?= number_format(isset($credit_sales_month) ? $credit_sales_month : 0, 2); ?></h2>
+                                    <h2><?= number_format(isset($credit_sales_period) ? $credit_sales_period : 0, 2); ?></h2>
                                 </div>
                                 <div class="dashboard-label">
-                                    <h4>Credit Sales Month</h4>
+                                    <h4>Credit Sales Period</h4>
                                 </div>
                             </div>
                         </div>
@@ -427,6 +477,7 @@
             </div>
         </div>
 
+        <!-- Credit Payment Period -->
         <div class="col-md-3">
             <div class="panel panel-default dashboard-panel">
                 <div class="panel-body">
@@ -440,10 +491,10 @@
 
                             <div class="col-xs-8 dashboard-count-box">
                                 <div class="dashboard-count">
-                                    <h2><?= number_format(isset($credit_payment_month) ? $credit_payment_month : 0, 2); ?></h2>
+                                    <h2><?= number_format(isset($credit_payment_period) ? $credit_payment_period : 0, 2); ?></h2>
                                 </div>
                                 <div class="dashboard-label">
-                                    <h4>Payment Month</h4>
+                                    <h4>Payment Period</h4>
                                 </div>
                             </div>
                         </div>
@@ -452,7 +503,7 @@
             </div>
         </div>
 
-
+        <!-- Expenses Period -->
         <div class="col-md-3">
             <div class="panel panel-default dashboard-panel">
                 <div class="panel-body">
@@ -466,10 +517,10 @@
 
                             <div class="col-xs-8 dashboard-count-box">
                                 <div class="dashboard-count">
-                                    <h2><?= number_format(isset($expenses_month) ? $expenses_month : 0, 2); ?></h2>
+                                    <h2><?= number_format(isset($expenses_period) ? $expenses_period : 0, 2); ?></h2>
                                 </div>
                                 <div class="dashboard-label">
-                                    <h4>Expenses Month</h4>
+                                    <h4>Expenses Period</h4>
                                 </div>
                             </div>
                         </div>
@@ -478,31 +529,12 @@
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="panel panel-default dashboard-panel">
-                <div class="panel-body">
-                    <div class="panel-body dashboard-panel-body">
-                        <div class="row">
-                            <div class="col-xs-4 text-center dashboard-icon-box">
-                                <h3>
-                                    <span class="glyphicon glyphicon-credit-card dashboard-icon credit-color"></span>
-                                </h3>
-                            </div>
+    </div>
 
-                            <div class="col-xs-8 dashboard-count-box">
-                                <div class="dashboard-count">
-                                    <h2><?= number_format(isset($credit_balance) ? $credit_balance : 0, 2); ?></h2>
-                                </div>
-                                <div class="dashboard-label">
-                                    <h4>Credit Balance</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
+    <div class="row">
+
+        <!-- Net Cash Period -->
         <div class="col-md-3">
             <div class="panel panel-default dashboard-panel">
                 <div class="panel-body">
@@ -516,10 +548,10 @@
 
                             <div class="col-xs-8 dashboard-count-box">
                                 <div class="dashboard-count">
-                                    <h2><?= number_format(isset($net_cash_month) ? $net_cash_month : 0, 2); ?></h2>
+                                    <h2><?= number_format(isset($net_cash_period) ? $net_cash_period : 0, 2); ?></h2>
                                 </div>
                                 <div class="dashboard-label">
-                                    <h4>Net Cash Month</h4>
+                                    <h4>Net Cash Period</h4>
                                 </div>
                             </div>
                         </div>
@@ -530,56 +562,9 @@
 
     </div>
 
-    <div class="row">
 
-        <!-- Product Movement -->
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <strong>Top Product Movement This Month</strong>
-                </div>
-
-                <div class="panel-body">
-                    <table class="table table-bordered table-striped table-dashboard">
-                        <thead>
-                            <tr class="info">
-                                <th class="text-center">Product</th>
-                                <th class="text-center">In Qty</th>
-                                <th class="text-center">Out Qty</th>
-                                <th class="text-center">Current Balance</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <?php if (!empty($product_movement)): ?>
-                                <?php foreach ($product_movement as $item): ?>
-                                    <tr>
-                                        <td><?= $item->name; ?></td>
-                                        <td class="text-center"><?= number_format($item->total_in); ?></td>
-                                        <td class="text-center"><?= number_format($item->total_out); ?></td>
-                                        <td class="text-center">
-                                            <?php if ($item->current_balance < 0): ?>
-                                                <span class="label label-danger">
-                                                    <?= number_format($item->current_balance); ?>
-                                                </span>
-                                            <?php else: ?>
-                                                <?= number_format($item->current_balance); ?>
-                                            <?php endif; ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="4" class="text-center">No product movement this month.</td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <!-- CHARTS AND TABLES -->
+    <h4 class="section-title">Statistics</h4>
 
     <div class="row">
 
@@ -587,7 +572,7 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong>Production Last 7 Days</strong>
+                    <strong>Production Chart</strong>
                 </div>
 
                 <div class="panel-body">
@@ -644,7 +629,56 @@
     </div>
 
 
-    
+    <div class="row">
+
+        <!-- Product Movement -->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Top Product Movement</strong>
+                </div>
+
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped table-dashboard">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">Product</th>
+                                <th class="text-center">In Qty</th>
+                                <th class="text-center">Out Qty</th>
+                                <th class="text-center">Current Balance</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php if (!empty($product_movement)): ?>
+                                <?php foreach ($product_movement as $item): ?>
+                                    <tr>
+                                        <td><?= $item->name; ?></td>
+                                        <td class="text-center"><?= number_format($item->total_in); ?></td>
+                                        <td class="text-center"><?= number_format($item->total_out); ?></td>
+                                        <td class="text-center">
+                                            <?php if ($item->current_balance < 0): ?>
+                                                <span class="label label-danger">
+                                                    <?= number_format($item->current_balance); ?>
+                                                </span>
+                                            <?php else: ?>
+                                                <?= number_format($item->current_balance); ?>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="4" class="text-center">No product movement for selected period.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </div>
 
@@ -653,15 +687,19 @@
 $(document).ready(function() {
 
     var productionLabels = [
-        <?php foreach ($production_chart as $row): ?>
-            "<?= date('M d', strtotime($row->date)); ?>",
-        <?php endforeach; ?>
+        <?php if (!empty($production_chart)): ?>
+            <?php foreach ($production_chart as $row): ?>
+                "<?= date('M d', strtotime($row->date)); ?>",
+            <?php endforeach; ?>
+        <?php endif; ?>
     ];
 
     var productionData = [
-        <?php foreach ($production_chart as $row): ?>
-            <?= $row->total_qty ? $row->total_qty : 0; ?>,
-        <?php endforeach; ?>
+        <?php if (!empty($production_chart)): ?>
+            <?php foreach ($production_chart as $row): ?>
+                <?= $row->total_qty ? $row->total_qty : 0; ?>,
+            <?php endforeach; ?>
+        <?php endif; ?>
     ];
 
     var ctx = document.getElementById('productionChart');
@@ -673,7 +711,10 @@ $(document).ready(function() {
                 labels: productionLabels,
                 datasets: [{
                     label: 'Production Qty',
-                    data: productionData
+                    data: productionData,
+                    backgroundColor: 'rgba(51, 122, 183, 0.5)',
+                    borderColor: 'rgba(51, 122, 183, 1)',
+                    borderWidth: 1
                 }]
             },
             options: {
