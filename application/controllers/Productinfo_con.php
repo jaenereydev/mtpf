@@ -80,7 +80,7 @@ class Productinfo_con extends MY_Controller
 
     public function updateproduct()
     {                    
-         $p = array(        
+        $p = array(        
             'name' => $this->input->post('name'),
             'unitcost' => $this->input->post('unitcost'),            
             'srpprice' => $this->input->post('price1'),
@@ -89,7 +89,13 @@ class Productinfo_con extends MY_Controller
             'user_id' => $this->session->userdata('id'),
             'inventory' => $this->input->post('ti'),           
         );
-        $this->Product_model->updateproduct($this->session->userdata('product'),$p);
+        $product = $this->Product_model->updateproduct($this->session->userdata('product'),$p);
+
+        if ($product) {
+            $this->session->set_flashdata('success', 'Product successfully save.');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to save product.');
+        }
 
         redirect('product_con/productsave');
     }

@@ -16,6 +16,48 @@ class Product_model extends CI_Model
 
   //----------------------------------------------------------------------
 
+  public function productcount()
+  {
+      return $this->db
+          ->where('active', 'YES')
+          ->count_all_results('product');
+  }
+
+  //----------------------------------------------------------------------
+
+  public function categorycount()
+  {
+      return $this->db
+          ->where('active', 'YES')
+          ->count_all_results('category');
+  }
+
+  //----------------------------------------------------------------------
+
+
+  public function suppliercount()
+  {
+      return $this->db
+          ->where('active', 'YES')
+          ->count_all_results('supplier');
+  }
+
+  //----------------------------------------------------------------------
+
+  public function totalproductqty()
+  {
+      $this->db->select_sum('qty', 'total_qty');
+      $this->db->from('product');
+      $this->db->where('active', 'YES');
+
+      $query = $this->db->get();
+      $row = $query->row();
+
+      return $row->total_qty ? $row->total_qty : 0;
+  }
+
+ //----------------------------------------------------------------------
+
   public function searchbarcode($b) 
   {
       $sql = "Select * from product 
@@ -144,15 +186,19 @@ class Product_model extends CI_Model
 
   public function insertproduct($p = null) 
   {  
-      $this->db->insert('product',$p);
+      return $this->db->insert('product',$p);
   }
 
   //--------------------------------------------------------------------------     
 
-  public function updateproduct($p, $prod = null) 
-  {  
-      $this->db->where('p_no',$p)
-              ->update('product', $prod);
+  public function updateproduct($p, $prod) 
+  {
+      if (empty($p) || empty($prod)) {
+          return false;
+      }
+
+      $this->db->where('p_no', $p);
+      return $this->db->update('product', $prod);
   }
 
   //--------------------------------------------------------------------------    

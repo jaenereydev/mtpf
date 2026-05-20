@@ -35,29 +35,35 @@ class Product_con extends MY_Controller
     //--------------------------------------------------------------------------                   
     
     public function index()
-    {                    
-        $this->session->unset_userdata('product');
-        $this->data['alertbarcode'] = null;
-        $this->data['message'] = null;
+    {        
         $this->data['prod'] = null;
-        $this->data['product'] = $this->Product_model->countproduct(); //number of product
-        $this->data['sup'] = $this->Supplier_model->get_supplier();
-        $this->data['cat'] = $this->Category_model->get_category();
+        $this->productheader();
 
         $this->render_html('product/product_view', true); 
     }
     
     //--------------------------------------------------------------------------
 
-    public function productsave()
-    {                    
+    public function productheader()
+    {
         $this->session->unset_userdata('product');
-        $this->data['alertbarcode'] = '1';
-        $this->data['message'] = 'Product successfully saved!';
-        $this->data['prod'] = null;
-        $this->data['product'] = $this->Product_model->countproduct(); //number of product
+        $this->data['product'] = $this->Product_model->countproduct(); 
         $this->data['sup'] = $this->Supplier_model->get_supplier();
         $this->data['cat'] = $this->Category_model->get_category();
+        $this->data['productcount'] = $this->Product_model->productcount();
+        $this->data['categorycount'] = $this->Product_model->categorycount();
+        $this->data['suppliercount'] = $this->Product_model->suppliercount();
+        $this->data['totalproductqty'] = $this->Product_model->totalproductqty();
+
+    }
+
+
+     //--------------------------------------------------------------------------
+
+    public function productsave()
+    {                    
+        $this->data['prod'] = null;
+        $this->productheader();
 
         $this->render_html('product/product_view', true); 
     }
@@ -67,13 +73,8 @@ class Product_con extends MY_Controller
 
     public function insertsuccess()
     {                    
-        $this->session->unset_userdata('product');
-        $this->data['alertbarcode'] = '1';
-        $this->data['message'] = 'Product added successfully!';
         $this->data['prod'] = null;
-        $this->data['product'] = $this->Product_model->countproduct(); //number of product
-        $this->data['sup'] = $this->Supplier_model->get_supplier();
-        $this->data['cat'] = $this->Category_model->get_category();
+        $this->productheader();
 
         $this->render_html('product/product_view', true); 
     }
@@ -82,13 +83,8 @@ class Product_con extends MY_Controller
 
     public function productsearch()
     {                    
-        $this->session->unset_userdata('product');
-        $this->data['alertbarcode'] = null;
-        $this->data['message'] = null;
-        $this->data['product'] = $this->Product_model->countproduct(); //number of product
         $this->data['prod'] = $this->Product_model->get_productsearch($this->input->post('psearch'));
-        $this->data['sup'] = $this->Supplier_model->get_supplier();
-        $this->data['cat'] = $this->Category_model->get_category();
+        $this->productheader();
 
         $this->render_html('product/product_view', true); 
     }
@@ -98,14 +94,8 @@ class Product_con extends MY_Controller
 
     public function productunitcost()
     {                    
-        $this->session->unset_userdata('product');
-        $this->data['alertbarcode'] = null;
-        $this->data['message'] = null;
-        $this->data['product'] = $this->Product_model->countproduct(); //number of product
         $this->data['prod'] = $this->Product_model->get_allproductwithoutunitcost();
-        $this->data['sup'] = $this->Supplier_model->get_supplier();
-        $this->data['cat'] = $this->Category_model->get_category();
-
+        $this->productheader();
         $this->render_html('product/product_view', true); 
     }
     
@@ -113,13 +103,8 @@ class Product_con extends MY_Controller
 
     public function productwithnegativequantity()
     {                    
-        $this->session->unset_userdata('product');
-        $this->data['alertbarcode'] = '1';
-        $this->data['message'] = 'Product with negative quantity';
-        $this->data['product'] = $this->Product_model->countproduct(); //number of product
         $this->data['prod'] = $this->Product_model->get_allproductwithnegativequantity();
-        $this->data['sup'] = $this->Supplier_model->get_supplier();
-        $this->data['cat'] = $this->Category_model->get_category();
+        $this->productheader();
 
         $this->render_html('product/product_view', true); 
     }
@@ -129,13 +114,15 @@ class Product_con extends MY_Controller
 
     public function get_allproduct()
     {                    
-        $this->session->unset_userdata('product');
-        $this->data['alertbarcode'] = '1';
-        $this->data['message'] ='Product page showing all products.';
-        $this->data['product'] = $this->Product_model->countproduct(); //number of product
         $this->data['prod'] = $this->Product_model->get_product();
-        $this->data['sup'] = $this->Supplier_model->get_supplier();
-        $this->data['cat'] = $this->Category_model->get_category();
+        $this->productheader();
+
+        $product = $this->Product_model->get_product();
+        if ($product) {
+            $this->session->set_flashdata('success', 'Showing all products.');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to display all products.');
+        }
 
         $this->render_html('product/product_view', true); 
     }
@@ -158,7 +145,14 @@ class Product_con extends MY_Controller
             'category_c_no' => $this->input->post('cno'),  
             'inventory' => $this->input->post('ti'),  
         );
-        $this->Product_model->insertproduct($p);
+        $product = $this->Product_model->insertproduct($p);
+
+        if ($product) {
+            $this->session->set_flashdata('success', 'New product added.');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to add new product.');
+        }
+        
 
         redirect('product_con/insertsuccess');
         
@@ -172,7 +166,13 @@ class Product_con extends MY_Controller
             'active' => 'NO',
             'user_id' => $this->session->userdata('id')            
         );
-        $this->Product_model->updateproduct($p, $prod);
+        $product = $this->Product_model->updateproduct($p, $prod);
+
+        if ($product) {
+            $this->session->set_flashdata('success', 'Product is deleted.');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to delete the product.');
+        }
 
         redirect('product_con');
     }
@@ -181,7 +181,6 @@ class Product_con extends MY_Controller
 
     public function productinfo($p)
     {                            
-
         $this->session->set_userdata(['product' => $p]);  
         redirect('productinfo_con');
     }

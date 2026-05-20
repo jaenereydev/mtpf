@@ -1,5 +1,117 @@
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>public/css/datatables.min.css"/>
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>public/css/selectize.bootstrap3.css"/>
+
+
+<div class="col-md-2">
+    <div class="panel panel-default dashboard-panel">
+        <div class="panel-body">
+            <div class="panel-body dashboard-panel-body">
+                <div class="row">
+
+                    <!-- Icon Column -->
+                    <div class="col-xs-4 text-center dashboard-icon-box">
+                        <h3>
+                            <span class="glyphicon glyphicon-barcode dashboard-icon product-color"></span>
+                        </h3>
+                    </div>
+
+                    <!-- Count Column -->
+                    <div class="col-xs-8 dashboard-count-box">
+                        <div class="dashboard-count">
+                            <h2><?php echo isset($productcount) ? number_format($productcount) : 0; ?></h2>
+                        </div>
+                        <div class="dashboard-label">
+                            <h4>Product Count</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-2">
+    <div class="panel panel-default dashboard-panel">
+        <div class="panel-body">
+            <div class="panel-body dashboard-panel-body">
+                <div class="row">
+
+                    <div class="col-xs-4 text-center dashboard-icon-box">
+                        <h3>
+                            <span class="glyphicon glyphicon-tags dashboard-icon category-color"></span>
+                        </h3>
+                    </div>
+
+                    <div class="col-xs-8 dashboard-count-box">
+                        <div class="dashboard-count">
+                            <h2><?php echo isset($categorycount) ? number_format($categorycount) : 0; ?></h2>
+                        </div>
+                        <div class="dashboard-label">
+                            <h4>Category Count</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-2">
+    <div class="panel panel-default dashboard-panel">
+        <div class="panel-body">
+            <div class="panel-body dashboard-panel-body">
+                <div class="row">
+
+                    <div class="col-xs-4 text-center dashboard-icon-box">
+                        <h3>
+                            <span class="glyphicon glyphicon-briefcase dashboard-icon supplier-color"></span>
+                        </h3>
+                    </div>
+
+                    <div class="col-xs-8 dashboard-count-box">
+                        <div class="dashboard-count">
+                            <h2><?php echo isset($suppliercount) ? number_format($suppliercount) : 0; ?></h2>
+                        </div>
+                        <div class="dashboard-label">
+                            <h4>Supplier Count</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="panel panel-default dashboard-panel">
+        <div class="panel-body">
+            <div class="panel-body dashboard-panel-body">
+                <div class="row">
+
+                    <div class="col-xs-4 text-center dashboard-icon-box">
+                        <h3>
+                            <span class="glyphicon glyphicon-scale dashboard-icon total-qty-color"></span>
+                        </h3>
+                    </div>
+
+                    <div class="col-xs-8 dashboard-count-box">
+                        <div class="dashboard-count">
+                            <h2><?php echo isset($totalproductqty) ? number_format($totalproductqty) : 0; ?></h2>
+                        </div>
+                        <div class="dashboard-label">
+                            <h4>Total Product Quantity</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="col-md-10" >
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
@@ -7,6 +119,7 @@
                 <span class="glyphicon glyphicon-barcode" ></span> Product List
             </h3>        
         <div class="panel-toolbar text-right">  
+            <a href="<?php echo site_url('Product_con/get_allproduct') ?>" type="button" class="btn btn-default " >Show All</a> 
             <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-info " >New</button> 
             <a href="<?php echo site_url('Inventory_con') ?>" type="button" class="btn btn-default " >Inventory</a> 
             <a href="<?php echo site_url('category_con') ?>" type="button" class="btn btn-warning " >Category</a> 
@@ -17,12 +130,20 @@
         
         
         <div class="panel-body">  
-            <!--alert barcode-->
-            <?php if($alertbarcode == null){}else { ?>
-                <div class="form-group row row-offcanvas" id="message">
-                    <label style="font-size: 30px" class="col-sm-12 control-label text-danger text-center"><?php echo $message; ?></label>                          
-                </div>  
-            <?php } ?>
+
+            <?php if ($this->session->flashdata('success')): ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Success!</strong> <?php echo $this->session->flashdata('success'); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($this->session->flashdata('error')): ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Error!</strong> <?php echo $this->session->flashdata('error'); ?>
+                </div>
+            <?php endif; ?>
 
             <!-- product search -->
             <?php if($prod == null){ ?>
@@ -37,7 +158,6 @@
                         <div class="col-sm-1">
                             <button title="Search" type="Submit" class="btn btn-success" >Search</button>
                         </div>          
-                        <label style="font-size:20px" class="col-sm-4 control-label text-center"><strong>Product Count - <?php echo number_format((float)$product[0]->p,0,'.',','); ?></stong></label>                
                     </div>  
                 </form>   
             <?php }else { ?>
@@ -184,11 +304,29 @@
 
 <script type="text/javascript" src="<?=base_url()?>public/js/datatables.min.js"></script>
 <script type="text/javascript" src="<?=base_url()?>public/js/product.js"></script>
+
+<style>
+    .product-color {
+        color: #f0ad4e;
+    }
+
+    .category-color {
+        color: #5bc0de;
+    }
+
+    .supplier-color {
+        color: #d9534f;
+    }
+    .total-qty-color {
+        color: #5cb85c;
+    }
+</style>
+
 <script>
-window.onload = function()
-{  
+    
+$(document).ready(function() {
     setTimeout(function() {
-    $('#message').fadeOut();
-    }, 3000 );
-}
+        $('.alert').fadeOut('slow');
+    }, 3000);
+});
 </script>
