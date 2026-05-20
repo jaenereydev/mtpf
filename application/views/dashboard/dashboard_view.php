@@ -581,6 +581,18 @@
             </div>
         </div>
 
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Sales / Payment / Expenses Chart</strong>
+                </div>
+
+                <div class="panel-body">
+                    <canvas id="financialChart" height="140"></canvas>
+                </div>
+            </div>
+        </div>
+
         <!-- Low Stock Products -->
         <div class="col-md-6">
             <div class="panel panel-default">
@@ -734,4 +746,110 @@ $(document).ready(function() {
     }
 
 });
+
+var financialLabels = [
+    <?php if (!empty($financial_chart)): ?>
+        <?php foreach ($financial_chart as $row): ?>
+            "<?= date('M d', strtotime($row->date)); ?>",
+        <?php endforeach; ?>
+    <?php endif; ?>
+];
+
+var cashSalesData = [
+    <?php if (!empty($financial_chart)): ?>
+        <?php foreach ($financial_chart as $row): ?>
+            <?= $row->cash_sales ? $row->cash_sales : 0; ?>,
+        <?php endforeach; ?>
+    <?php endif; ?>
+];
+
+var creditPaymentData = [
+    <?php if (!empty($financial_chart)): ?>
+        <?php foreach ($financial_chart as $row): ?>
+            <?= $row->credit_payment ? $row->credit_payment : 0; ?>,
+        <?php endforeach; ?>
+    <?php endif; ?>
+];
+
+var expensesData = [
+    <?php if (!empty($financial_chart)): ?>
+        <?php foreach ($financial_chart as $row): ?>
+            <?= $row->expenses ? $row->expenses : 0; ?>,
+        <?php endforeach; ?>
+    <?php endif; ?>
+];
+
+var netCashData = [
+    <?php if (!empty($financial_chart)): ?>
+        <?php foreach ($financial_chart as $row): ?>
+            <?= (($row->cash_sales ? $row->cash_sales : 0) + ($row->credit_payment ? $row->credit_payment : 0) - ($row->expenses ? $row->expenses : 0)); ?>,
+        <?php endforeach; ?>
+    <?php endif; ?>
+];
+
+var financialCtx = document.getElementById('financialChart');
+
+if (financialCtx) {
+    new Chart(financialCtx, {
+        type: 'line',
+        data: {
+            labels: financialLabels,
+            datasets: [
+                {
+                    label: 'Cash Sales',
+                    data: cashSalesData,
+                    fill: false,
+                    borderColor: '#5cb85c',
+                    backgroundColor: '#5cb85c',
+                    pointBackgroundColor: '#5cb85c',
+                    pointBorderColor: '#5cb85c',
+                    lineTension: 0.2
+                },
+                {
+                    label: 'Credit Payment',
+                    data: creditPaymentData,
+                    fill: false,
+                    borderColor: '#5bc0de',
+                    backgroundColor: '#5bc0de',
+                    pointBackgroundColor: '#5bc0de',
+                    pointBorderColor: '#5bc0de',
+                    lineTension: 0.2
+                },
+                {
+                    label: 'Expenses',
+                    data: expensesData,
+                    fill: false,
+                    borderColor: '#d9534f',
+                    backgroundColor: '#d9534f',
+                    pointBackgroundColor: '#d9534f',
+                    pointBorderColor: '#d9534f',
+                    lineTension: 0.2
+                },
+                {
+                    label: 'Net Cash',
+                    data: netCashData,
+                    fill: false,
+                    borderColor: '#f0ad4e',
+                    backgroundColor: '#f0ad4e',
+                    pointBackgroundColor: '#f0ad4e',
+                    pointBorderColor: '#f0ad4e',
+                    lineTension: 0.2
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            legend: {
+                display: true
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
 </script>

@@ -8,8 +8,8 @@ class Production_model extends CI_Model
     public function get_productionlist() 
     {
 
-        $first_day = date('Y-m-01');
-        $last_day = date('Y-m-t');
+        $first_day = date('Y/m/01');
+        $last_day = date('Y/m/t');
 
         $sql = "SELECT p.*, u.name AS name, b.name AS buildingname 
                 FROM production p
@@ -97,7 +97,7 @@ class Production_model extends CI_Model
     {
         $this->db->select_sum('qty', 'total_qty');
         $this->db->from('production');
-        $this->db->where('date', date('Y-m-d'));
+        $this->db->where('date', date('Y/m/d'));
 
         $query = $this->db->get();
         $row = $query->row();
@@ -109,8 +109,8 @@ class Production_model extends CI_Model
 
     public function production_week()
     {
-        $monday = date('Y-m-d', strtotime('monday this week'));
-        $sunday = date('Y-m-d', strtotime('sunday this week'));
+        $monday = date('Y/m/d', strtotime('monday this week'));
+        $sunday = date('Y/m/d', strtotime('sunday this week'));
 
         $this->db->select_sum('qty', 'total_qty');
         $this->db->from('production');
@@ -127,8 +127,8 @@ class Production_model extends CI_Model
 
     public function production_month()
     {
-        $first_day = date('Y-m-01');
-        $last_day = date('Y-m-t');
+        $first_day = date('Y/m/01');
+        $last_day = date('Y/m/t');
 
         $this->db->select_sum('qty', 'total_qty');
         $this->db->from('production');

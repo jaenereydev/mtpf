@@ -82,6 +82,9 @@ class Dashboard extends MY_Controller
         $this->data['lowstockproducts'] = $this->Dashboard_model->lowstockproducts();
         $this->data['product_movement'] = $this->Dashboard_model->product_movement_period($date_from, $date_to);
 
+        $this->data['financial_chart'] = $this->Dashboard_model->financial_chart_period($date_from, $date_to);
+        
+
         $this->render_html('dashboard/dashboard_view', true);
     }
     

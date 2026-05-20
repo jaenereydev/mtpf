@@ -83,7 +83,7 @@ class Production_con extends MY_Controller
     {
         $date = $this->input->post('date');
         $p = array(
-            'date' => date('Y-m-d', strtotime($date)),
+            'date' => date('Y/m/d', strtotime($date)),
             'b_no' => $this->input->post('bno'),
             'qty' => $this->input->post('quantity'),
             'user_id' => $this->session->userdata('id'),

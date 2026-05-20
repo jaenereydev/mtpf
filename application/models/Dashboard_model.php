@@ -460,7 +460,57 @@ class Dashboard_model extends CI_Model
 
         return $this->db->query($sql, array($date_from, $date_to))->result();
     }
+
     //----------------------------------------------------------------------
+
+    public function financial_chart_period($date_from, $date_to)
+    {
+        $sql = "SELECT 
+                    x.date,
+                    SUM(x.cash_sales) AS cash_sales,
+                    SUM(x.credit_payment) AS credit_payment,
+                    SUM(x.expenses) AS expenses
+                FROM (
+                    SELECT 
+                        STR_TO_DATE(date, '%Y/%m/%d') AS date,
+                        CAST(totalamount AS DECIMAL(12,2)) AS cash_sales,
+                        0 AS credit_payment,
+                        0 AS expenses
+                    FROM `transaction`
+                    WHERE type = 'CASH'
+                    AND STR_TO_DATE(date, '%Y/%m/%d') BETWEEN STR_TO_DATE(?, '%Y/%m/%d') AND STR_TO_DATE(?, '%Y/%m/%d')
+
+                    UNION ALL
+
+                    SELECT 
+                        STR_TO_DATE(date, '%Y/%m/%d') AS date,
+                        0 AS cash_sales,
+                        CAST(totalpayment AS DECIMAL(12,2)) AS credit_payment,
+                        0 AS expenses
+                    FROM customerpayment
+                    WHERE post = 'YES'
+                    AND STR_TO_DATE(date, '%Y/%m/%d') BETWEEN STR_TO_DATE(?, '%Y/%m/%d') AND STR_TO_DATE(?, '%Y/%m/%d')
+
+                    UNION ALL
+
+                    SELECT 
+                        STR_TO_DATE(date, '%Y/%m/%d') AS date,
+                        0 AS cash_sales,
+                        0 AS credit_payment,
+                        CAST(amount AS DECIMAL(12,2)) AS expenses
+                    FROM expenses
+                    WHERE STR_TO_DATE(date, '%Y/%m/%d') BETWEEN STR_TO_DATE(?, '%Y/%m/%d') AND STR_TO_DATE(?, '%Y/%m/%d')
+                ) x
+                GROUP BY x.date
+                ORDER BY x.date ASC";
+
+        return $this->db->query($sql, array(
+            $date_from, $date_to,
+            $date_from, $date_to,
+            $date_from, $date_to
+        ))->result();
+    }
+    
     //----------------------------------------------------------------------
     //----------------------------------------------------------------------
     //----------------------------------------------------------------------
