@@ -530,6 +530,56 @@
 
     </div>
 
+    <div class="row">
+
+        <!-- Product Movement -->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Top Product Movement This Month</strong>
+                </div>
+
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped table-dashboard">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">Product</th>
+                                <th class="text-center">In Qty</th>
+                                <th class="text-center">Out Qty</th>
+                                <th class="text-center">Current Balance</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php if (!empty($product_movement)): ?>
+                                <?php foreach ($product_movement as $item): ?>
+                                    <tr>
+                                        <td><?= $item->name; ?></td>
+                                        <td class="text-center"><?= number_format($item->total_in); ?></td>
+                                        <td class="text-center"><?= number_format($item->total_out); ?></td>
+                                        <td class="text-center">
+                                            <?php if ($item->current_balance < 0): ?>
+                                                <span class="label label-danger">
+                                                    <?= number_format($item->current_balance); ?>
+                                                </span>
+                                            <?php else: ?>
+                                                <?= number_format($item->current_balance); ?>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="4" class="text-center">No product movement this month.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <div class="row">
 
@@ -594,56 +644,7 @@
     </div>
 
 
-    <div class="row">
-
-        <!-- Product Movement -->
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <strong>Top Product Movement This Month</strong>
-                </div>
-
-                <div class="panel-body">
-                    <table class="table table-bordered table-striped table-dashboard">
-                        <thead>
-                            <tr class="info">
-                                <th class="text-center">Product</th>
-                                <th class="text-center">In Qty</th>
-                                <th class="text-center">Out Qty</th>
-                                <th class="text-center">Current Balance</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <?php if (!empty($product_movement)): ?>
-                                <?php foreach ($product_movement as $item): ?>
-                                    <tr>
-                                        <td><?= $item->name; ?></td>
-                                        <td class="text-center"><?= number_format($item->total_in); ?></td>
-                                        <td class="text-center"><?= number_format($item->total_out); ?></td>
-                                        <td class="text-center">
-                                            <?php if ($item->current_balance < 0): ?>
-                                                <span class="label label-danger">
-                                                    <?= number_format($item->current_balance); ?>
-                                                </span>
-                                            <?php else: ?>
-                                                <?= number_format($item->current_balance); ?>
-                                            <?php endif; ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="4" class="text-center">No product movement this month.</td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    
 
 </div>
 
