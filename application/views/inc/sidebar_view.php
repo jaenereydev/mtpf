@@ -6,16 +6,29 @@
 
                 <a title="Customer" class="list-group-item" href="<?php echo site_url('customer_con') ?>"><span class="glyphicon glyphicon-user"></span> Customer</a>
 
-                
-                <a title="Product" class="list-group-item" href="<?php echo site_url('Product_con') ?>"><span class="glyphicon glyphicon-barcode"></span> Product</a>
-                
-                
+                <a title="Product" class="list-group-item" href="<?php echo site_url('Product_con') ?>">
+                    <span class="glyphicon glyphicon-barcode"></span> Product
+                </a>
 
-                <a title="Product" class="list-group-item" href="<?php echo site_url('Stockadjustment_con') ?>"><span class="glyphicon glyphicon-scissors"></span> Stock Adjustment</a>
+                <a title="Stock Adjustment" class="list-group-item" href="<?php echo site_url('Stockadjustment_con') ?>">
+                    <span class="glyphicon glyphicon-scissors"></span> Stock Adjustment
+                </a>
 
-                <a title="Production" class="list-group-item" href="<?php echo site_url('Production_con') ?>"><span class="glyphicon glyphicon-plus"></span> Production</a>
+                <a title="Production" class="list-group-item" href="<?php echo site_url('Production_con') ?>">
+                    <span class="glyphicon glyphicon-plus"></span> Production
+                </a>
 
-                <a title="Classify" class="list-group-item" href="<?php echo site_url('Classify_con') ?>"><span class="glyphicon glyphicon-folder-open"></span> Classify</a>
+                <a title="Classify" class="list-group-item" href="<?php echo site_url('Classify_con') ?>">
+                    <span class="glyphicon glyphicon-folder-open"></span> Classify
+                </a>
+
+                <a title="Reclassify" class="list-group-item" href="<?php echo site_url('Reclassify_con') ?>">
+                    <span class="glyphicon glyphicon-transfer"></span> Reclassify
+                </a>
+
+                <a title="Donation" class="list-group-item" href="<?php echo site_url('Donation_con') ?>">
+                    <span class="glyphicon glyphicon-heart-empty"></span> Donation
+                </a>
 
 
                 <?php if($users[0]->position == "Cashier"){}else { ?>
@@ -25,8 +38,6 @@
                 <a title="Sales" class="list-group-item" href="<?php echo site_url('Sales_con') ?>"><span class="glyphicon glyphicon-shopping-cart"></span> Sales</a>
                 
                 <a title="Credit" class="list-group-item" href="<?php echo site_url('Salescredit_con') ?>"><span class="glyphicon glyphicon-book"></span> Credit Sales</a>  
-                
-                <a title="Donation" class="list-group-item" href="<?php echo site_url('Donation_con') ?>"><span class="glyphicon glyphicon-heart-empty"></span> Donation</a>
 
                 <a title="Credit Payment" class="list-group-item" href="<?php echo site_url('Creditpayment_con') ?>"><span class="glyphicon glyphicon-folder-open"></span> Credit Payment</a>
 

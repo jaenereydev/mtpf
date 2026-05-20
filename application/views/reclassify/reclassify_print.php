@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="icon" type="image/x-icon" href="<?=base_url()?>favico.ico"/>
-    <title>Print Donation</title>
+    <title>Print Reclassify</title>
 
     <link rel="stylesheet" href="<?= base_url() ?>public/css/bootstrap.min.css">
 
@@ -14,7 +14,7 @@
         }
 
         .print-container {
-            width: 800px;
+            width: 850px;
             margin: 20px auto;
         }
 
@@ -114,39 +114,40 @@
     </div>
 
     <div class="print-header">
-        <h3>DONATION REPORT</h3>
-        <h4>Reference No: <?= $donation->d_no ?></h4>
+        <h3>RECLASSIFY REPORT</h3>
+        <h4>Reference No: <?= $reclassify->r_no ?></h4>
     </div>
 
     <table class="info-table">
         <tr>
             <td width="15%"><strong>Date:</strong></td>
-            <td width="35%"><?= date('m/d/Y', strtotime($donation->date)) ?></td>
+            <td width="35%"><?= date('m/d/Y', strtotime($reclassify->date)) ?></td>
 
             <td width="15%"><strong>Status:</strong></td>
-            <td width="35%"><?= $donation->post ?></td>
+            <td width="35%"><?= $reclassify->post ?></td>
         </tr>
 
         <tr>
-            <td><strong>Donate To:</strong></td>
-            <td><?= $donation->donate_to ?></td>
-
             <td><strong>User:</strong></td>
-            <td><?= $donation->name ?></td>
+            <td><?= $reclassify->name ?></td>
+
+            <td><strong>Printed Date:</strong></td>
+            <td><?= date('m/d/Y h:i A') ?></td>
         </tr>
 
         <tr>
             <td><strong>Remarks:</strong></td>
-            <td colspan="3"><?= $donation->remarks ?></td>
+            <td colspan="3"><?= $reclassify->remarks ?></td>
         </tr>
     </table>
 
     <table class="table-print">
         <thead>
             <tr>
-                <th width="10%">No.</th>
-                <th width="60%">Product</th>
-                <th width="30%">Quantity</th>
+                <th width="8%">No.</th>
+                <th width="34%">From Product</th>
+                <th width="34%">To Product</th>
+                <th width="24%">Quantity</th>
             </tr>
         </thead>
 
@@ -156,18 +157,19 @@
                 $no = 1;
             ?>
 
-            <?php foreach ($donationline as $line): ?>
+            <?php foreach ($reclassifyline as $line): ?>
                 <?php $total_qty += $line->qty; ?>
 
                 <tr>
                     <td class="text-center"><?= $no++ ?></td>
-                    <td><?= $line->productname ?></td>
+                    <td><?= $line->from_productname ?></td>
+                    <td><?= $line->to_productname ?></td>
                     <td class="text-right"><?= number_format($line->qty, 2) ?></td>
                 </tr>
             <?php endforeach; ?>
 
             <tr>
-                <td colspan="2" class="text-right">
+                <td colspan="3" class="text-right">
                     <strong>Total Quantity</strong>
                 </td>
                 <td class="text-right">
@@ -185,7 +187,7 @@
 
         <div class="signature-box">
             <div class="signature-line"></div>
-            Received By
+            Checked By
         </div>
 
         <div class="signature-box">
