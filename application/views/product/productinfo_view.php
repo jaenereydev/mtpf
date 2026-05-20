@@ -21,13 +21,6 @@
                     <form role="form" method="post" action="<?=site_url('productinfo_con/updateproduct')?>">
                                             
                         <div class="modal-body">  
-                            
-                            <div class="form-group row row-offcanvas">
-                                <label class="col-sm-3 control-label">Barcode</label>
-                                    <div class="col-sm-5">
-                                        <input class="form-control input-sm " type="text" value="<?php echo $prod[0]->barcode;?>" disabled>
-                                    </div>                            
-                            </div>
 
                             <div class="form-group row row-offcanvas">
                                 <label class="col-sm-3 control-label">Name</label>

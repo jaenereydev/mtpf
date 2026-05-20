@@ -367,11 +367,12 @@
                     <input style="text-transform: capitalize" id="name" class="form-control input-sm " type="text" name="name" disabled />
                 </div>   
             </div>
+            
             <hr>
             <form onsubmit="return editproductpriceform(this);" role="form" method="post" action="<?=site_url('Salescredit_con/updatetransactionlineprice')?>">    
-            <input id="tlno" class="form-control input-sm hide" type="text" name="tlno" />
-            <input id="discount" class="form-control input-sm hide" type="text" name="discount" />
-            <input id="qty" class="form-control input-sm hide" type="text" name="qty" />
+                <input id="tlno" class="form-control input-sm hide" type="text" name="tlno" />
+                <input id="discount" class="form-control input-sm hide" type="text" name="discount" />
+                <input id="qty" class="form-control input-sm hide" type="text" name="qty" />
                 <div class="form-group row row-offcanvas">                                       
                     <label class="col-sm-6 control-label">Price 1</label>
                     <div class="col-sm-6">
@@ -381,9 +382,9 @@
             </form>
 
             <form onsubmit="return editproductpriceform(this);" role="form" method="post" action="<?=site_url('Salescredit_con/updatetransactionlineprice')?>">    
-            <input id="tlno" class="form-control input-sm hide" type="text" name="tlno" />
-            <input id="discount" class="form-control input-sm hide" type="text" name="discount" />
-            <input id="qty" class="form-control input-sm hide" type="text" name="qty" />
+                <input id="tlno" class="form-control input-sm hide" type="text" name="tlno" />
+                <input id="discount" class="form-control input-sm hide" type="text" name="discount" />
+                <input id="qty" class="form-control input-sm hide" type="text" name="qty" />
                 <div class="form-group row row-offcanvas">                                       
                     <label class="col-sm-6 control-label">Price 2</label>
                     <div class="col-sm-6">
@@ -393,13 +394,30 @@
             </form>
 
             <form onsubmit="return editproductpriceform(this);" role="form" method="post" action="<?=site_url('Salescredit_con/updatetransactionlineprice')?>">   
-            <input id="tlno" class="form-control input-sm hide" type="text" name="tlno" /> 
-            <input id="discount" class="form-control input-sm hide" type="text" name="discount" />
-            <input id="qty" class="form-control input-sm hide" type="text" name="qty" />
+                <input id="tlno" class="form-control input-sm hide" type="text" name="tlno" /> 
+                <input id="discount" class="form-control input-sm hide" type="text" name="discount" />
+                <input id="qty" class="form-control input-sm hide" type="text" name="qty" />
                 <div class="form-group row row-offcanvas">                                       
                     <label class="col-sm-6 control-label">Price 3</label>
                     <div class="col-sm-6">
                         <input id="price3" type="submit" class="form-control btn btn-primary" name="price" >
+                    </div>   
+                </div>
+            </form>
+
+            <hr>
+
+            <form onsubmit="return editproductpriceform(this);" role="form" method="post" action="<?=site_url('Sales_con/updatetransactionlineprice')?>">   
+                <input id="tlno" class="form-control input-sm hide" type="text" name="tlno" /> 
+                <input id="discount" class="form-control input-sm hide" type="text" name="discount" />
+                <input id="qty" class="form-control input-sm hide" type="text" name="qty" />
+                <div class="form-group row row-offcanvas">                                       
+                    <label class="col-sm-6 control-label text-danger">OVERRIDE PRICE</label>
+                    <div class="col-sm-4">
+                        <input id="price3" type="number" min="0" step="any" class="form-control input" name="price" >
+                    </div>   
+                    <div class="col-sm-2">
+                        <input  type="submit"  class="form-control btn btn-success" value="SAVE">
                     </div>   
                 </div>
             </form>

@@ -410,9 +410,9 @@
             </form>
             <hr>
             <form onsubmit="return editproductpriceform(this);" role="form" method="post" action="<?=site_url('Sales_con/updatetransactionlineprice')?>">   
-            <input id="tlno" class="form-control input-sm hide" type="text" name="tlno" /> 
-            <input id="discount" class="form-control input-sm hide" type="text" name="discount" />
-            <input id="qty" class="form-control input-sm hide" type="text" name="qty" />
+                <input id="tlno" class="form-control input-sm hide" type="text" name="tlno" /> 
+                <input id="discount" class="form-control input-sm hide" type="text" name="discount" />
+                <input id="qty" class="form-control input-sm hide" type="text" name="qty" />
                 <div class="form-group row row-offcanvas">                                       
                     <label class="col-sm-6 control-label text-danger">OVERRIDE PRICE</label>
                     <div class="col-sm-4">

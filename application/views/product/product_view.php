@@ -32,7 +32,7 @@
                     <div class="form-group row row-offcanvas">
                         <label class="col-sm-2 control-label">Product Search</label>
                         <div class="col-sm-5">
-                            <input  class="form-control input-md" type="text" name="psearch" placeholder="Barcode / Product Name "  required autofocus autocomplete="off">
+                            <input  class="form-control input-md" type="text" name="psearch" placeholder="Product Name "  required autofocus autocomplete="off">
                         </div>   
                         <div class="col-sm-1">
                             <button title="Search" type="Submit" class="btn btn-success" >Search</button>
@@ -47,7 +47,7 @@
                 <div class="form-group row row-offcanvas">
                     <label class="col-sm-2 control-label">Product Search</label>
                     <div class="col-sm-5">
-                        <input  class="form-control input-md" type="text" name="psearch" placeholder="Barcode / Product Name "  required autofocus autocomplete="off">
+                        <input  class="form-control input-md" type="text" name="psearch" placeholder="Product Name "  required autofocus autocomplete="off">
                     </div>   
                     <div class="col-sm-4">
                         <button title="Search" type="Submit" class="btn btn-success" >Search</button>
@@ -59,27 +59,25 @@
             <!-- product table -->
             <table class="table table-hover table-responsive table-bordered table-striped info" id="MTable"> 
                 <thead>
-                    <tr class="info">                                             
-                        <td class="text-center"><strong>Action</strong></td>
-                        <td class="text-center"><strong>#</strong></td>                         
+                    <tr class="info">                                                             
                         <td class="text-center"><strong>Name</strong></td>   
                         <td class="text-center"><strong>Qty</strong></td>   
                         <td class="text-center"><strong>SRP</strong></td>  
+                        <td class="text-center"><strong>Action</strong></td>
                     </tr> 
                 </thead>
                 <tbody>
                     <?php foreach ($prod as $key => $item): ?>                     
                     <tr> 
+                        <td class="text-center" style="text-transform: capitalize"><?php echo $item->name;?></td>  
+                        <td class="text-center" style="text-transform: capitalize"><?php echo $item->qty;?></td>  
+                        <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->srpprice,2,'.',',');?></td>  
                         <td class="text-center">
                             <a title="Edit" href="<?=site_url('product_con/productinfo/'.$item->p_no)?>" class="glyphicon glyphicon-pencil btn btn-info"></a>
                             <?php if($users[0]->position == "Cashier"){}else { ?>
                                 <a type="button" title="Delete" href="<?=site_url('product_con/delproduct/'.$item->p_no)?>" onclick="return confirm('Do you want to delete this Product?');" class="glyphicon glyphicon-trash btn btn-danger"></a>
                             <?php } ?>
                         </td>
-                        <td class="text-center" style="text-transform: capitalize"><?php echo $item->barcode ?></td>
-                        <td class="text-center" style="text-transform: capitalize"><?php echo $item->name;?></td>  
-                        <td class="text-center" style="text-transform: capitalize"><?php echo $item->qty;?></td>  
-                        <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->srpprice,2,'.',',');?></td>  
                     </tr>
                     <?php endforeach;  ?>   
                 </tbody>
@@ -103,13 +101,6 @@
         </div>
         <form role="form" method="post" action="<?=site_url('product_con/insertproduct')?>">                    
             <div class="modal-body">   
-
-                <div class="form-group row row-offcanvas">
-                    <label class="col-sm-4 control-label">Barcode</label>
-                    <div class="col-sm-8">
-                        <input style="text-transform: capitalize;" class="form-control input-sm" type="text" name="barcode" placeholder="barcode"  required autofocus autocomplete="off">
-                    </div>                            
-                </div>  
                 
                 <div class="form-group row row-offcanvas">
                     <label class="col-sm-4 control-label">Name</label>

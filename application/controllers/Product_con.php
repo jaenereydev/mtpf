@@ -144,36 +144,24 @@ class Product_con extends MY_Controller
 
     public function insertproduct()
     {                    
-        $sbarcode = $this->Product_model->searchbarcode($this->input->post('barcode'));
+        
+        $p = array(
+            'name' => $this->input->post('name'),
+            'unitcost' => $this->input->post('unitcost'),
+            'qty' => '0',
+            'srpprice' => $this->input->post('price1'),
+            'price2' => $this->input->post('price2'),
+            'price3' => $this->input->post('price3'),        
+            'active' => 'YES',
+            'user_id' => $this->session->userdata('id'),
+            'supplier_s_no' => $this->input->post('sno'),    
+            'category_c_no' => $this->input->post('cno'),  
+            'inventory' => $this->input->post('ti'),  
+        );
+        $this->Product_model->insertproduct($p);
 
-        if(is_null($sbarcode[0]->barcode)){
-            $p = array(
-                'barcode' => $this->input->post('barcode'),
-                'name' => $this->input->post('name'),
-                'unitcost' => $this->input->post('unitcost'),
-                'qty' => '0',
-                'srpprice' => $this->input->post('price1'),
-                'price2' => $this->input->post('price2'),
-                'price3' => $this->input->post('price3'),        
-                'active' => 'YES',
-                'user_id' => $this->session->userdata('id'),
-                'supplier_s_no' => $this->input->post('sno'),    
-                'category_c_no' => $this->input->post('cno'),  
-                'inventory' => $this->input->post('ti'),  
-            );
-            $this->Product_model->insertproduct($p);
-
-            redirect('product_con/insertsuccess');
-        }else{
-            $this->data['alertbarcode'] = '1';
-            $this->data['message'] = 'Product Barcode is Already Existed. Please insert new product.';
-            $this->data['prod'] = null;
-            $this->data['product'] = $this->Product_model->countproduct(); //number of product
-            $this->data['sup'] = $this->Supplier_model->get_supplier();
-            $this->data['cat'] = $this->Category_model->get_category();
-
-            $this->render_html('product/product_view', true); 
-        }
+        redirect('product_con/insertsuccess');
+        
     }
     
     //--------------------------------------------------------------------------
