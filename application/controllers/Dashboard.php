@@ -17,6 +17,7 @@ class Dashboard extends MY_Controller
         $this->load->model('Creditloan_model');
         $this->load->model('Repayment_model');
         $this->load->model('Creditpayment_model');
+        $this->load->model('Dashboard_model');
 
         $this->user = $this->User_model->get_users( $this->session->userdata('id'));
         $this->active = "1";
@@ -38,27 +39,35 @@ class Dashboard extends MY_Controller
     //--------------------------------------------------------------------------                   
     
     public function index()
-    {                    
-        $this->data['com'] = $this->Company_model->get_companyinfo(); //company details
-        $this->data['customer'] = $this->Customer_model->countcustomer(); //number of customer
-        $this->data['product'] = $this->Product_model->countproduct(); //number of product
-        $this->data['productwounitcost'] = $this->Product_model->countproductwounitcost(); //number of product with unit cost
-        $this->data['productnegativequantity'] = $this->Product_model->productwithnegativequantity(); //number of product with negative quantity
+    {        
 
-        $this->data['totalap'] = $this->Delivery_model->get_totalaccountpayeble(); //number of product
-        $this->data['totalar'] = $this->Customer_model->get_totalaccountrecievables(); //number of product
-        $this->data['dd'] = $this->Duedate_model->get_duedate();
-        $this->data['sumcost'] = $this->Product_model->inventorytotalcost(); //total cost of inventory
+        $this->data['productcount']       = $this->Dashboard_model->productcount();
+        $this->data['totalproductqty']    = $this->Dashboard_model->totalproductqty();
+        $this->data['lowstockcount']      = $this->Dashboard_model->lowstockcount();
+        $this->data['negativestockcount'] = $this->Dashboard_model->negativestockcount();
 
-        $this->data['totalcashsalesperuser'] = $this->Sales_model->get_totalcashsalesperdayperuser(); //total credit sales per user
-        $this->data['totalcreditsalesperuser'] = $this->Sales_model->get_totalcreditsalesperdayperuser(); //total credit sales per user
-        $this->data['totalcreditpaymentperuser'] = $this->Creditpayment_model->get_totalcreditpaymentperuser(); //total credit payment per user
-        
-        $this->data['openloan'] = $this->Creditloan_model->get_openloan();
-        $this->data['dueamount'] = $this->Repayment_model->get_repaymentthismonth();
-        $this->data['payedamount'] = $this->Repayment_model->get_payedthismonth();
+        $this->data['production_today'] = $this->Dashboard_model->production_today();
+        $this->data['production_week']  = $this->Dashboard_model->production_week();
+        $this->data['production_month'] = $this->Dashboard_model->production_month();
 
-        $this->render_html('dashboard_view', true); 
+        $this->data['donation_month']   = $this->Dashboard_model->donation_month();
+        $this->data['reclassify_month'] = $this->Dashboard_model->reclassify_month();
+
+        $this->data['production_chart'] = $this->Dashboard_model->production_last_7_days();
+
+        $this->data['lowstockproducts'] = $this->Dashboard_model->lowstockproducts();
+        $this->data['product_movement'] = $this->Dashboard_model->product_movement_this_month();
+
+        $this->data['cash_sales_today']     = $this->Dashboard_model->cash_sales_today();
+        $this->data['cash_sales_month']     = $this->Dashboard_model->cash_sales_month();
+        $this->data['credit_sales_month']   = $this->Dashboard_model->credit_sales_month();
+        $this->data['credit_payment_month'] = $this->Dashboard_model->credit_payment_month();
+        $this->data['expenses_month']       = $this->Dashboard_model->expenses_month();
+        $this->data['total_sales_month']    = $this->Dashboard_model->total_sales_month();
+        $this->data['credit_balance']       = $this->Dashboard_model->credit_balance();
+        $this->data['net_cash_month']       = $this->Dashboard_model->net_cash_month();
+
+        $this->render_html('dashboard/dashboard_view', true);
     }
     
     //--------------------------------------------------------------------------

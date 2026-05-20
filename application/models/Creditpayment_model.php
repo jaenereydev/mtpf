@@ -21,7 +21,7 @@ class Creditpayment_model extends CI_Model
 
  //----------------------------------------------------------------------
 
- public function get_creditpaymentposted($user) 
+  public function get_creditpaymentposted($user) 
   {
   
     $sql = "Select p.*, c.name as name 
@@ -36,7 +36,7 @@ class Creditpayment_model extends CI_Model
 
  //----------------------------------------------------------------------
 
- public function get_datecreditpaymentposted($user, $d) 
+  public function get_datecreditpaymentposted($user, $d) 
   {
   
     $sql = "Select p.*, c.name as name 
