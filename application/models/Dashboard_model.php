@@ -65,7 +65,7 @@ class Dashboard_model extends CI_Model
     {
         $this->db->select_sum('qty', 'total_qty');
         $this->db->from('production');
-        $this->db->where('date', date('Y-m-d'));
+        $this->db->where('date', date('Y/m/d'));
 
         $query = $this->db->get();
         $row = $query->row();
@@ -77,8 +77,8 @@ class Dashboard_model extends CI_Model
 
     public function production_week()
     {
-        $monday = date('Y-m-d', strtotime('monday this week'));
-        $sunday = date('Y-m-d', strtotime('sunday this week'));
+        $monday = date('Y/m/d', strtotime('monday this week'));
+        $sunday = date('Y/m/d', strtotime('sunday this week'));
 
         $this->db->select_sum('qty', 'total_qty');
         $this->db->from('production');
@@ -97,8 +97,8 @@ class Dashboard_model extends CI_Model
     {
         $this->db->select_sum('qty', 'total_qty');
         $this->db->from('production');
-        $this->db->where('date >=', date('Y-m-01'));
-        $this->db->where('date <=', date('Y-m-t'));
+        $this->db->where('date >=', date('Y/m/01'));
+        $this->db->where('date <=', date('Y/m/t'));
 
         $query = $this->db->get();
         $row = $query->row();
@@ -118,7 +118,7 @@ class Dashboard_model extends CI_Model
                 AND p.active = 'YES'
                 AND d.date BETWEEN ? AND ?";
 
-        $query = $this->db->query($sql, array(date('Y-m-01'), date('Y-m-t')));
+        $query = $this->db->query($sql, array(date('Y/m/01'), date('Y/m/t')));
         $row = $query->row();
 
         return $row->total_qty ? $row->total_qty : 0;
@@ -203,7 +203,7 @@ class Dashboard_model extends CI_Model
                 WHERE type = 'CASH'
                 AND STR_TO_DATE(date, '%Y/%m/%d') BETWEEN ? AND ?";
 
-        $query = $this->db->query($sql, array(date('Y-m-01'), date('Y-m-t')));
+        $query = $this->db->query($sql, array(date('Y/m/01'), date('Y/m/t')));
         $row = $query->row();
 
         return $row->total_amount ? $row->total_amount : 0;
@@ -329,7 +329,7 @@ class Dashboard_model extends CI_Model
         $sql = "SELECT COALESCE(SUM(CAST(totalamount AS DECIMAL(12,2))), 0) AS total_amount
                 FROM `transaction`
                 WHERE type = 'CASH'
-                AND STR_TO_DATE(date, '%Y-%m-%d') BETWEEN ? AND ?";
+                AND STR_TO_DATE(date, '%Y/%m/%d') BETWEEN ? AND ?";
 
         $query = $this->db->query($sql, array($date_from, $date_to));
         $row = $query->row();
@@ -344,7 +344,7 @@ class Dashboard_model extends CI_Model
         $sql = "SELECT COALESCE(SUM(CAST(totalamount AS DECIMAL(12,2))), 0) AS total_amount
                 FROM `transaction`
                 WHERE type = 'CREDIT'
-                AND STR_TO_DATE(date, '%Y-%m-%d') BETWEEN ? AND ?";
+                AND STR_TO_DATE(date, '%Y/%m/%d') BETWEEN ? AND ?";
 
         $query = $this->db->query($sql, array($date_from, $date_to));
         $row = $query->row();
@@ -359,7 +359,7 @@ class Dashboard_model extends CI_Model
         $sql = "SELECT COALESCE(SUM(CAST(totalpayment AS DECIMAL(12,2))), 0) AS total_amount
                 FROM customerpayment
                 WHERE post = 'YES'
-                AND STR_TO_DATE(date, '%Y-%m-%d') BETWEEN ? AND ?";
+                AND STR_TO_DATE(date, '%Y/%m/%d') BETWEEN ? AND ?";
 
         $query = $this->db->query($sql, array($date_from, $date_to));
         $row = $query->row();
@@ -373,7 +373,7 @@ class Dashboard_model extends CI_Model
     {
         $sql = "SELECT COALESCE(SUM(CAST(amount AS DECIMAL(12,2))), 0) AS total_amount
                 FROM expenses
-                WHERE STR_TO_DATE(date, '%Y-%m-%d') BETWEEN ? AND ?";
+                WHERE STR_TO_DATE(date, '%Y/%m/%d') BETWEEN ? AND ?";
 
         $query = $this->db->query($sql, array($date_from, $date_to));
         $row = $query->row();

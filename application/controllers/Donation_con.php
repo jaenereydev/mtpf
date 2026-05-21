@@ -53,7 +53,7 @@ class Donation_con extends MY_Controller
         }
 
         $header = array(
-            'date'      => date('Y-m-d', strtotime($date)),
+            'date'      => date('Y/m/d', strtotime($date)),
             'donate_to' => $donate_to,
             'remarks'   => $remarks,
             'user_id'   => $this->session->userdata('id'),
@@ -117,7 +117,7 @@ class Donation_con extends MY_Controller
         }
 
         $header = array(
-            'date'      => date('Y-m-d', strtotime($this->input->post('date'))),
+            'date'      => date('Y/m/d', strtotime($this->input->post('date'))),
             'donate_to' => $this->input->post('donate_to'),
             'remarks'   => $this->input->post('remarks'),
             'user_id'   => $this->session->userdata('id')

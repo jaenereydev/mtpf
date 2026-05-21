@@ -157,7 +157,7 @@ class Production_con extends MY_Controller
         }
 
         $data = array(
-            'date'    => date('Y-m-d', strtotime($date)),
+            'date'    => date('Y/m/d', strtotime($date)),
             'b_no'    => $b_no,
             'qty'     => $qty,
             'user_id' => $this->session->userdata('id')

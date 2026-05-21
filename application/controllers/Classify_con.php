@@ -58,7 +58,7 @@ class Classify_con extends MY_Controller
         }
 
         $header = array(
-            'date'    => date('Y-m-d', strtotime($date)),
+            'date'    => date('Y/m/d', strtotime($date)),
             'user_id' => $this->session->userdata('id'),
             'post'    => 'NO'
         );
@@ -144,6 +144,7 @@ class Classify_con extends MY_Controller
     public function updateclassify()
     {
         $c_no = $this->input->post('c_no');
+        
 
         if (empty($c_no)) {
             $this->session->set_flashdata('error', 'Invalid classify record.');
@@ -177,7 +178,7 @@ class Classify_con extends MY_Controller
         }
 
         $header = array(
-            'date'    => date('Y-m-d', strtotime($date)),
+            'date'    => date('Y/m/d', strtotime($date)),
             'user_id' => $this->session->userdata('id')
         );
 

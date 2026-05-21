@@ -53,7 +53,7 @@ class Reclassify_con extends MY_Controller
         }
 
         $header = array(
-            'date'    => date('Y-m-d', strtotime($date)),
+            'date'    => date('Y/m/d', strtotime($date)),
             'remarks' => $remarks,
             'user_id' => $this->session->userdata('id'),
             'post'    => 'NO'
@@ -116,7 +116,7 @@ class Reclassify_con extends MY_Controller
         }
 
         $header = array(
-            'date'    => date('Y-m-d', strtotime($this->input->post('date'))),
+            'date'    => date('Y/m/d', strtotime($this->input->post('date'))),
             'remarks' => $this->input->post('remarks'),
             'user_id' => $this->session->userdata('id')
         );
