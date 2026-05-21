@@ -111,6 +111,7 @@ class Classify_model extends CI_Model
     {
         $this->db->select('p_no, name');
         $this->db->from('product');
+        $this->db->where('active', 'YES');
         $this->db->order_by('name', 'ASC');
 
         return $this->db->get()->result();
