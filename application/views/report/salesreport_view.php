@@ -30,20 +30,22 @@
                 <hr>
                 <table class="table table-hover table-responsive table-bordered table-striped info"> 
                     <thead>
-                        <tr class="info">                                             
-                            <td class="text-center"><strong>Action</strong></td>
+                        <tr class="info">                                        
                             <td class="text-center"><strong>DATE</strong></td>                         
                             <td class="text-center"><strong>NAME</strong></td> 
+                            <td class="text-center"><strong>Action</strong></td>
                         </tr> 
                     </thead>
                     <tbody>
                         <?php foreach ($salesreport as $key => $item):  ?>                    
                         <tr> 
-                            <td class="text-center">
-                                <a target="_blank" title="Print" href="<?=site_url('Report_con/reprintsalesreport/'.$item->sr_no)?>" class="glyphicon glyphicon-print btn btn-default"></a>                            
-                            </td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->date;?></td>                        
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->name;?></td>  
+                            <td class="text-center">
+                                <a  target="_blank" title="Print" href="<?=site_url('Report_con/reprintsalesreport/'.$item->sr_no)?>"
+                                    class="glyphicon glyphicon-print btn btn-default">
+                                </a>                            
+                            </td>
                         </tr>
                         <?php endforeach;  ?>   
                     </tbody>

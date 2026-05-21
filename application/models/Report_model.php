@@ -32,12 +32,25 @@ class Report_model extends CI_Model
 
   public function get_transactionsalesreport($d) 
   {
-    $sql = "SELECT t.*, u.*
-              from transaction t
-              JOIN user u ON u.id = t.user_id
-              WHERE date = '$d'";
-    $query = $this->db->query($sql);
-    return $query->result();
+      $d = date('Y/m/d', strtotime($d));
+
+      $sql = "SELECT 
+                  t.*,
+                  u.name AS name,
+                  CASE 
+                      WHEN t.customer_c_no IS NULL OR t.customer_c_no = '' THEN 'WALK IN'
+                      WHEN c.name IS NULL THEN 'WALK IN'
+                      ELSE c.name
+                  END AS customername
+              FROM `transaction` t
+              JOIN `user` u ON u.id = t.user_id
+              LEFT JOIN customer c ON c.c_no = t.customer_c_no
+              WHERE t.date = ?
+              ORDER BY t.t_no DESC";
+
+      $query = $this->db->query($sql, array($d));
+
+      return $query->result();
   }
  
  

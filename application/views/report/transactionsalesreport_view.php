@@ -12,7 +12,7 @@
         
         
         <div class="panel-body">  
-           
+        
             <form role="form" method="post" action="<?=site_url('Report_con/searchtransactionsalesreport')?>">                    
                     
                 <div class="form-group row row-offcanvas">
@@ -29,26 +29,28 @@
                 <hr>
                 <table class="table table-hover table-responsive table-bordered table-striped info"> 
                     <thead>
-                        <tr class="info">                                             
-                            <td class="text-center"><strong>Action</strong></td>
+                        <tr class="info">      
                             <td class="text-center"><strong>DATE</strong></td>     
-                            <td class="text-center"><strong>Ref #</strong></td> 
+                            <td class="text-center"><strong>Ref #</strong></td>
+                            <td class="text-center"><strong>Name</strong></td>      
                             <td class="text-center"><strong>Total Amount</strong></td> 
                             <td class="text-center"><strong>Type</strong></td>                     
                             <td class="text-center"><strong>User</strong></td> 
+                            <td class="text-center"><strong>Action</strong></td>
                         </tr> 
                     </thead>
                     <tbody>
                         <?php foreach ($transactionsalesreport as $key => $item):  ?>                    
                         <tr> 
-                            <td class="text-center">
-                                <a target="_blank" title="Print" href="<?=site_url('Receipt_con/reprint/'.$item->t_no.'/'.$item->customer_c_no)?>" class="glyphicon glyphicon-print btn btn-default"></a>                            
-                            </td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->date;?></td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->ref_no;?></td>
+                            <td class="text-center" style="text-transform: capitalize"><?php echo $item->customername;?></td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->totalamount,2,'.',',');?></td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->type;?></td>                     
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->name;?></td>  
+                            <td class="text-center">
+                                <a target="_blank" title="Print" href="<?=site_url('Receipt_con/reprint/'.$item->t_no.'/'.$item->customer_c_no)?>" class="glyphicon glyphicon-print btn btn-default"></a>                            
+                            </td>
                         </tr>
                         <?php endforeach;  ?>   
                     </tbody>
