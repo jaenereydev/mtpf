@@ -134,7 +134,8 @@
                         </tr>
                         <tr >                                                                         
                             <td class="text-center"><strong>Date</strong></td> 
-                            <td class="text-center"><strong>Ref. No.</strong></td>                         
+                            <td class="text-center"><strong>Ref. No.</strong></td>
+                            <td class="text-center"><strong>Name</strong></td>                         
                             <td class="text-center"><strong>Type</strong></td>   
                             <td class="text-center"><strong>Amount</strong></td> 
                         </tr> 
@@ -144,6 +145,9 @@
                         <tr class="<?php if($item->type=='RETURN'){echo 'danger'; } ?>">                 
                             <td class="text-center" style="text-transform: capitalize"><?php echo date_format(date_create($item->date), 'm/d/Y');?></td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->ref_no ?></td>
+                            <td class="text-center" style="text-transform: capitalize">
+                                <?php echo empty($item->customer_c_no) ? 'WALK IN' : $item->name; ?>
+                            </td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->type ?></td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->totalamount,2,'.',','); ?></td>
                         </tr>
@@ -157,12 +161,13 @@
                 <table style="font-family: arial;width: 100%; font-size: 12pt;"> 
                     <thead>
                         <tr >
-                            <td class="text-center"colspan="5"><strong>Transaction List</strong></td>
+                            <td class="text-center"colspan="5"><strong>Credit Transaction List</strong></td>
                         </tr>
                         <tr >                                                                         
                             <td class="text-center"><strong>Date</strong></td> 
                             <td class="text-center"><strong>Ref. No.</strong></td>                         
-                            <td class="text-center"><strong>Type</strong></td>   
+                            <td class="text-center"><strong>Name</strong></td>  
+                            <td class="text-center"><strong>Type</strong></td>    
                             <td class="text-center"><strong>Amount</strong></td> 
                         </tr> 
                     </thead>
@@ -171,6 +176,9 @@
                         <tr class="<?php if($item->type=='RETURN'){echo 'danger'; } ?>">                 
                             <td class="text-center" style="text-transform: capitalize"><?php echo date_format(date_create($item->date), 'm/d/Y');?></td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->ref_no ?></td>
+                            <td class="text-center" style="text-transform: capitalize">
+                                <?php echo empty($item->customer_c_no) ? 'WALK IN' : $item->name; ?>
+                            </td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo $item->type ?></td>
                             <td class="text-center" style="text-transform: capitalize"><?php echo number_format((float)$item->totalamount,2,'.',','); ?></td>
                         </tr>

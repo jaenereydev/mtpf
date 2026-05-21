@@ -155,49 +155,54 @@ class Sales_model extends CI_Model
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
- 
+
+
   //----------------------------------------------------------------------
 
   public function get_daytransactioncash($u) // sql for transactoin for the day
   {
-    $sql = "SELECT *
-              from transaction  
-              where  user_id = '$u' 
-              and type = 'CASH' 
-              OR type = 'VOID' 
-              and date = CURDATE()";
-    $query = $this->db->query($sql);
+    $sql = "SELECT t.*, c.name 
+            FROM `transaction` t
+            LEFT JOIN customer c ON c.c_no = t.customer_c_no
+            WHERE t.user_id = ?
+            AND t.type IN ('CASH', 'VOID')
+            AND t.date = ?";
+
+    $query = $this->db->query($sql, array($u, date('Y/m/d')));
+
     return $query->result();
   }
 
   //----------------------------------------------------------------------
 
   public function get_daytransactioncredit($u) // sql for transactoin for the day
-   {
-    $sql = "SELECT *
-              from transaction  
-              where  user_id = '$u' 
-              and type = 'CREDIT' 
-              and date = CURDATE()";
-    $query = $this->db->query($sql);
+  {
+    $sql = "SELECT t.*, c.name 
+            FROM `transaction` t
+            LEFT JOIN customer c ON c.c_no = t.customer_c_no
+            WHERE t.user_id = ?
+            AND t.type = 'CREDIT'
+            AND t.date = ?";
+
+    $query = $this->db->query($sql, array($u, date('Y/m/d')));
+
     return $query->result();
   }
- 
- 
+
+
   //----------------------------------------------------------------------
 
   public function get_datetransaction($u, $d) // sql for transactoin for the day
-   {
+  {
     $sql = "SELECT *
               from transaction  
               where  user_id = '$u' 
               and date = '$d'";
     $query = $this->db->query($sql);
     return $query->result();
-  }
- 
- 
+  } 
+
+
   //----------------------------------------------------------------------
   
   public function get_sumtransaction($u, $desc) // sql for transactoin for the day
@@ -230,7 +235,7 @@ class Sales_model extends CI_Model
   //----------------------------------------------------------------------
 
   public function get_sumexpenses($u) // sql for transactoin for the day
-   {
+  {
     $sql = "SELECT sum(amount) as ta
               from expenses 
               where  user_id = '$u' 
@@ -242,7 +247,7 @@ class Sales_model extends CI_Model
   //----------------------------------------------------------------------
 
   public function get_datesumexpenses($u, $d) // sql for transactoin for the day
-   {
+  {
     $sql = "SELECT sum(amount) as ta
               from expenses 
               where  user_id = '$u' 
@@ -275,7 +280,7 @@ class Sales_model extends CI_Model
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
+
   //----------------------------------------------------------------------
 
   public function get_datesumdeposit($u, $d) // sql for transactoin for the day
@@ -330,7 +335,7 @@ class Sales_model extends CI_Model
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
+
   //----------------------------------------------------------------------
 
   public function get_sumcashonhand($u) // sql for sum cash on hand for the day
@@ -342,7 +347,7 @@ class Sales_model extends CI_Model
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
+
   //----------------------------------------------------------------------
 
   public function get_datesumcashonhand($u, $d) // sql for sum cash on hand for the day
@@ -354,7 +359,7 @@ class Sales_model extends CI_Model
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
+
   //----------------------------------------------------------------------
 
   public function get_cashonhandinfo($u) // sql for coh of the day
@@ -366,7 +371,7 @@ class Sales_model extends CI_Model
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
+
   //----------------------------------------------------------------------
 
   public function get_datecashonhandinfo($u, $d) // sql for coh of the day
@@ -378,7 +383,7 @@ class Sales_model extends CI_Model
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
+
   //----------------------------------------------------------------------
 
   public function get_transactionlineinfo($t) 
@@ -391,8 +396,8 @@ class Sales_model extends CI_Model
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
- 
+
+
   //----------------------------------------------------------------------
   public function get_transactionline($u) 
   {
@@ -405,8 +410,8 @@ class Sales_model extends CI_Model
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
- 
+
+
   //----------------------------------------------------------------------
 
   public function updatetransactionline($tno, $u) 
@@ -418,7 +423,7 @@ class Sales_model extends CI_Model
         return $this->db->query($sql);
   }
 
- 
+
   //----------------------------------------------------------------------
 
   public function inserttransactionline($tl = null) 
@@ -471,7 +476,7 @@ class Sales_model extends CI_Model
 
     public function deletetransactionline($tl) 
     {                       
-         $this->db->delete('transactionline', array('tl_no' => $tl));
+          $this->db->delete('transactionline', array('tl_no' => $tl));
     }
 
     //--------------------------------------------------------------------------   
@@ -479,6 +484,6 @@ class Sales_model extends CI_Model
     public function deletealltransactionline($u) 
     {                       
         $sql = "DELETE FROM transactionline WHERE user_id ='$u' and transaction_t_no is null";
-       return $this->db->query($sql);
+        return $this->db->query($sql);
     }
 }
