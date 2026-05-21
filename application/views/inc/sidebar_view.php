@@ -30,6 +30,10 @@
                     <span class="glyphicon glyphicon-heart-empty"></span> Donation
                 </a>
 
+                <a title="Disposal" class="list-group-item" href="<?php echo site_url('Disposal_con') ?>">
+                    <span class="glyphicon glyphicon-trash"></span> Disposal
+                </a>
+
 
                 <?php if($users[0]->position == "Cashier"){}else { ?>
                     <a title="Delivery" class="list-group-item" href="<?php echo site_url('Delivery_con') ?>"><span class="	glyphicon glyphicon-qrcode"></span> Receiving Delivery</a>
