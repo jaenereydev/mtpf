@@ -155,8 +155,8 @@ class Report_con extends MY_Controller
         $this->data['user'] = $this->User_model->get_users($s[0]->user_id);
         $this->data['com'] = $this->Company_model->get_companyinfo(); //company details
 
-        $this->data['tcash'] = $this->Sales_model->get_daytransactioncash($this->session->userdata('id')); // transaction list        
-        $this->data['tcredit'] = $this->Sales_model->get_daytransactioncredit($this->session->userdata('id')); // transaction list  
+        $this->data['tcash'] = $this->Sales_model->get_daytransactionreportcash($s[0]->user_id, $s[0]->date); // transaction list        
+        $this->data['tcredit'] = $this->Sales_model->get_daytransactionreportcredit($s[0]->user_id, $s[0]->date); // transaction list  
 
         $this->data['downpayment'] = $this->Sales_model->get_datetotaldownpaymentperuser($s[0]->user_id, $s[0]->date); // get downpayment   
         $this->data['creditloan'] = $this->Sales_model->get_datecreditloanperuser($s[0]->user_id, $s[0]->date); 

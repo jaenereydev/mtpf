@@ -189,6 +189,38 @@ class Sales_model extends CI_Model
     return $query->result();
   }
 
+  //----------------------------------------------------------------------
+
+  public function get_daytransactionreportcash($u, $d) // sql for transactoin for the day
+  {
+    $sql = "SELECT t.*, c.name 
+            FROM `transaction` t
+            LEFT JOIN customer c ON c.c_no = t.customer_c_no
+            WHERE t.user_id = ?
+            AND t.type IN ('CASH', 'VOID')
+            AND t.date = ?";
+
+    $query = $this->db->query($sql, array($u, $d));
+
+    return $query->result();
+  }
+
+  //----------------------------------------------------------------------
+
+  public function get_daytransactionreportcredit($u, $d) // sql for transactoin for the day
+  {
+    $sql = "SELECT t.*, c.name 
+            FROM `transaction` t
+            LEFT JOIN customer c ON c.c_no = t.customer_c_no
+            WHERE t.user_id = ?
+            AND t.type = 'CREDIT'
+            AND t.date = ?";
+
+    $query = $this->db->query($sql, array($u, $d));
+
+    return $query->result();
+  }
+
 
   //----------------------------------------------------------------------
 
@@ -215,8 +247,7 @@ class Sales_model extends CI_Model
     $query = $this->db->query($sql);
     return $query->result();
   }
- 
- 
+
   //----------------------------------------------------------------------
 
   
