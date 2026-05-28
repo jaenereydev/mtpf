@@ -16,7 +16,7 @@ class Report_con extends MY_Controller
         $this->load->model('Sales_model');
         $this->load->model('Report_model');
         $this->load->model('Creditpayment_model');
-       
+    
         $this->user = $this->User_model->get_users( $this->session->userdata('id'));
         $this->active = "1";
         $this->open = "1";
@@ -177,8 +177,8 @@ class Report_con extends MY_Controller
 
         $this->data['sumdeposit'] = $this->Sales_model->get_datesumdeposit($s[0]->user_id, $s[0]->date); // sum of expenses of the day
 
-        $this->data['sumcreditpaymentcash'] = $this->Sales_model->get_sumcreditpaymentcash($this->session->userdata('id')); // sum of expenses of the day
-        $this->data['sumcreditpaymentcheck'] = $this->Sales_model->get_sumcreditpaymentcheck($this->session->userdata('id')); // sum of expenses of the day
+        $this->data['sumcreditpaymentcash'] = $this->Sales_model->get_datesumcreditpaymentcash($this->session->userdata('id'), $s[0]->date); // sum of expenses of the day
+        $this->data['sumcreditpaymentcheck'] = $this->Sales_model->get_datesumcreditpaymentcheck($this->session->userdata('id'), $s[0]->date); // sum of expenses of the day
 
         $this->data['sumcashonhand'] = $this->Sales_model->get_datesumcashonhand($s[0]->user_id, $s[0]->date); // sum of expenses of the day
         
